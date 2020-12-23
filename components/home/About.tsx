@@ -48,9 +48,13 @@ const About = ({ width }: { width: number }) => {
     <AboutStyled>
       <WrapperCenter>
         <WrapperInner>
-          <Title style={out_of_view ? {} : { marginLeft: "50px" }}>About Me&thinsp;</Title>
-          <AboutMeSection style={out_of_view? {marginTop: "10px", width: "80vw"} : {}}>
-            { out_of_view ? (
+          <Title style={out_of_view ? {} : { marginLeft: "50px" }}>
+            About Me&thinsp;
+          </Title>
+          <AboutMeSection
+            style={out_of_view ? { marginTop: "10px", width: "80vw" } : {}}
+          >
+            {out_of_view ? (
               <></>
             ) : (
               <AboutVideo

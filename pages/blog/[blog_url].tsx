@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Layout from "@components/Layout";
 import BlogPage from "@components/blog/BlogPage";
 import useBg from "@hooks/useBg";
+import { withProtect } from "@contexts/auth_context";
 
 const Post = () => {
   useBg("#FFFFFF");
@@ -17,4 +18,4 @@ const Post = () => {
   );
 };
 
-export default Post;
+export default withProtect(Post);

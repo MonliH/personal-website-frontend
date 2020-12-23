@@ -19,7 +19,7 @@ const ContactForm = styled.form`
   flex-direction: column;
   width: 500px;
   font: "Montserrat", sans-serif;
-  
+
   @media (max-width: 580px) {
     width: 80vw;
     padding-bottom: 50px;

@@ -58,8 +58,10 @@ export const ProtectRoute = ({ children }) => {
     return <Loading />;
   } else if (!auth.key) {
     redirect("/admin/sign-in");
+    return <div />;
+  } else {
+    return children;
   }
-  return children;
 };
 
 export const withProtect = <P extends object>(Component: ComponentType<P>) =>

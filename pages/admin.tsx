@@ -3,6 +3,7 @@ import BlogPageChanger from "@components/blog/BlogPageChanger";
 import Panel from "@components/admin/Panel";
 import useBlogEntries from "@hooks/useBlogEntries";
 import { posts_per_page } from "@pages/blog";
+import { withProtect } from "@contexts/auth_context";
 
 const Admin = () => {
   const [pages, page_no, set_page_no, blog_entries, loading] = useBlogEntries(
@@ -23,4 +24,5 @@ const Admin = () => {
     </Layout>
   );
 };
-export default Admin;
+
+export default withProtect(Admin);

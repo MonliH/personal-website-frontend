@@ -2,7 +2,9 @@ import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 
 import { shared_title } from "@components/Title";
-import BlogPageChanger, { ChangerProps } from "@components/blog/BlogPageChanger";
+import BlogPageChanger, {
+  ChangerProps,
+} from "@components/blog/BlogPageChanger";
 import AnimatedLink from "@components/StyledLink";
 import BlogHeader from "@components/blog/BlogHeader";
 import Loading from "@components/Loading";

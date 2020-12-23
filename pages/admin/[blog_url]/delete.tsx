@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 
 import Layout from "@components/Layout";
 import DeletePost from "@components/admin/DeletePost";
+import { withProtect } from "@contexts/auth_context";
 
 const DeletePage = () => {
   const router = useRouter();
@@ -12,5 +13,6 @@ const DeletePage = () => {
       <DeletePost blog_name={blog_url as string} />
     </Layout>
   );
-}
-export default DeletePage;
+};
+
+export default withProtect(DeletePage);

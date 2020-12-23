@@ -1,6 +1,7 @@
 import Layout from "@components/Layout";
 import AdminBlogPage from "@components/admin/AdminBlogPage";
 import { default_blog } from "@lib/blog";
+import { withProtect } from "@contexts/auth_context";
 
 const NewBlog = () => {
   return (
@@ -9,4 +10,5 @@ const NewBlog = () => {
     </Layout>
   );
 };
-export default NewBlog;
+
+export default withProtect(NewBlog);

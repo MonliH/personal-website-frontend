@@ -33,7 +33,11 @@ const NoMatch = () => {
         Thanks for getting in touch!
         <ThanksText>
           I've recived your message, and wll reply shortly.
-          <AnimatedLink style={{marginTop: "10px", display: "block"}} link="/" text="Go back to home page." />
+          <AnimatedLink
+            style={{ marginTop: "10px", display: "block" }}
+            link="/"
+            text="Go back to home page."
+          />
         </ThanksText>
       </LeftAlignContainer>
     </ThanksContainer>

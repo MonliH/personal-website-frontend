@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 
 import Layout from "@components/Layout";
 import EditPost from "@components/admin/EditPost";
+import { withProtect } from "@contexts/auth_context";
 
 const EditBlog = () => {
   const router = useRouter();
@@ -13,4 +14,5 @@ const EditBlog = () => {
     </Layout>
   );
 };
-export default EditBlog;
+
+export default withProtect(EditBlog);

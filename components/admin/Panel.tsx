@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { withProtect, useAuth } from "@contexts/auth_context";
+import { useAuth } from "@contexts/auth_context";
 import { BlogEntry } from "@lib/blog";
 import redirect from "@lib/redirect";
 import Loading from "@components/Loading";
@@ -47,4 +47,4 @@ const Panel = (p: PanelProps) => {
   );
 };
 
-export default withProtect(Panel);
+export default Panel;

@@ -12,7 +12,7 @@ import Loading from "@components/Loading";
 import StyledLink from "@components/StyledLink";
 
 import { BlogEntry } from "@lib/blog";
-import { withProtect, useAuth } from "@contexts/auth_context";
+import { useAuth } from "@contexts/auth_context";
 
 import format_date from "@lib/format_date";
 import change_post from "@lib/change_post";
@@ -141,4 +141,4 @@ const AdminBlogPage = ({
   }
 };
 
-export default withProtect(AdminBlogPage);
+export default AdminBlogPage;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { withProtect, useAuth } from "@contexts/auth_context";
+import { useAuth } from "@contexts/auth_context";
 import redirect from "@lib/redirect";
 import delete_post from "@lib/delete_post";
 
@@ -37,4 +37,4 @@ const DeletePost = ({ blog_name }: { blog_name: string }) => {
   );
 };
 
-export default withProtect(DeletePost);
+export default DeletePost;

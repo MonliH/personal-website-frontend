@@ -7,5 +7,6 @@ const SignInPage = () => {
       <SignIn />
     </Layout>
   );
-}
+};
+
 export default SignInPage;
