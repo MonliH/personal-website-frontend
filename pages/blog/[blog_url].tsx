@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 
-import Layout from "components/Layout";
+import Layout from "@components/Layout";
 import BlogPage from "@components/blog/BlogPage";
 import useBg from "@hooks/useBg";
 

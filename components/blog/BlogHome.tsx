@@ -2,11 +2,12 @@ import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 
 import { shared_title } from "@components/Title";
-import { BlogEntry, BLOG_COLOR_BG } from "@data/blog";
 import BlogPageChanger, { ChangerProps } from "@components/blog/BlogPageChanger";
 import AnimatedLink from "@components/StyledLink";
 import BlogHeader from "@components/blog/BlogHeader";
 import Loading from "@components/Loading";
+
+import { BlogEntry, BLOG_COLOR_BG } from "@lib/blog";
 
 const BlogHomeWrapper = styled.div`
   background-color: ${BLOG_COLOR_BG};

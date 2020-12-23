@@ -1,5 +1,5 @@
 import Router from "next/router";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import AceEditor from "react-ace";
@@ -9,14 +9,13 @@ import "ace-builds/src-noconflict/keybinding-vim";
 
 import Err from "@components/Error";
 import Loading from "@components/Loading";
-
-import { BlogEntry } from "@data/blog";
-import { auth_context } from "@contexts/auth_context";
-
-import format_date from "@helpers/format_date";
-import change_post from "@helpers/change_post";
-
 import StyledLink from "@components/StyledLink";
+
+import { BlogEntry } from "@lib/blog";
+import { withProtect, useAuth } from "@contexts/auth_context";
+
+import format_date from "@lib/format_date";
+import change_post from "@lib/change_post";
 
 const ChangeBlogForm = styled.form`
   display: flex;
@@ -38,7 +37,7 @@ const AdminBlogPage = ({
   const [is_authed, set_is_authed] = useState(false);
   const [message, set_message] = useState("");
 
-  const { auth } = useContext(auth_context);
+  const { auth } = useAuth();
 
   useEffect(() => {
     set_is_authed(true);
@@ -142,4 +141,4 @@ const AdminBlogPage = ({
   }
 };
 
-export default AdminBlogPage;
+export default withProtect(AdminBlogPage);

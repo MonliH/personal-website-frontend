@@ -4,7 +4,7 @@ import { useTransition, animated, useSpring } from "react-spring";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 
-import { Tag, project_list, Project } from "../../data/projects";
+import { Tag, project_list, Project } from "@lib/projects";
 import AnimatedLink from "@components/StyledLink";
 
 import { Title } from "@components/Title";

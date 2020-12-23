@@ -1,11 +1,10 @@
 import { useEffect } from "react";
 import styled from "styled-components";
 
-import { BlogEntry, BLOG_COLOR_BG } from "@data/blog";
 import BlogHeader from "@components/blog/BlogHeader";
 import Err from "@components/Error";
 import Loading from "@components/Loading";
-
+import { BlogEntry, BLOG_COLOR_BG } from "@lib/blog";
 import useBlogPost from "@hooks/useBlogPost";
 
 const BlogPageWrapper = styled.div`

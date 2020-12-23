@@ -1,5 +1,5 @@
-import { API_DOMAIN } from "@constants/domains";
-import { BlogEntry } from "@data/blog";
+import { API_DOMAIN } from "@lib/domains";
+import { BlogEntry } from "@lib/blog";
 import format_date from "./format_date";
 import hljs from "highlight.js";
 

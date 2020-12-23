@@ -1,7 +1,7 @@
-import { API_DOMAIN } from "@constants/domains";
+import { API_DOMAIN } from "@lib/domains";
 
 import { useState, useEffect } from "react";
-import { BlogEntry, into_blog_entry } from "../data/blog";
+import { BlogEntry, into_blog_entry } from "@lib/blog";
 
 const useBlogEntries = (
   posts_per_page: number

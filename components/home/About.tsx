@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import styled from "styled-components";
 
-import * as Video from "@helpers/video";
+import * as Video from "@lib/video";
 import { WrapperCenter, WrapperInner } from "@components/Wrapper";
 import { Title } from "@components/Title";
 

@@ -1,4 +1,4 @@
-import Router from "next/router";
+import redirect from "@lib/redirect";
 
 const capitalize = (str: string) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
@@ -33,7 +33,7 @@ export const submit = (
         }
       } else {
         set_status("Message sent successfully!");
-        Router.replace("/thank-you-contact");
+        redirect("/thank-you-contact");
         window.location.reload();
       }
     });

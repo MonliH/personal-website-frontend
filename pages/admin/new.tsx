@@ -1,6 +1,6 @@
 import Layout from "@components/Layout";
 import AdminBlogPage from "@components/admin/AdminBlogPage";
-import { default_blog } from "@data/blog";
+import { default_blog } from "@lib/blog";
 
 const NewBlog = () => {
   return (

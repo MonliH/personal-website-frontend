@@ -19,10 +19,8 @@
       "@components/*": ["components/*"],
       "@pages/*": ["pages/*"],
       "@styles/*": ["styles/*"],
-      "@helpers/*": ["helpers/*"],
-      "@data/*": ["data/*"],
       "@contexts/*": ["contexts/*"],
-      "@constants/*": ["constants/*"],
+      "@lib/*": ["lib/*"],
       "@hooks/*": ["hooks/*"]
     }
   },

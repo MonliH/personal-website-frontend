@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { animated, useSpring } from "react-spring";
 
-import * as Form from "@helpers/form";
+import * as Form from "@lib/form";
 import { WrapperCenter, WrapperInner } from "@components/Wrapper";
 import { Title } from "@components/Title";
 

@@ -1,4 +1,4 @@
-import { API_DOMAIN } from "@constants/domains";
+import { API_DOMAIN } from "@lib/domains";
 
 const delete_post = async (key: string, url: string) => {
   const request_options = {

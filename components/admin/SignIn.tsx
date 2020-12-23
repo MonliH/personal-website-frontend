@@ -1,9 +1,9 @@
-import Router from "next/router";
-import { useContext, useState } from "react";
-import { auth_context } from "@contexts/auth_context";
+import { useState } from "react";
 import styled from "styled-components";
 
-import validate_key from "@helpers/validate_key";
+import { useAuth } from "@contexts/auth_context";
+import redirect from "@lib/redirect";
+import validate_key from "@lib/validate_key";
 
 const Label = styled.label`
   color: black;
@@ -12,7 +12,7 @@ const Label = styled.label`
 const Input = styled.input``;
 
 const SignIn = () => {
-  const { set_auth_data } = useContext(auth_context);
+  const { set_auth_data } = useAuth();
 
   const [key, set_key] = useState<string>();
   const [wrong, set_wrong] = useState(false);
@@ -21,8 +21,8 @@ const SignIn = () => {
     e.preventDefault();
 
     if (await validate_key(key)) {
-      set_auth_data!(key);
-      Router.replace("/admin/");
+      set_auth_data(key);
+      redirect("/admin/");
     } else {
       set_wrong(true);
     }

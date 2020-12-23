@@ -1,13 +1,10 @@
-import Router from "next/router";
-import { useContext } from "react";
-
 import styled from "styled-components";
 
-import { auth_context } from "@contexts/auth_context";
-import { BlogSummaryList } from "@components/blog/BlogHome";
-
+import { withProtect, useAuth } from "@contexts/auth_context";
+import { BlogEntry } from "@lib/blog";
+import redirect from "@lib/redirect";
 import Loading from "@components/Loading";
-import { BlogEntry } from "@data/blog";
+import { BlogSummaryList } from "@components/blog/BlogHome";
 
 const Title = styled.div`
   color: black;
@@ -25,14 +22,14 @@ interface PanelProps {
 }
 
 const Panel = (p: PanelProps) => {
-  const { set_auth_data } = useContext(auth_context);
+  const { set_auth_data } = useAuth();
 
   const on_log_out = () => {
     set_auth_data!(undefined);
   };
 
   const new_blog = () => {
-    Router.replace("/admin/new");
+    redirect("/admin/new");
   };
 
   return (
@@ -44,10 +41,10 @@ const Panel = (p: PanelProps) => {
       {p.loading ? (
         <Loading />
       ) : (
-        <BlogSummaryList blog_entries={p.blog_entries} prefix={Router.pathname} />
+        <BlogSummaryList blog_entries={p.blog_entries} prefix="/admin/" />
       )}
     </div>
   );
 };
 
-export default Panel;
+export default withProtect(Panel);

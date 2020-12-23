@@ -1,4 +1,4 @@
-import { API_DOMAIN } from "@constants/domains";
+import { API_DOMAIN } from "@lib/domains";
 
 const validate_key = async (key: string): Promise<boolean> => {
   const request_options = {

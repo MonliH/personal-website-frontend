@@ -1,8 +1,8 @@
-import { API_DOMAIN } from "@constants/domains";
+import { API_DOMAIN } from "@lib/domains";
 
 import { useState, useEffect } from "react";
 
-import { into_blog_entry, BlogEntry } from "../data/blog";
+import { into_blog_entry, BlogEntry } from "@lib/blog";
 
 const useBlogPost = (blog_url: string): [null | BlogEntry, null | string] => {
   const [blog_404, set_blog_404] = useState<null | string>(null);
