@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import styled from "styled-components";
 
-import * as Video from "@lib/video";
 import { WrapperCenter, WrapperInner } from "@components/Wrapper";
 import { Title } from "@components/Title";
 
@@ -13,6 +12,10 @@ const AboutVideo = styled.video`
   height: 50vh;
   width: 50vh;
   filter: brightness(1.1) contrast(105%) saturate(135%);
+
+  @media (max-width: 901px) {
+    display: none;
+  }
 `;
 
 const AboutText = styled.div`
@@ -27,6 +30,11 @@ const AboutMeSection = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: -70px;
+
+  @media (max-width: 901px) {
+    margin-top: 10px;
+    width: 80vw;
+  }
 `;
 
 const AboutStyled = styled.div`
@@ -41,35 +49,31 @@ const AboutStyled = styled.div`
   }
 `;
 
-const About = ({ width }: { width: number }) => {
+const ModifiedTitle = styled(Title)`
+  @media (max-width: 901px) {
+    margin-left: 50px;
+  }
+`;
+
+const About = () => {
   let video_element = useRef(null);
-  const out_of_view = width < 901;
   return (
     <AboutStyled>
       <WrapperCenter>
         <WrapperInner>
-          <Title style={out_of_view ? {} : { marginLeft: "50px" }}>
-            About Me&thinsp;
-          </Title>
-          <AboutMeSection
-            style={out_of_view ? { marginTop: "10px", width: "80vw" } : {}}
-          >
-            {out_of_view ? (
-              <></>
-            ) : (
-              <AboutVideo
-                onMouseEnter={() => Video.enter(video_element)}
-                onMouseLeave={() => Video.leave(video_element)}
-                ref={video_element}
-                playsInline
-                muted
-                loop
-              >
-                <source src="/graphics/about_me.webm" type="video/webm" />
-                <source src="/graphics/about_me.mp4" type="video/mp4" />
-                Your browser does not support the video element.
-              </AboutVideo>
-            )}
+          <ModifiedTitle>About Me&thinsp;</ModifiedTitle>
+          <AboutMeSection>
+            <AboutVideo
+              onMouseEnter={() => video_element.current?.play()}
+              onMouseLeave={() => video_element.current?.pause()}
+              ref={video_element}
+              playsInline
+              muted
+              loop
+            >
+              <source src="/graphics/about_me.webm" type="video/webm" />
+              <source src="/graphics/about_me.mp4" type="video/mp4" />
+            </AboutVideo>
             <AboutText>
               Hey! My name is Jonathan Li.
               <br />

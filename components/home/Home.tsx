@@ -1,16 +1,14 @@
 import { useEffect } from "react";
-import Header from "@components/home/Header";
+import styled from "styled-components";
 
+import Header from "@components/home/Header";
 import { NameTitleWrapper } from "@components/Wrapper";
 import { shared_title } from "@components/Title";
-
 import Contact from "@components/home/Contact";
 import About from "@components/home/About";
 import Projects from "@components/home/Projects";
 
 import useWindowSize from "@hooks/useWindowSize";
-
-import styled from "styled-components";
 
 const SubHeading = styled.div`
   font: bold 30px Montserrat, sans-serif;
@@ -120,16 +118,20 @@ const Bridge = styled.div`
   } ;
 `;
 
+const Background = styled.div`
+  background-color: #1d1d1d;
+`;
+
 const Home = () => {
   useEffect(() => {
     document.body.style.backgroundColor = "#1D1D1D";
   }, []);
 
-  const [width, height] = useWindowSize();
+  const [width] = useWindowSize();
 
   const mappings: Array<[string, JSX.Element]> = [
-    ["about", <About width={width} />],
-    ["projects", <Projects width={width} />],
+    ["about", <About />],
+    ["projects", <Projects width={width}/>],
     ["contact", <Contact />],
   ];
 
@@ -144,8 +146,8 @@ const Home = () => {
 
   return (
     <div id="master">
-      <Header width={width} />
-      <div>
+      <Header />
+      <Background>
         <FrontPage>
           <TitlePage>
             <NameTitleWrapper>
@@ -162,7 +164,7 @@ const Home = () => {
         </FrontPage>
         <Bridge></Bridge>
         {other_pages}
-      </div>
+      </Background>
     </div>
   );
 };

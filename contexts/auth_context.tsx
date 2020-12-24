@@ -64,13 +64,12 @@ export const ProtectRoute = ({ children }) => {
   }
 };
 
-export const withProtect = <P extends object>(Component: ComponentType<P>) =>
-  class withProtect extends React.Component<P> {
-    render() {
-      return (
-        <ProtectRoute>
-          <Component {...this.props} />
-        </ProtectRoute>
-      );
-    }
-  };
+export const withProtect = <P extends object>(Component: ComponentType<P>) => (
+  props: P
+) => {
+  return (
+    <ProtectRoute>
+      <Component {...props} />
+    </ProtectRoute>
+  );
+};

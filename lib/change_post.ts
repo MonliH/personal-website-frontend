@@ -3,7 +3,7 @@ import { BlogEntry } from "@lib/blog";
 import format_date from "./format_date";
 import hljs from "highlight.js";
 
-const { Remarkable } = require("remarkable");
+import { Remarkable } from "remarkable";
 
 let md = new Remarkable({
   typographer: true,

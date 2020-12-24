@@ -148,15 +148,17 @@ const ProjectGrid = (p: ProjectGridProps) => {
   // Card height
   const cardh = 170;
 
-  // Card width margin
+  // Card left and right margin
   const cardwm = 20;
-  // Card height margin
+  // Card top and bottom margin
   const cardhm = 20;
 
-  // Number of comlumns
+  // Approximate the number of comlumns (without margin)
   const approx_cols = Math.floor(width / cardw) || 1;
+
+  // Account for margin after approximating number of columns
   const columns =
-    approx_cols != 1 ? Math.floor((width - cardwm * approx_cols) / cardw) : 1; // Account for margin after approximate cols
+    approx_cols != 1 ? Math.floor((width - cardwm * approx_cols) / cardw) : 1;
 
   let counter_col = 0;
   let counter_row = 0;

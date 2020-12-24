@@ -27,6 +27,11 @@ const HeaderLinks = styled.div`
   position: relative;
   top: 50%;
   transform: translateY(-50%);
+  display: block;
+
+  @media (max-width: 644px) {
+    display: none;
+  }
 `;
 
 const HeaderLink = styled.a`
@@ -66,6 +71,10 @@ const HeaderNav = styled.button`
   float: right;
   background: none;
   border: none;
+  display: none;
+  @media (max-width: 644px) {
+    display: block;
+  }
 `;
 
 const links = [
@@ -112,7 +121,7 @@ const NavSidebar = (p: HeaderSidebarProps) => {
   );
 };
 
-const Header = ({ width }: { width: number }) => {
+const Header = () => {
   const [nav_on, set_nav_on] = useState(false);
 
   let links_left = new Array(links.length);
@@ -150,13 +159,10 @@ const Header = ({ width }: { width: number }) => {
       <NavSidebar nav_on={nav_on} set_nav_on={set_nav_on} links={links_left} />
       <HeaderMain>
         <HeaderName href="/#master">Jonathan Li</HeaderName>
-        {width < 644 ? (
-          <HeaderNav onClick={() => toggle_nav()} style={{ marginTop: "10px" }}>
-            <HeaderImage src="/graphics/menu.svg" />
-          </HeaderNav>
-        ) : (
-          <HeaderLinks>{links_left}</HeaderLinks>
-        )}
+        <HeaderNav onClick={() => toggle_nav()} style={{ marginTop: "10px" }}>
+          <HeaderImage src="/graphics/menu.svg" />
+        </HeaderNav>
+        <HeaderLinks>{links_left}</HeaderLinks>
       </HeaderMain>
     </>
   );
