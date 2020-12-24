@@ -1,20 +1,29 @@
+import { ComponentType, useEffect, useState } from "react";
+
 import Router from "next/router";
-import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+
 import styled from "styled-components";
+import { IAceEditorProps } from "react-ace";
 
-import AceEditor from "react-ace";
-import "ace-builds/src-noconflict/mode-markdown";
-import "ace-builds/src-noconflict/theme-tomorrow";
-import "ace-builds/src-noconflict/keybinding-vim";
+const AceEditor: ComponentType<IAceEditorProps> = dynamic(
+  async () => {
+    const ace = await require("react-ace");
+    require("ace-builds/src-noconflict/keybinding-vim");
+    require("ace-builds/src-noconflict/theme-tomorrow");
+    require("ace-builds/src-noconflict/mode-markdown");
+    return ace;
+  },
+  { ssr: false }
+);
 
-import Err from "@components/Error";
 import Loading from "@components/Loading";
 import StyledLink from "@components/StyledLink";
 
-import { BlogEntry } from "@lib/blog";
 import { useAuth } from "@contexts/auth_context";
 
-import format_date from "@lib/format_date";
+import { BlogEntry } from "@lib/blog";
+import { from_unix_timestamp, to_unix_timestamp, format_date } from "@lib/date";
 import change_post from "@lib/change_post";
 
 const ChangeBlogForm = styled.form`
@@ -60,9 +69,10 @@ const AdminBlogPage = ({
       set_is_authed(false);
     }
   };
+  console.log(revised_blog);
 
   if (!is_authed) {
-    return <Err code={401} msg="unauthorized" />;
+    return <Loading />;
   } else {
     if (blog && revised_blog) {
       return (
@@ -90,12 +100,14 @@ const AdminBlogPage = ({
             <ChangeBlogLabel>Date</ChangeBlogLabel>
             <input
               type="date"
-              value={format_date(revised_blog.date)}
+              value={format_date(from_unix_timestamp(revised_blog.date))}
               onChange={(e: React.FormEvent) => {
                 set_revised_blog({
                   ...revised_blog,
-                  date: new Date((e.target as HTMLInputElement).value),
-                } as BlogEntry);
+                  date: to_unix_timestamp(
+                    new Date((e.target as HTMLInputElement).value)
+                  ),
+                });
               }}
             />
             {show_url ? (

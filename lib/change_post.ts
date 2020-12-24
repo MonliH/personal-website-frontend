@@ -1,6 +1,6 @@
 import { API_DOMAIN } from "@lib/domains";
 import { BlogEntry } from "@lib/blog";
-import format_date from "./format_date";
+import { format_date, from_unix_timestamp } from "@lib/date";
 import hljs from "highlight.js";
 
 import { Remarkable } from "remarkable";
@@ -34,7 +34,7 @@ const change_post = async (key: string, new_post: BlogEntry) => {
       blog: {
         ...new_post,
         html_contents: md.render(new_post.md_contents),
-        date: format_date(new_post.date),
+        date: format_date(from_unix_timestamp(new_post.date)),
       },
     }),
   };

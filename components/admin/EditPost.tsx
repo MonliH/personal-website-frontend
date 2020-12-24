@@ -1,11 +1,10 @@
 import useBlogPost from "@hooks/useBlogPost";
-
 import AdminBlogPage from "@components/admin/AdminBlogPage";
-import Err from "@components/Error";
+import Loading from "@components/Loading";
 
 const EditPost = ({ blog_path }: { blog_path: string }) => {
-  const [blog, blog_404] = useBlogPost(blog_path);
-  return blog_404 ? <Err /> : <AdminBlogPage blog={blog!} />;
+  const blog = blog_path ? useBlogPost(blog_path) : null;
+  return blog ? <AdminBlogPage blog={blog} /> : <Loading />;
 };
 
 export default EditPost;

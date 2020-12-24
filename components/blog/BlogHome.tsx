@@ -10,6 +10,7 @@ import BlogHeader from "@components/blog/BlogHeader";
 import Loading from "@components/Loading";
 
 import { BlogEntry, BLOG_COLOR_BG } from "@lib/blog";
+import { from_unix_timestamp } from "@lib/date";
 
 const BlogHomeWrapper = styled.div`
   background-color: ${BLOG_COLOR_BG};
@@ -106,10 +107,10 @@ const BlogSummary = ({
       <BlogSummaryInner>
         <BlogPreviewTitleWrapper>
           <BlogTitle
-            link={`${prefix ? prefix : "/"}blog/${blog_entry.url}`}
+            link={`${prefix ? prefix : "/"}${blog_entry.url}`}
             text={blog_entry.title}
           />
-          <BlogTime date={blog_entry.date}></BlogTime>
+          <BlogTime date={from_unix_timestamp(blog_entry.date)}></BlogTime>
         </BlogPreviewTitleWrapper>
         <ContentPreview
           dangerouslySetInnerHTML={{ __html: blog_entry.html_contents }}
@@ -141,14 +142,16 @@ export const BlogSummaryList = (props: {
   return <>{blog_previews}</>;
 };
 
-interface BlogHomeProps extends ChangerProps {
+export interface BlogHomeProps extends ChangerProps {
   blog_entries: Array<BlogEntry>;
   loading: boolean;
+  prefix?: string;
 }
 
 const BlogHome = (props: BlogHomeProps) => {
   const [ref, visible] = useInView({
     threshold: 1,
+    initialInView: true,
   });
 
   return (
@@ -164,10 +167,14 @@ const BlogHome = (props: BlogHomeProps) => {
             <>
               <BlogPageChanger
                 current_page={props.current_page}
-                set_page={props.set_page}
+                CustomSetter={props.CustomSetter}
                 total_pages={props.total_pages}
               />
-              <BlogSummaryList _ref={ref} blog_entries={props.blog_entries} />
+              <BlogSummaryList
+                prefix={props.prefix}
+                _ref={ref}
+                blog_entries={props.blog_entries}
+              />
               {
                 /* If the whole thing fits in the screen, we don't need this  */
                 visible ? (
@@ -175,7 +182,7 @@ const BlogHome = (props: BlogHomeProps) => {
                 ) : (
                   <BlogPageChanger
                     current_page={props.current_page}
-                    set_page={props.set_page}
+                    CustomSetter={props.CustomSetter}
                     total_pages={props.total_pages}
                   />
                 )

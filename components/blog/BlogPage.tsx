@@ -1,11 +1,8 @@
-import { useEffect } from "react";
 import styled from "styled-components";
 
 import BlogHeader from "@components/blog/BlogHeader";
-import Err from "@components/Error";
 import Loading from "@components/Loading";
 import { BlogEntry, BLOG_COLOR_BG } from "@lib/blog";
-import useBlogPost from "@hooks/useBlogPost";
 
 const BlogPageWrapper = styled.div`
   background-color: ${BLOG_COLOR_BG};
@@ -63,18 +60,8 @@ const SubBlogPage = ({ blog }: { blog: null | BlogEntry }) => {
   );
 };
 
-const BlogPage = ({ blog_url }: { blog_url: string }) => {
-  const [blog, blog_404] = useBlogPost(blog_url);
-
-  useEffect(() => {
-    document.title = `Jonathan's blog${
-      blog ? ` - ${blog.url.split("-").join(" ")}` : ""
-    }`;
-  }, [blog]);
-
-  return blog_404 ? (
-    <Err msg={blog_404} />
-  ) : (
+const BlogPage = ({ blog }: { blog: BlogEntry }) => {
+  return (
     <BlogPageWrapper>
       <SubBlogPage blog={blog} />
     </BlogPageWrapper>

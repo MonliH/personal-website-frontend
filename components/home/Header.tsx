@@ -1,8 +1,7 @@
 import { useState } from "react";
-
 import styled from "styled-components";
-
 import { animated, useSpring } from "react-spring";
+import Link from "next/link";
 
 const HeaderMain = styled.div`
   overflow: hidden;
@@ -39,6 +38,7 @@ const HeaderLink = styled.a`
   color: white;
   text-decoration: none;
   padding-left: 30px;
+  cursor: pointer;
 `;
 
 const HeaderLinkGithub = styled.a`
@@ -46,6 +46,7 @@ const HeaderLinkGithub = styled.a`
   color: white;
   text-decoration: none;
   padding-left: 30px;
+  cursor: pointer;
 `;
 
 const HeaderName = styled.a`
@@ -58,6 +59,7 @@ const HeaderName = styled.a`
   position: relative;
   top: 50%;
   transform: translateY(-50%);
+  cursor: pointer;
 `;
 
 const HeaderImage = styled.img`
@@ -80,8 +82,8 @@ const HeaderNav = styled.button`
 const links = [
   ["About Me", "#about"],
   ["My Projects", "#projects"],
-  ["Blog", "blog"],
   ["Contact Me", "#contact"],
+  ["Blog", "blog"],
 ];
 
 interface HeaderSidebarProps {
@@ -111,7 +113,7 @@ const Right = styled.div`
 `;
 
 const NavSidebar = (p: HeaderSidebarProps) => {
-  const style = useSpring({ width: p.nav_on ? "100vw" : "0vw" });
+  const style = useSpring({ translateX: p.nav_on ? "100vw" : "0vw" });
   return (
     <Absolute onClick={() => p.set_nav_on(false)} style={style as any}>
       {p.links.map((link: JSX.Element, i: number) => {
@@ -127,9 +129,11 @@ const Header = () => {
   let links_left = new Array(links.length);
   for (const [display, hash] of links) {
     links_left.push(
-      <HeaderLink href={`/${hash}`} key={hash}>
-        {display}
-      </HeaderLink>
+      <Link href={`/${hash}`} key={hash}>
+        <HeaderLink>
+          {display}
+        </HeaderLink>
+      </Link>
     );
   }
 

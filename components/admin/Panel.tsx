@@ -41,7 +41,7 @@ const Panel = (p: PanelProps) => {
       {p.loading ? (
         <Loading />
       ) : (
-        <BlogSummaryList blog_entries={p.blog_entries} prefix="/admin/" />
+        <BlogSummaryList blog_entries={p.blog_entries} prefix="/admin/blog/" />
       )}
     </div>
   );

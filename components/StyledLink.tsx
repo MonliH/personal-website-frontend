@@ -17,15 +17,8 @@ const StyledAnimatedLink = styled(animated.a)`
   color: #15a1ff;
   text-decoration: underline;
   text-decoration-color: rgba(21, 161, 255, 0);
+  cursor: pointer;
 `;
-
-const StyledLinkInternal = styled.a`
-  font: bold 20px "Montserrat", sans-serif;
-  color: #15a1ff;
-  text-decoration: underline;
-  text-decoration-color: rgba(21, 161, 255, 0);
-`;
-const AnimatedLinkRouter = animated(StyledLinkInternal);
 
 const AnimatedLink = (p: AnimatedLinkProps) => {
   let [anim, set_link] = useSpring(() => ({
@@ -54,14 +47,14 @@ const AnimatedLink = (p: AnimatedLinkProps) => {
     </StyledAnimatedLink>
   ) : (
     <Link href={p.link}>
-      <AnimatedLinkRouter
+      <StyledAnimatedLink
         style={{ ...(anim as any), ...(p.style ? p.style : {}) }}
         onMouseEnter={on_mouse_enter}
         onMouseLeave={on_mouse_leave}
         className={p.className}
       >
         {p.text}
-      </AnimatedLinkRouter>
+      </StyledAnimatedLink>
     </Link>
   );
 };

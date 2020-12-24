@@ -300,23 +300,23 @@ const Projects = ({ width }: { width: number }) => {
       <ProjectPage>
         <Title>My Projects&thinsp;</Title>
         <div ref={ref}>
-          {typeof window == "object" ? (
-            <ProjectGridAnimated
-              items={items}
-              visible={visible}
-              width={width}
-            ></ProjectGridAnimated>
-          ) : (
+          <ProjectGridAnimated
+            items={items}
+            visible={visible}
+            width={width}
+          ></ProjectGridAnimated>
+          <noscript>
             <ProjectGrid>
-              {project_list.map((val: Project) => (
+              {items.map((val: Project, idx: number) => (
                 <ProjectCard
+                  key={idx}
                   project={val}
                   cardh={cardh}
                   cardw={cardw}
                 ></ProjectCard>
               ))}
             </ProjectGrid>
-          )}
+          </noscript>
         </div>
       </ProjectPage>
     </ProjectsStyled>
