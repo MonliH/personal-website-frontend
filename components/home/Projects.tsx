@@ -78,6 +78,12 @@ const AnimatedProjectLink = styled(AnimatedLink)`
   color: #15a1ff;
 `;
 
+const CardWrapperDiv = styled.div`
+  position: relative;
+  width: 0;
+  height: 0;
+`;
+
 const ProjectCard = (p: ProjectCardProps) => {
   let tags = new Array(p.project.tags.length);
 
@@ -140,7 +146,8 @@ const ProjectGridStyled = styled(animated.div)`
   position: relative;
 `;
 
-const ProjectGrid = (p: ProjectGridProps) => {
+const ProjectGridAnimated = (p: ProjectGridProps) => {
+  // Calculate on client side
   const width = p.width * 0.7;
 
   // Card width
@@ -204,22 +211,24 @@ const ProjectGrid = (p: ProjectGridProps) => {
   const fragment = transitions((style: any, item: ProjectPosition) => {
     let { xy, ...others } = style;
     return (
-      <animated.div
-        key={item.project.rank}
-        style={{
-          position: "absolute",
-          transform: xy.to(
-            (x: number, y: number) => `translate3d(${x}px, ${y}px, 0px)`
-          ),
-          ...others,
-        }}
-      >
-        <ProjectCard
-          project={item.project}
-          cardh={cardh}
-          cardw={cardw}
-        ></ProjectCard>
-      </animated.div>
+      <CardWrapperDiv>
+        <animated.div
+          key={item.project.rank}
+          style={{
+            position: "absolute",
+            transform: xy.to(
+              (x: number, y: number) => `translate3d(${x}px, ${y}px, 0px)`
+            ),
+            ...others,
+          }}
+        >
+          <ProjectCard
+            project={item.project}
+            cardh={cardh}
+            cardw={cardw}
+          ></ProjectCard>
+        </animated.div>
+      </CardWrapperDiv>
     );
   });
 
@@ -280,11 +289,15 @@ const Projects = ({ width }: { width: number }) => {
       <ProjectPage>
         <Title>My Projects&thinsp;</Title>
         <div ref={ref}>
-          <ProjectGrid
-            items={items}
-            visible={visible}
-            width={width}
-          ></ProjectGrid>
+          {typeof window == "object" ? (
+            <ProjectGridAnimated
+              items={items}
+              visible={visible}
+              width={width}
+            ></ProjectGridAnimated>
+          ) : (
+            <div>test</div>
+          )}
         </div>
       </ProjectPage>
     </ProjectsStyled>
