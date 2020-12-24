@@ -9,6 +9,16 @@ import AnimatedLink from "@components/StyledLink";
 
 import { Title } from "@components/Title";
 
+// Card width
+const cardw = 300;
+// Card height
+const cardh = 170;
+
+// Card left and right margin
+const cardwm = 20;
+// Card top and bottom margin
+const cardhm = 20;
+
 const tag_color = (tag: Tag) => {
   switch (tag) {
     case Tag.Rust: {
@@ -150,16 +160,6 @@ const ProjectGridAnimated = (p: ProjectGridProps) => {
   // Calculate on client side
   const width = p.width * 0.7;
 
-  // Card width
-  const cardw = 300;
-  // Card height
-  const cardh = 170;
-
-  // Card left and right margin
-  const cardwm = 20;
-  // Card top and bottom margin
-  const cardhm = 20;
-
   // Approximate the number of comlumns (without margin)
   const approx_cols = Math.floor(width / cardw) || 1;
 
@@ -278,6 +278,17 @@ const ProjectsStyled = styled.div`
   }
 `;
 
+const ProjectGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, auto));
+  justify-content: center;
+  grid-column-gap: ${cardwm}px;
+  column-gap: ${cardwm}px;
+  grid-row-gap: ${cardhm}px;
+  row-gap: ${cardhm}px;
+  width: 70vw;
+`;
+
 const Projects = ({ width }: { width: number }) => {
   const [items] = useState(project_list);
   const [ref, visible] = useInView({
@@ -296,7 +307,15 @@ const Projects = ({ width }: { width: number }) => {
               width={width}
             ></ProjectGridAnimated>
           ) : (
-            <div>test</div>
+            <ProjectGrid>
+              {project_list.map((val: Project) => (
+                <ProjectCard
+                  project={val}
+                  cardh={cardh}
+                  cardw={cardw}
+                ></ProjectCard>
+              ))}
+            </ProjectGrid>
           )}
         </div>
       </ProjectPage>
