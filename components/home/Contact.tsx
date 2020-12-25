@@ -168,6 +168,16 @@ const Contact = () => {
               >
                 {status}
               </EntryText>
+              <noscript>
+                <EntryText
+                  style={{
+                    marginTop: "7px",
+                  }}
+                >
+                  You need to enable javascript to send me a message, sorry for
+                  the inconvenience
+                </EntryText>
+              </noscript>
             </ContactButtonLabel>
           </ContactForm>
         </WrapperInner>

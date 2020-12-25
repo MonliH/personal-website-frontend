@@ -22,7 +22,7 @@ export const StyledAnimatedLink = styled(animated.a)`
 
 const AnimatedLink = (p: AnimatedLinkProps) => {
   let [anim, set_link] = useSpring(() => ({
-    textDecorationColor: "rgba(0, 0, 0, 0)",
+    textDecorationColor: "rgba(21, 161, 255, 0)",
   }));
 
   const on_mouse_enter = () => {
