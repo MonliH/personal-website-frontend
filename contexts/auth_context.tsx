@@ -7,6 +7,7 @@ import React, {
 } from "react";
 import Loading from "@components/Loading";
 import redirect from "@lib/redirect";
+import validate_key from "@lib/validate_key";
 
 interface Auth {
   loading: boolean;
@@ -30,13 +31,17 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   useEffect(() => {
-    const key = window.localStorage.getItem("auth_data");
-    if (key) {
-      set_auth_data(key);
-    } else {
-      // No key, not loading
-      set_auth_data(undefined);
-    }
+    (async () => {
+      const key = window.localStorage.getItem("auth_data");
+
+      // The key must be there, and it must be *valid*
+      if (key && (await validate_key(key))) {
+        set_auth_data(key);
+      } else {
+        // No key, not loading
+        set_auth_data(undefined);
+      }
+    })();
   }, []);
 
   useEffect(() => {

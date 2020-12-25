@@ -69,7 +69,6 @@ const AdminBlogPage = ({
       set_is_authed(false);
     }
   };
-  console.log(revised_blog);
 
   if (!is_authed) {
     return <Loading />;
