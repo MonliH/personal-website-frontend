@@ -129,7 +129,7 @@ const Header = () => {
   let links_left = new Array(links.length);
   for (const [display, hash] of links) {
     links_left.push(
-      <Link href={`/${hash}`} key={hash}>
+      <Link href={`/${hash}`} key={hash} passHref={true}>
         <HeaderLink>
           {display}
         </HeaderLink>

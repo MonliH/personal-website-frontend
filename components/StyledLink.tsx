@@ -46,7 +46,7 @@ const AnimatedLink = (p: AnimatedLinkProps) => {
       {p.text}
     </StyledAnimatedLink>
   ) : (
-    <Link href={p.link}>
+    <Link href={p.link} passHref={true}>
       <StyledAnimatedLink
         style={{ ...(anim as any), ...(p.style ? p.style : {}) }}
         onMouseEnter={on_mouse_enter}

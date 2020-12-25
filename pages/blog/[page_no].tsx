@@ -10,7 +10,7 @@ import { from_unix_timestamp, to_unix_timestamp } from "@lib/date";
 export const posts_per_page = 10;
 
 const CustomSetter = ({ style, onMouseEnter, onMouseLeave, page_no }) => (
-  <Link href={`/blog/${page_no}`}>
+  <Link href={`/blog/${page_no}`} passHref={true}>
     <StyledAnimatedLink
       style={{ ...style, fontSize: "20px" }}
       onMouseEnter={onMouseEnter}
