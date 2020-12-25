@@ -5,13 +5,19 @@ import BlogPage from "@components/blog/BlogPage";
 import useBg from "@hooks/useBg";
 import { get_all_urls, get_blog_post } from "@lib/blog_api";
 import { BlogEntry } from "@lib/blog";
+import { from_unix_timestamp, to_unix_timestamp } from "@lib/date";
 
 const Post = ({ blog }: { blog: BlogEntry }) => {
   useBg("#FFFFFF");
 
   return (
     <Layout title="Jonathan Li's Blog" description="Blog">
-      <BlogPage blog={blog} />
+      <BlogPage
+        blog={{
+          ...blog,
+          date: from_unix_timestamp(blog.date as any), // This actually is a number
+        }}
+      />
     </Layout>
   );
 };
@@ -27,10 +33,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
     });
   }
 
-  return { paths, fallback: true };
+  return { paths, fallback: false };
 };
 
-export const getStaticProps: GetStaticProps = async ({params}) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const blog = await get_blog_post(params.blog_url as string);
-  return { props: { blog }, revalidate: 5 };
+  return {
+    props: { blog: { ...blog, date: to_unix_timestamp(blog.date) } },
+    revalidate: 5,
+  };
 };

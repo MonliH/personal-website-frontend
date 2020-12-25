@@ -10,7 +10,6 @@ import BlogHeader from "@components/blog/BlogHeader";
 import Loading from "@components/Loading";
 
 import { BlogEntry, BLOG_COLOR_BG } from "@lib/blog";
-import { from_unix_timestamp } from "@lib/date";
 
 const BlogHomeWrapper = styled.div`
   background-color: ${BLOG_COLOR_BG};
@@ -35,16 +34,9 @@ export const Title = styled.pre`
 
 const ContentPreview = styled.div`
   max-height: 100px;
-  width: 700px;
   overflow: hidden;
   color: #191919;
   mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
-
-  @media (max-width: 825px) {
-    width: 95vw;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
 `;
 
 const BlogSummaryStyled = styled.div`
@@ -57,7 +49,14 @@ const BlogSummaryStyled = styled.div`
   align-items: center;
 `;
 
-const BlogSummaryInner = styled.div``;
+const BlogSummaryInner = styled.div`
+  width: 700px;
+  @media (max-width: 825px) {
+    width: 95vw;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+`;
 const BlogMainInner = styled.div`
   padding-top: 60px;
 `;
@@ -71,27 +70,21 @@ const BlogHeaderWrapper = styled.div`
 
 const BlogTitle = styled(AnimatedLink)`
   font: 600 25px "IBM Plex Mono", monospace;
-  padding-bottom: 100px;
   width: 600px;
+  line-height: 1.1;
 
   @media (max-width: 825px) {
     width: 95vw;
   }
 `;
 
-const BlogPreviewTitleWrapper = styled.div`
-  @media (max-width: 825px) {
-    margin-left: 10px;
-    margin-right: 10px;
-  }
-`;
-
 const StyledBlogTime = styled.div`
   color: black;
-  margin-bottom: 20px;
+  font: 15px Lato, sans-serif;
+  margin-top: 5px;
 `;
 
-const BlogTime = ({ date }: { date: Date }) => {
+export const BlogDate = ({ date }: { date: Date }) => {
   return <StyledBlogTime>{date.toLocaleDateString("en-US")}</StyledBlogTime>;
 };
 
@@ -105,13 +98,13 @@ const BlogSummary = ({
   return (
     <BlogSummaryStyled>
       <BlogSummaryInner>
-        <BlogPreviewTitleWrapper>
+        <div>
           <BlogTitle
             link={`${prefix ? prefix : "/"}${blog_entry.url}`}
             text={blog_entry.title}
           />
-          <BlogTime date={from_unix_timestamp(blog_entry.date)}></BlogTime>
-        </BlogPreviewTitleWrapper>
+          <BlogDate date={blog_entry.date}></BlogDate>
+        </div>
         <ContentPreview
           dangerouslySetInnerHTML={{ __html: blog_entry.html_contents }}
         ></ContentPreview>

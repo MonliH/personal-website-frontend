@@ -53,16 +53,17 @@ const BlogChangerDiv = styled.div`
   font: 15px "IBM Plex Mono", monospace;
   margin-bottom: 20px;
   margin-top: 20px;
+  margin-left: 3px;
 
   @media (max-width: 825px) {
     width: 95vw;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 `;
 
 const PageText = styled.b`
-  margin-right: 3px;
+  margin-right: 8px;
 `;
 
 const BlogPageChanger = (props: ChangerProps) => {
@@ -75,7 +76,7 @@ const BlogPageChanger = (props: ChangerProps) => {
             key={i}
             i={i}
             CustomSetter={props.CustomSetter}
-            bold={props.current_page === i}
+            bold={props.current_page === i + 1}
           />
         );
       })}

@@ -100,13 +100,11 @@ const AdminBlogPage = ({
             <ChangeBlogLabel>Date</ChangeBlogLabel>
             <input
               type="date"
-              value={format_date(from_unix_timestamp(revised_blog.date))}
+              value={format_date(revised_blog.date)}
               onChange={(e: React.FormEvent) => {
                 set_revised_blog({
                   ...revised_blog,
-                  date: to_unix_timestamp(
-                    new Date((e.target as HTMLInputElement).value)
-                  ),
+                  date: new Date((e.target as HTMLInputElement).value),
                 });
               }}
             />

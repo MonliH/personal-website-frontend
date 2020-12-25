@@ -12,7 +12,7 @@ interface AnimatedLinkProps {
   className?: string;
 }
 
-const StyledAnimatedLink = styled(animated.a)`
+export const StyledAnimatedLink = styled(animated.a)`
   font: bold 20px "Montserrat", sans-serif;
   color: #15a1ff;
   text-decoration: underline;

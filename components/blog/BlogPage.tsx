@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 import BlogHeader from "@components/blog/BlogHeader";
 import Loading from "@components/Loading";
+import { BlogDate } from "@components/blog/BlogHome";
 import { BlogEntry, BLOG_COLOR_BG } from "@lib/blog";
 
 const BlogPageWrapper = styled.div`
@@ -15,16 +16,17 @@ const BlogPageWrapper = styled.div`
 export const BlogTitle = styled.div`
   font: 700 37px "IBM Plex Mono", monospace;
   color: #000000;
-  margin-bottom: 35px;
+  margin-bottom: 10px;
   margin-top: 35px;
   width: 800px;
+  line-height: 1.1;
 
   @media (max-width: 850px) {
     width: 90vw;
   }
 `;
 
-const BlogText = styled.div`
+const BlogTextPlaceholder = styled.div`
   font: 16px Lato, sans-serif;
   color: #191919;
   width: 750px;
@@ -49,9 +51,10 @@ const SubBlogPage = ({ blog }: { blog: null | BlogEntry }) => {
       {blog ? (
         <>
           <BlogTitle>{blog.title}</BlogTitle>
-          <BlogText
+          <BlogDate date={blog.date} />
+          <BlogTextPlaceholder
             dangerouslySetInnerHTML={{ __html: blog.html_contents }}
-          ></BlogText>
+          ></BlogTextPlaceholder>
         </>
       ) : (
         <Loading />
