@@ -7,7 +7,7 @@ const validate_key = async (key: string): Promise<boolean> => {
   };
 
   const is_correct = await fetch(
-    `${API_DOMAIN}/api/admin/key`,
+    `${API_DOMAIN}/admin/key`,
     request_options
   );
 

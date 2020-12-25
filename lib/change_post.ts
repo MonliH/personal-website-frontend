@@ -39,7 +39,7 @@ const change_post = async (key: string, new_post: BlogEntry) => {
     }),
   };
 
-  const res = await fetch(`${API_DOMAIN}/api/admin/edit`, request_options);
+  const res = await fetch(`${API_DOMAIN}/admin/edit`, request_options);
 
   return res.ok;
 };
