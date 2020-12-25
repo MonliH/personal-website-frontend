@@ -37,6 +37,7 @@ const AnimatedLink = (p: AnimatedLinkProps) => {
     <StyledAnimatedLink
       href={p.link}
       target="_blank"
+      rel="noopener noreferrer"
       onMouseEnter={on_mouse_enter}
       onMouseLeave={on_mouse_leave}
       // XXX: Make sure to fix this after [this](https://github.com/react-spring/react-spring/issues/1102) is fixed
