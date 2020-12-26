@@ -1,4 +1,5 @@
 import { GetStaticProps, GetStaticPaths } from "next";
+import Link from "next/link";
 
 import Layout from "@components/Layout";
 import BlogHome, { BlogHomeProps } from "@components/blog/BlogHome";
@@ -6,6 +7,12 @@ import { get_preview_page, get_num_posts } from "@lib/blog_api";
 import { from_unix_timestamp, to_unix_timestamp } from "@lib/date";
 
 export const posts_per_page = 10;
+
+const CustomSetter = ({ style, page_no }) => (
+  <Link href={`/blog/${page_no}`} passHref={true}>
+    <a style={{ ...style, fontSize: "18px" }}>{page_no}</a>
+  </Link>
+);
 
 const Blog = (props: BlogHomeProps) => {
   const new_blog_entries = props.blog_entries.map((entry) => ({
@@ -18,6 +25,7 @@ const Blog = (props: BlogHomeProps) => {
         {...props}
         blog_entries={new_blog_entries}
         prefix="/blog/post/"
+        CustomSetter={CustomSetter}
       />
     </Layout>
   );

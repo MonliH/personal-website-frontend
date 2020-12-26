@@ -1,25 +1,29 @@
+import { FC, CSSProperties } from "react";
 import styled from "styled-components";
-import CustomLink from "components/StyledLink";
+
+type CustomSetter = FC<{
+  style: CSSProperties;
+  page_no: number;
+}>;
 
 export interface ChangerProps {
   current_page: number;
   total_pages: number;
-  prefix: string;
+  CustomSetter: CustomSetter;
 }
 
 const BlogPageChange = ({
   page_no,
   bold,
-  prefix,
+  CustomSetter,
 }: {
-  prefix: string;
   page_no: number;
   bold: boolean;
+  CustomSetter: CustomSetter;
 }) => {
   return (
-    <CustomLink
-      text={page_no.toString()}
-      link={`${prefix}/${page_no}`}
+    <CustomSetter
+      page_no={page_no + 1}
       style={{ fontWeight: bold ? "bold" : "normal" }}
     />
   );
@@ -52,8 +56,8 @@ const BlogPageChanger = (props: ChangerProps) => {
           <BlogPageChange
             key={i}
             page_no={i}
-            prefix={props.prefix}
             bold={props.current_page === i + 1}
+            CustomSetter={props.CustomSetter}
           />
         );
       })}

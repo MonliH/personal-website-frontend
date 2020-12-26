@@ -161,12 +161,12 @@ const BlogHome = (props: BlogHomeProps) => {
               <BlogPageChanger
                 current_page={props.current_page}
                 total_pages={props.total_pages}
-                prefix={props.prefix}
+                CustomSetter={props.CustomSetter}
               />
               <BlogSummaryList
-                prefix={props.prefix}
                 _ref={ref}
                 blog_entries={props.blog_entries}
+                prefix={props.prefix}
               />
               {
                 /* If the whole thing fits in the screen, we don't need this  */
@@ -176,7 +176,7 @@ const BlogHome = (props: BlogHomeProps) => {
                   <BlogPageChanger
                     current_page={props.current_page}
                     total_pages={props.total_pages}
-                    prefix={props.prefix}
+                    CustomSetter={props.CustomSetter}
                   />
                 )
               }

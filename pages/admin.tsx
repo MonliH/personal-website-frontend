@@ -8,7 +8,7 @@ import useBlogEntries from "@hooks/useBlogEntries";
 import { posts_per_page } from "@pages/blog/[page_no]";
 import { withProtect } from "@contexts/auth_context";
 
-const BlogPageButton = styled(animated.button)`
+const BlogPageButton = styled.button`
   color: #15a1ff;
   text-decoration: underline;
   text-decoration-color: rgba(21, 161, 255, 0);
@@ -28,13 +28,11 @@ const Admin = () => {
       description="Jonathan's personal website admin panel."
     >
       <BlogPageChanger
-        current_page={page_no}
-        CustomSetter={({ style, onMouseEnter, onMouseLeave, page_no }) => (
+        current_page={page_no + 1}
+        CustomSetter={({ style, page_no }) => (
           <BlogPageButton
-            onClick={() => set_page_no(page_no)}
-            style={style as any} // Bug in react spring
-            onMouseLeave={onMouseLeave}
-            onMouseEnter={onMouseEnter}
+            onClick={() => set_page_no(page_no - 1)}
+            style={style}
           >
             {page_no}
           </BlogPageButton>

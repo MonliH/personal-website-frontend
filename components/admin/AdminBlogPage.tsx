@@ -23,7 +23,7 @@ import StyledLink from "@components/StyledLink";
 import { useAuth } from "@contexts/auth_context";
 
 import { BlogEntry } from "@lib/blog";
-import { from_unix_timestamp, to_unix_timestamp, format_date } from "@lib/date";
+import { format_date } from "@lib/date";
 import change_post from "@lib/change_post";
 
 const ChangeBlogForm = styled.form`
@@ -79,7 +79,7 @@ const AdminBlogPage = ({
           <StyledLink link="/admin/" text="Admin Panel" />
           <button
             onClick={() => {
-              Router.push("/delete");
+              Router.replace(`/admin/${Router.query.blog_url}/delete`);
             }}
           >
             DELETE
