@@ -5,7 +5,7 @@ import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 
 import { Tag, project_list, Project } from "@lib/projects";
-import AnimatedLink from "@components/StyledLink";
+import CustomLink from "@components/StyledLink";
 
 import { Title } from "@components/Title";
 
@@ -84,8 +84,16 @@ const ProjectCardStyled = styled(animated.div)`
   padding: 25px;
 `;
 
-const AnimatedProjectLink = styled(AnimatedLink)`
+const AnimatedProjectLink = styled(CustomLink)`
   color: #15a1ff;
+  text-decoration-color: #15a1ff00;
+
+  font: bold 20px "Montserrat", sans-serif;
+
+  &:hover {
+    color: #1581ff;
+    text-decoration-color: #1581ffff;
+  }
 `;
 
 const CardWrapperDiv = styled.div`

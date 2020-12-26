@@ -23,6 +23,20 @@ body {
   color: white;
 }
 
+a {
+  font: inherit "Montserrat", sans-serif;
+  color: #1562ff;
+  text-decoration: underline;
+  text-decoration-color: rgba(21, 98, 255, 0);
+  cursor: pointer;
+  transition: text-decoration-color 0.2s, color 0.2s;
+}
+
+a:hover {
+  color: #153aff;
+  text-decoration-color: rgba(21, 58, 255, 1);
+}
+
 h1 {
   font: 600 26px "IBM Plex Mono", monospace;
   margin-top: 30px;

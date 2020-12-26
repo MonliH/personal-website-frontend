@@ -39,6 +39,10 @@ const HeaderLink = styled.a`
   text-decoration: none;
   padding-left: 30px;
   cursor: pointer;
+
+  &:hover {
+    color: #e6e6e6;
+  }
 `;
 
 const HeaderLinkGithub = styled.a`
@@ -60,6 +64,10 @@ const HeaderName = styled.a`
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
+
+  &:hover {
+    color: #e6e6e6;
+  }
 `;
 
 const HeaderImage = styled.img`

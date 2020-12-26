@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import AnimatedLink from "@components/StyledLink";
+import CustomLink from "@components/StyledLink";
 import useBg from "@hooks/useBg";
 
 const ThanksContainer = styled.div`
@@ -33,7 +33,7 @@ const NoMatch = () => {
         Thanks for getting in touch!
         <ThanksText>
           I've recived your message, and wll reply shortly.
-          <AnimatedLink
+          <CustomLink
             style={{ marginTop: "10px", display: "block" }}
             link="/"
             text="Go back to home page."

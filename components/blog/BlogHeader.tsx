@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import AnimatedLink from "@components/StyledLink";
+import CustomLink from "@components/StyledLink";
 
 const Header = styled.div`
   color: black;
@@ -12,7 +12,7 @@ const Header = styled.div`
   }
 `;
 
-const StyledAnimatedLink = styled(AnimatedLink)`
+const StyledAnimatedLink = styled(CustomLink)`
   font: inherit;
 `;
 

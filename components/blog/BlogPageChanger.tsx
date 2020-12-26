@@ -1,49 +1,26 @@
-import { FC, CSSProperties } from "react";
-import { useSpring } from "react-spring";
-
 import styled from "styled-components";
-
-type CustomSetter = FC<{
-    style: CSSProperties;
-    onMouseEnter: () => void;
-    onMouseLeave: () => void;
-    page_no: number;
-  }>;
+import CustomLink from "components/StyledLink";
 
 export interface ChangerProps {
   current_page: number;
-  CustomSetter: CustomSetter;
   total_pages: number;
+  prefix: string;
 }
 
-
 const BlogPageChange = ({
-  i,
-  CustomSetter,
+  page_no,
   bold,
+  prefix,
 }: {
-  i: number;
-  CustomSetter: CustomSetter;
+  prefix: string;
+  page_no: number;
   bold: boolean;
 }) => {
-  let [anim, set_link] = useSpring(() => ({
-    textDecorationColor: "rgba(0, 0, 0, 0)",
-  }));
-
-  const on_mouse_enter = () => {
-    set_link({ textDecorationColor: "rgba(21, 161, 255, 255)" });
-  };
-
-  const on_mouse_leave = () => {
-    set_link({ textDecorationColor: "rgba(21, 161, 255, 0)" });
-  };
-
   return (
-    <CustomSetter
-      page_no={i+1}
-      onMouseEnter={on_mouse_enter}
-      onMouseLeave={on_mouse_leave}
-      style={{ ...(anim as any), fontWeight: bold ? "700" : "400" }}
+    <CustomLink
+      text={page_no.toString()}
+      link={`${prefix}/${page_no}`}
+      style={{ fontWeight: bold ? "bold" : "normal" }}
     />
   );
 };
@@ -74,8 +51,8 @@ const BlogPageChanger = (props: ChangerProps) => {
         return (
           <BlogPageChange
             key={i}
-            i={i}
-            CustomSetter={props.CustomSetter}
+            page_no={i}
+            prefix={props.prefix}
             bold={props.current_page === i + 1}
           />
         );

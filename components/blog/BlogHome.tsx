@@ -5,7 +5,7 @@ import { shared_title } from "@components/Title";
 import BlogPageChanger, {
   ChangerProps,
 } from "@components/blog/BlogPageChanger";
-import AnimatedLink from "@components/StyledLink";
+import CustomLink from "@components/StyledLink";
 import BlogHeader from "@components/blog/BlogHeader";
 import Loading from "@components/Loading";
 
@@ -68,7 +68,7 @@ const BlogHeaderWrapper = styled.div`
   }
 `;
 
-const BlogTitle = styled(AnimatedLink)`
+const BlogTitle = styled(CustomLink)`
   font: 600 25px "IBM Plex Mono", monospace;
   width: 600px;
   line-height: 1.1;
@@ -138,7 +138,7 @@ export const BlogSummaryList = (props: {
 export interface BlogHomeProps extends ChangerProps {
   blog_entries: Array<BlogEntry>;
   loading: boolean;
-  prefix?: string;
+  prefix: string;
 }
 
 const BlogHome = (props: BlogHomeProps) => {
@@ -160,8 +160,8 @@ const BlogHome = (props: BlogHomeProps) => {
             <>
               <BlogPageChanger
                 current_page={props.current_page}
-                CustomSetter={props.CustomSetter}
                 total_pages={props.total_pages}
+                prefix={props.prefix}
               />
               <BlogSummaryList
                 prefix={props.prefix}
@@ -175,8 +175,8 @@ const BlogHome = (props: BlogHomeProps) => {
                 ) : (
                   <BlogPageChanger
                     current_page={props.current_page}
-                    CustomSetter={props.CustomSetter}
                     total_pages={props.total_pages}
+                    prefix={props.prefix}
                   />
                 )
               }

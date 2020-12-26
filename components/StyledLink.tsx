@@ -1,10 +1,7 @@
-import { animated, useSpring } from "react-spring";
 import CSS from "csstype";
 import Link from "next/link";
 
-import styled from "styled-components";
-
-interface AnimatedLinkProps {
+interface CustomLinkProps {
   link: string;
   text: string;
   extern?: boolean;
@@ -12,52 +9,25 @@ interface AnimatedLinkProps {
   className?: string;
 }
 
-export const StyledAnimatedLink = styled(animated.a)`
-  font: bold 20px "Montserrat", sans-serif;
-  color: #15a1ff;
-  text-decoration: underline;
-  text-decoration-color: rgba(21, 161, 255, 0);
-  cursor: pointer;
-`;
-
-const AnimatedLink = (p: AnimatedLinkProps) => {
-  let [anim, set_link] = useSpring(() => ({
-    textDecorationColor: "rgba(21, 161, 255, 0)",
-  }));
-
-  const on_mouse_enter = () => {
-    set_link({ textDecorationColor: "rgba(21, 161, 255, 255)" });
-  };
-
-  const on_mouse_leave = () => {
-    set_link({ textDecorationColor: "rgba(21, 161, 255, 0)" });
-  };
-
+const CustomLink = (p: CustomLinkProps) => {
   return p.extern ? (
-    <StyledAnimatedLink
+    <a
       href={p.link}
       target="_blank"
       rel="noopener noreferrer"
-      onMouseEnter={on_mouse_enter}
-      onMouseLeave={on_mouse_leave}
       // XXX: Make sure to fix this after [this](https://github.com/react-spring/react-spring/issues/1102) is fixed
-      style={{ ...(anim as any), ...(p.style ? p.style : {}) }}
+      style={p.style}
       className={p.className}
     >
       {p.text}
-    </StyledAnimatedLink>
+    </a>
   ) : (
     <Link href={p.link} passHref={true}>
-      <StyledAnimatedLink
-        style={{ ...(anim as any), ...(p.style ? p.style : {}) }}
-        onMouseEnter={on_mouse_enter}
-        onMouseLeave={on_mouse_leave}
-        className={p.className}
-      >
+      <a style={p.style} className={p.className}>
         {p.text}
-      </StyledAnimatedLink>
+      </a>
     </Link>
   );
 };
 
-export default AnimatedLink;
+export default CustomLink;
