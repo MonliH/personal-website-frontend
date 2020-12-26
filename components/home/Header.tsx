@@ -94,7 +94,7 @@ interface HeaderSidebarProps {
 
 const Absolute = styled(animated.div)`
   position: absolute;
-  width: 0vw;
+  width: 100vw;
   height: 100vh;
   z-index: 101;
   background-color: rgba(0, 0, 0, 0.3);
@@ -104,6 +104,7 @@ const Absolute = styled(animated.div)`
   display: flex;
   flex-direction: column;
   padding-top: 10vh;
+  transform: translateX(-100vw);
 `;
 
 const Right = styled.div`
@@ -113,7 +114,7 @@ const Right = styled.div`
 `;
 
 const NavSidebar = (p: HeaderSidebarProps) => {
-  const style = useSpring({ translateX: p.nav_on ? "100vw" : "0vw" });
+  const style = useSpring({ translateX: p.nav_on ? "0vw" : "-100vw" });
   return (
     <Absolute onClick={() => p.set_nav_on(false)} style={style as any}>
       {p.links.map((link: JSX.Element, i: number) => {
@@ -130,9 +131,7 @@ const Header = () => {
   for (const [display, hash] of links) {
     links_left.push(
       <Link href={`/${hash}`} key={hash} passHref={true}>
-        <HeaderLink>
-          {display}
-        </HeaderLink>
+        <HeaderLink>{display}</HeaderLink>
       </Link>
     );
   }
@@ -150,6 +149,8 @@ const Header = () => {
         src="/graphics/github-white.png"
         id="header-image"
         alt="Github"
+        width={27}
+        height={27}
       ></HeaderImage>
     </HeaderLinkGithub>
   );
@@ -163,8 +164,17 @@ const Header = () => {
       <NavSidebar nav_on={nav_on} set_nav_on={set_nav_on} links={links_left} />
       <HeaderMain>
         <HeaderName href="/#master">Jonathan Li</HeaderName>
-        <HeaderNav onClick={() => toggle_nav()} style={{ marginTop: "10px" }}>
-          <HeaderImage src="/graphics/menu.svg" />
+        <HeaderNav
+          onClick={() => toggle_nav()}
+          style={{ marginTop: "10px" }}
+          aria-label="Menu"
+        >
+          <HeaderImage
+            src="/graphics/menu.svg"
+            alt="Menu"
+            width={27}
+            height={27}
+          />
         </HeaderNav>
         <HeaderLinks>{links_left}</HeaderLinks>
       </HeaderMain>

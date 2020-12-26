@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import styled from "styled-components";
+import Image from "next/image";
 
 import Header from "@components/home/Header";
 import { NameTitleWrapper } from "@components/Wrapper";
@@ -70,7 +71,7 @@ const FrontPage = styled.div`
   }
 `;
 
-const TitleImage = styled.img`
+const TitleImageWrapper = styled.div`
   position: relative;
   height: 70vh;
   width: 70vh;
@@ -81,12 +82,17 @@ const TitleImage = styled.img`
   transition: 0.8s;
   transform: translateY(0);
   z-index: 10;
+  display: block;
+  min-width: 70vh;
+  min-height: 70vh;
   margin-left: -100px;
 
   @media (max-width: 430px) {
     margin-top: 100px;
     width: 85vw;
     height: 85vw;
+    min-width: 85vw;
+    min-height: 85vw;
     margin-left: 7vw;
   }
 `;
@@ -131,7 +137,7 @@ const Home = () => {
 
   const mappings: Array<[string, JSX.Element]> = [
     ["about", <About />],
-    ["projects", <Projects width={width}/>],
+    ["projects", <Projects width={width} />],
     ["contact", <Contact />],
   ];
 
@@ -160,7 +166,9 @@ const Home = () => {
               <SubHeading>I Delight in Coding</SubHeading>
             </NameTitleWrapper>
           </TitlePage>
-          <TitleImage src="/graphics/title.png" alt=""></TitleImage>
+          <TitleImageWrapper>
+            <Image src="/graphics/title.png" alt="My Artwork" layout="fill" />
+          </TitleImageWrapper>
         </FrontPage>
         <Bridge></Bridge>
         {other_pages}
