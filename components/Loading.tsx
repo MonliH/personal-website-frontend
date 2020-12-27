@@ -21,22 +21,17 @@ const Loader = styled.div`
 
 const LoaderWrapper = styled.div`
   display: flex;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-`;
-
-const LoadingText = styled.div`
-  margin-top: 15px;
-  font: 600 20px "Open Sans", monospace;
 `;
 
 const Loading = () => {
   return (
     <LoaderWrapper>
       <Loader />
-      <LoadingText style={{ color: "white" }}>Loading...</LoadingText>
     </LoaderWrapper>
   );
 };

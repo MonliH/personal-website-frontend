@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 
@@ -8,6 +8,7 @@ import { shared_title } from "@components/Title";
 import Contact from "@components/home/Contact";
 import About from "@components/home/About";
 import Projects from "@components/home/Projects";
+import Loading from "@components/Loading";
 
 import useWindowSize from "@hooks/useWindowSize";
 
@@ -128,6 +129,18 @@ const Background = styled.div`
   background-color: #1d1d1d;
 `;
 
+const NoScriptImg = styled.img`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+`;
+
+interface PropsStyledImage {
+  invisible: boolean;
+}
+
 const Home = () => {
   useEffect(() => {
     document.body.style.backgroundColor = "#1D1D1D";
@@ -167,7 +180,17 @@ const Home = () => {
             </NameTitleWrapper>
           </TitlePage>
           <TitleImageWrapper>
-            <Image src="/graphics/title.png" alt="My Artwork" layout="fill" />
+            <Image
+              src="/graphics/title.png"
+              alt="My Artwork"
+              layout="fill"
+              priority={true}
+            />
+
+            {/* Here we add noscript so people with javascript disabled can still see the image */}
+            <noscript>
+              <NoScriptImg src="/graphics/title.png" alt="My artwork" />
+            </noscript>
           </TitleImageWrapper>
         </FrontPage>
         <Bridge></Bridge>
