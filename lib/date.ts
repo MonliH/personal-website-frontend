@@ -13,4 +13,3 @@ export const format_date = (d: Date): string => {
   const da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
   return `${ye}-${mo}-${da}`;
 };
-

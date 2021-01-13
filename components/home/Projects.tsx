@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ForwardedRef, forwardRef, useState } from "react";
 import { useTransition, animated, useSpring } from "react-spring";
 
 import { useInView } from "react-intersection-observer";
@@ -297,38 +297,40 @@ const ProjectGrid = styled.div`
   width: 70vw;
 `;
 
-const Projects = ({ width }: { width: number }) => {
-  const [items] = useState(project_list);
-  const [ref, visible] = useInView({
-    triggerOnce: true,
-  });
+const Projects = forwardRef(
+  ({ width }: { width: number }, ref: ForwardedRef<HTMLDivElement>) => {
+    const [items] = useState(project_list);
+    const [gridRef, visible] = useInView({
+      triggerOnce: true,
+    });
 
-  return (
-    <ProjectsStyled>
-      <ProjectPage>
-        <Title>My Projects&thinsp;</Title>
-        <div ref={ref}>
-          <ProjectGridAnimated
-            items={items}
-            visible={visible}
-            width={width}
-          ></ProjectGridAnimated>
-          <noscript>
-            <ProjectGrid>
-              {items.map((val: Project, idx: number) => (
-                <ProjectCard
-                  key={idx}
-                  project={val}
-                  cardh={cardh}
-                  cardw={cardw}
-                ></ProjectCard>
-              ))}
-            </ProjectGrid>
-          </noscript>
-        </div>
-      </ProjectPage>
-    </ProjectsStyled>
-  );
-};
+    return (
+      <ProjectsStyled ref={ref}>
+        <ProjectPage>
+          <Title>My Projects&thinsp;</Title>
+          <div ref={gridRef}>
+            <ProjectGridAnimated
+              items={items}
+              visible={visible}
+              width={width}
+            ></ProjectGridAnimated>
+            <noscript>
+              <ProjectGrid>
+                {items.map((val: Project, idx: number) => (
+                  <ProjectCard
+                    key={idx}
+                    project={val}
+                    cardh={cardh}
+                    cardw={cardw}
+                  ></ProjectCard>
+                ))}
+              </ProjectGrid>
+            </noscript>
+          </div>
+        </ProjectPage>
+      </ProjectsStyled>
+    );
+  }
+);
 
 export default Projects;

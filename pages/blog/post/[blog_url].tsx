@@ -11,12 +11,14 @@ import { get_all_urls, get_blog_post } from "@lib/blog_api";
 import { BlogEntry } from "@lib/blog";
 import { from_unix_timestamp, to_unix_timestamp } from "@lib/date";
 
+import theme from "@styles/theme";
+
 const Post = ({ blog }: { blog: BlogEntry }) => {
   useBg("#FFFFFF");
   const router = useRouter();
 
   return (
-    <Layout title="Jonathan Li's Blog" description="Blog">
+    <Layout title="Jonathan Li's Blog" description="Blog" theme={theme.lightBg}>
       {router.isFallback ? (
         <Loading />
       ) : (

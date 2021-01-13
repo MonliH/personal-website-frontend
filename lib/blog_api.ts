@@ -19,9 +19,7 @@ export const get_range = async (
   start: number,
   end: number
 ): Promise<BlogEntry[]> => {
-  const entries_res = await fetch(
-    `${API_DOMAIN}/blog/entries/${start}/${end}`
-  );
+  const entries_res = await fetch(`${API_DOMAIN}/blog/entries/${start}/${end}`);
   const entries: BlogEntry[] = JSON.parse(
     await entries_res.text()
   ).map((entry: any) => into_blog_entry(entry));

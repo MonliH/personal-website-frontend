@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ForwardedRef, useState, forwardRef } from "react";
 import { animated, useSpring } from "react-spring";
 
 import * as Form from "@lib/form";
@@ -99,7 +99,7 @@ const SendButton = styled(animated.button)`
   flex: 0 0 110px;
 `;
 
-const Contact = () => {
+const Contact = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
   let [status, set_status] = useState("");
 
   let [anim, set_opacity] = useSpring(() => ({
@@ -115,7 +115,7 @@ const Contact = () => {
   };
 
   return (
-    <ContactStyled>
+    <ContactStyled ref={ref}>
       <WrapperCenter>
         <WrapperInner>
           <Title>Contact Me&thinsp;</Title>
@@ -184,6 +184,6 @@ const Contact = () => {
       </WrapperCenter>
     </ContactStyled>
   );
-};
+});
 
 export default Contact;

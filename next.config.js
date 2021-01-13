@@ -1,4 +1,4 @@
 const withCSS = require("@zeit/next-css");
-module.exports = withCSS({
-  target: "serverless",
-});
+const withPlugins = require("next-compose-plugins");
+
+module.exports = withPlugins([[withCSS, { target: "serverless" }]]);

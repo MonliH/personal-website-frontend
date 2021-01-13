@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { MutableRefObject, useState } from "react";
 import styled from "styled-components";
 import { animated, useSpring } from "react-spring";
 import Link from "next/link";
@@ -33,16 +33,24 @@ const HeaderLinks = styled.div`
   }
 `;
 
-const HeaderLink = styled.a`
+const HeaderLink = styled.button`
   font: 15px Montserrat, sans-serif;
   color: white;
   text-decoration: none;
-  padding-left: 30px;
   cursor: pointer;
+  margin-left: 14px;
+  background: none;
+  border: none;
+  color: white;
+  width: fit-content;
 
   &:hover {
     color: #e6e6e6;
   }
+`;
+
+const HeaderLinkA = styled(HeaderLink).attrs({ as: "r" })`
+  margin-left: 22px;
 `;
 
 const HeaderLinkGithub = styled.a`
@@ -53,8 +61,8 @@ const HeaderLinkGithub = styled.a`
   cursor: pointer;
 `;
 
-const HeaderName = styled.a`
-  margin-left: 30px;
+const HeaderName = styled.button`
+  margin-left: 22px;
   font: bold 20px Montserrat, sans-serif;
   margin-bottom: 20px;
   float: left;
@@ -64,6 +72,10 @@ const HeaderName = styled.a`
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
+
+  background: none;
+  border: none;
+  width: fit-content;
 
   &:hover {
     color: #e6e6e6;
@@ -86,13 +98,6 @@ const HeaderNav = styled.button`
     display: block;
   }
 `;
-
-const links = [
-  ["About Me", "#about"],
-  ["My Projects", "#projects"],
-  ["Contact Me", "#contact"],
-  ["Blog", "blog"],
-];
 
 interface HeaderSidebarProps {
   links: Array<JSX.Element>;
@@ -132,17 +137,38 @@ const NavSidebar = (p: HeaderSidebarProps) => {
   );
 };
 
-const Header = () => {
+const Header = ({
+  links,
+  keys,
+  masterRef,
+}: {
+  links: MutableRefObject<Record<string, HTMLDivElement>>;
+  keys: Array<string>;
+  masterRef: MutableRefObject<HTMLDivElement>;
+}) => {
   const [nav_on, set_nav_on] = useState(false);
 
-  let links_left = new Array(links.length);
-  for (const [display, hash] of links) {
+  let links_left: Array<JSX.Element> = [];
+
+  for (let i = 0; i < keys.length; i++) {
     links_left.push(
-      <Link href={`/${hash}`} key={hash} passHref={true}>
-        <HeaderLink>{display}</HeaderLink>
-      </Link>
+      <HeaderLink
+        onClick={(e) => {
+          e.preventDefault();
+          links.current[keys[i]].scrollIntoView();
+        }}
+        key={keys[i]}
+      >
+        {keys[i]}
+      </HeaderLink>
     );
   }
+
+  links_left.push(
+    <Link passHref={true} href="/blog" key="blog">
+      <HeaderLinkA>Blog</HeaderLinkA>
+    </Link>
+  );
 
   // Github logo
   links_left.push(
@@ -171,7 +197,14 @@ const Header = () => {
     <>
       <NavSidebar nav_on={nav_on} set_nav_on={set_nav_on} links={links_left} />
       <HeaderMain>
-        <HeaderName href="/#master">Jonathan Li</HeaderName>
+        <HeaderName
+          onClick={(e) => {
+            e.preventDefault();
+            masterRef.current.scrollIntoView();
+          }}
+        >
+          Jonathan Li
+        </HeaderName>
         <HeaderNav
           onClick={() => toggle_nav()}
           style={{ marginTop: "10px" }}

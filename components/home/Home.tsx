@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 
@@ -8,7 +8,6 @@ import { shared_title } from "@components/Title";
 import Contact from "@components/home/Contact";
 import About from "@components/home/About";
 import Projects from "@components/home/Projects";
-import Loading from "@components/Loading";
 
 import useWindowSize from "@hooks/useWindowSize";
 
@@ -137,35 +136,30 @@ const NoScriptImg = styled.img`
   left: 0;
 `;
 
-interface PropsStyledImage {
-  invisible: boolean;
-}
-
 const Home = () => {
   useEffect(() => {
     document.body.style.backgroundColor = "#1D1D1D";
   }, []);
 
   const [width] = useWindowSize();
+  const refs = useRef<Record<string, HTMLDivElement>>({});
+  const masterRef = useRef<HTMLDivElement>();
 
-  const mappings: Array<[string, JSX.Element]> = [
-    ["about", <About />],
-    ["projects", <Projects width={width} />],
-    ["contact", <Contact />],
+  const addRef = (name: string) => (ref: HTMLDivElement) => {
+    refs.current[name] = ref;
+  };
+
+  const linkOrder = ["About Me", "My Projects", "Contact Me"];
+
+  const pages: Array<JSX.Element> = [
+    <About ref={addRef(linkOrder[0])} key="about" />,
+    <Projects width={width} ref={addRef(linkOrder[1])} key="projects" />,
+    <Contact ref={addRef(linkOrder[2])} key="contact" />,
   ];
 
-  let other_pages = new Array(0);
-  for (const [id_name, page] of mappings) {
-    other_pages.push(
-      <div key={id_name} id={id_name}>
-        {page}
-      </div>
-    );
-  }
-
   return (
-    <div id="master">
-      <Header />
+    <div ref={masterRef}>
+      <Header links={refs} keys={linkOrder} masterRef={masterRef} />
       <Background>
         <FrontPage>
           <TitlePage>
@@ -194,7 +188,7 @@ const Home = () => {
           </TitleImageWrapper>
         </FrontPage>
         <Bridge></Bridge>
-        {other_pages}
+        {pages}
       </Background>
     </div>
   );

@@ -5,6 +5,7 @@ import Layout from "@components/Layout";
 import BlogHome, { BlogHomeProps } from "@components/blog/BlogHome";
 import { get_preview_page, get_num_posts } from "@lib/blog_api";
 import { from_unix_timestamp, to_unix_timestamp } from "@lib/date";
+import theme from "@styles/theme";
 
 export const posts_per_page = 10;
 
@@ -20,7 +21,11 @@ const Blog = (props: BlogHomeProps) => {
     date: from_unix_timestamp(entry.date as any), // This actualy is a number
   }));
   return (
-    <Layout title="Jonathan Li's Blog" description="Jonathan's personal blog.">
+    <Layout
+      title="Jonathan Li's Blog"
+      description="Jonathan's personal blog."
+      theme={theme.lightBg}
+    >
       <BlogHome
         {...props}
         blog_entries={new_blog_entries}

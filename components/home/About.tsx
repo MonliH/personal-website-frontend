@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { ForwardedRef, forwardRef, useRef } from "react";
 import styled from "styled-components";
 
 import { WrapperCenter, WrapperInner } from "@components/Wrapper";
@@ -55,10 +55,10 @@ const ModifiedTitle = styled(Title)`
   }
 `;
 
-const About = () => {
+const About = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
   let video_element = useRef(null);
   return (
-    <AboutStyled>
+    <AboutStyled ref={ref}>
       <WrapperCenter>
         <WrapperInner>
           <ModifiedTitle>About Me&thinsp;</ModifiedTitle>
@@ -91,6 +91,6 @@ const About = () => {
       </WrapperCenter>
     </AboutStyled>
   );
-};
+});
 
 export default About;

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { animated } from "react-spring";
 
 import Layout from "@components/Layout";
 import BlogPageChanger from "@components/blog/BlogPageChanger";
@@ -7,6 +6,7 @@ import Panel from "@components/admin/Panel";
 import useBlogEntries from "@hooks/useBlogEntries";
 import { posts_per_page } from "@pages/blog/[page_no]";
 import { withProtect } from "@contexts/auth_context";
+import theme from "@styles/theme";
 
 const BlogPageButton = styled.button`
   color: #15a1ff;
@@ -26,6 +26,7 @@ const Admin = () => {
     <Layout
       title="Admin Panel"
       description="Jonathan's personal website admin panel."
+      theme={theme.lightBg}
     >
       <BlogPageChanger
         current_page={page_no + 1}
