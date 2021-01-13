@@ -22,8 +22,6 @@ const Layout = ({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content={theme} />
         <link rel="apple-touch-icon" href="apple-touch-icon.png"></link>
-        <link href="/favicon.ico" rel="icon" type="image/x-icon" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           href="/favicon-16x16.png"
           rel="icon"
@@ -36,6 +34,7 @@ const Layout = ({
           type="image/png"
           sizes="32x32"
         />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="manifest" href="/manifest.json" />
       </Head>
       <main>{children}</main>
