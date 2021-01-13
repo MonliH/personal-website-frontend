@@ -1,23 +1,32 @@
+import { useRouter } from "next/router";
 import { GetStaticPaths, GetStaticProps } from "next";
 
 import Layout from "@components/Layout";
 import BlogPage from "@components/blog/BlogPage";
+import Loading from "@components/Loading";
+
 import useBg from "@hooks/useBg";
+
 import { get_all_urls, get_blog_post } from "@lib/blog_api";
 import { BlogEntry } from "@lib/blog";
 import { from_unix_timestamp, to_unix_timestamp } from "@lib/date";
 
 const Post = ({ blog }: { blog: BlogEntry }) => {
   useBg("#FFFFFF");
+  const router = useRouter();
 
   return (
     <Layout title="Jonathan Li's Blog" description="Blog">
-      <BlogPage
-        blog={{
-          ...blog,
-          date: from_unix_timestamp(blog.date as any), // This actually is a number
-        }}
-      />
+      {router.isFallback ? (
+        <Loading />
+      ) : (
+        <BlogPage
+          blog={{
+            ...blog,
+            date: from_unix_timestamp(blog.date as any), // This actually is a number
+          }}
+        />
+      )}
     </Layout>
   );
 };

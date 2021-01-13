@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import styled from "styled-components";
 
 import BlogHeader from "@components/blog/BlogHeader";
@@ -46,12 +45,10 @@ const BlogContentWrapper = styled.div`
 `;
 
 const SubBlogPage = ({ blog }: { blog: null | BlogEntry }) => {
-  const router = useRouter();
-
   return (
     <BlogContentWrapper>
       <BlogHeader blog font="20px" />
-      {blog && !router.isFallback ? (
+      {blog ? (
         <>
           <BlogTitle>{blog.title}</BlogTitle>
           <BlogDate date={blog.date} />
