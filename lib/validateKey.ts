@@ -1,14 +1,14 @@
 import { API_DOMAIN } from "@lib/domains";
 
 const validate_key = async (key: string): Promise<boolean> => {
-  const request_options = {
+  const requestOptions = {
     method: "POST",
     body: key,
   };
 
-  const is_correct = await fetch(`${API_DOMAIN}/admin/key`, request_options);
+  const isCorrect = await fetch(`${API_DOMAIN}/admin/key`, requestOptions);
 
-  return is_correct.ok;
+  return isCorrect.ok;
 };
 
 export default validate_key;

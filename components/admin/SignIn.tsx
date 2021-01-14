@@ -1,9 +1,9 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-import { useAuth } from "@contexts/auth_context";
+import { useAuth } from "@contexts/authContext";
 import redirect from "@lib/redirect";
-import validate_key from "@lib/validate_key";
+import validate_key from "@lib/validateKey";
 
 const Label = styled.label`
   color: black;
@@ -12,24 +12,24 @@ const Label = styled.label`
 const Input = styled.input``;
 
 const SignIn = () => {
-  const { set_auth_data } = useAuth();
+  const { setAuthData } = useAuth();
 
-  const [key, set_key] = useState<string>();
-  const [wrong, set_wrong] = useState(false);
+  const [key, setKey] = useState<string>();
+  const [wrong, setWrong] = useState(false);
 
-  const on_submit = async (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (await validate_key(key)) {
-      set_auth_data(key);
+      setAuthData(key);
       redirect("/admin/");
     } else {
-      set_wrong(true);
+      setWrong(true);
     }
   };
 
   return (
-    <form onSubmit={on_submit}>
+    <form onSubmit={onSubmit}>
       <Label>
         Key:
         <input
@@ -37,7 +37,7 @@ const SignIn = () => {
           name="key"
           placeholder="key"
           onChange={(e) => {
-            set_key(e.target.value);
+            setKey(e.target.value);
           }}
         />
       </Label>

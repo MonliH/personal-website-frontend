@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 
 import { BlogEntry } from "@lib/blog";
-import { get_blog_post } from "@lib/blog_api";
+import { getBlogPost } from "@lib/blogApi";
 
-const useBlogPost = (blog_url: string): null | BlogEntry => {
-  const [blog, set_blog] = useState<BlogEntry | null>(null);
+const useBlogPost = (blogUrl: string): null | BlogEntry => {
+  const [blog, setBlog] = useState<BlogEntry | null>(null);
 
   useEffect(() => {
-    get_blog_post(blog_url).then((post) => set_blog(post));
+    getBlogPost(blogUrl).then((post) => setBlog(post));
   }, []);
 
   return blog;

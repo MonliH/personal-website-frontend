@@ -1,7 +1,7 @@
 import Layout from "@components/Layout";
 import AdminBlogPage from "@components/admin/AdminBlogPage";
-import { default_blog } from "@lib/blog";
-import { withProtect } from "@contexts/auth_context";
+import { defaultBlog } from "@lib/blog";
+import { withProtect } from "@contexts/authContext";
 import theme from "@styles/theme";
 
 const NewBlog = () => {
@@ -11,7 +11,7 @@ const NewBlog = () => {
       description="Create a new blog"
       theme={theme.lightBg}
     >
-      <AdminBlogPage blog={default_blog()} show_url />
+      <AdminBlogPage blog={defaultBlog()} showUrl />
     </Layout>
   );
 };

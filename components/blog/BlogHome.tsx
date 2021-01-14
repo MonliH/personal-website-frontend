@@ -1,7 +1,8 @@
+import { forwardRef, ForwardedRef } from "react";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 
-import { shared_title } from "@components/Title";
+import { sharedTitle } from "@components/Title";
 import BlogPageChanger, {
   ChangerProps,
 } from "@components/blog/BlogPageChanger";
@@ -24,7 +25,7 @@ const BlogTitleWrapper = styled.div`
 `;
 
 export const Title = styled.pre`
-  ${shared_title}
+  ${sharedTitle}
   height: 57px;
   font: bold 45px Montserrat, sans-serif;
   background-position: left 19px top 34px;
@@ -89,10 +90,10 @@ export const BlogDate = ({ date }: { date: Date }) => {
 };
 
 const BlogSummary = ({
-  blog_entry,
+  blogEntry,
   prefix,
 }: {
-  blog_entry: BlogEntry;
+  blogEntry: BlogEntry;
   prefix?: string;
 }) => {
   return (
@@ -100,43 +101,44 @@ const BlogSummary = ({
       <BlogSummaryInner>
         <div>
           <BlogTitle
-            link={`${prefix ? prefix : "/"}${blog_entry.url}`}
-            text={blog_entry.title}
+            link={`${prefix ? prefix : "/"}${blogEntry.url}`}
+            text={blogEntry.title}
           />
-          <BlogDate date={blog_entry.date}></BlogDate>
+          <BlogDate date={blogEntry.date}></BlogDate>
         </div>
         <ContentPreview
-          dangerouslySetInnerHTML={{ __html: blog_entry.html_contents }}
+          dangerouslySetInnerHTML={{ __html: blogEntry.html_contents }}
         ></ContentPreview>
       </BlogSummaryInner>
     </BlogSummaryStyled>
   );
 };
 
-export const BlogSummaryList = (props: {
-  blog_entries: Array<BlogEntry>;
-  _ref?: (node?: Element | null | undefined) => void;
-  prefix?: string;
-}) => {
-  const blog_previews = (
-    <div ref={props._ref}>
-      {props.blog_entries.map((blog_entry: BlogEntry, idx: number) => {
-        return (
-          <BlogSummary
-            blog_entry={blog_entry}
-            key={idx}
-            prefix={props.prefix}
-          />
-        );
-      })}
-    </div>
-  );
+export const BlogSummaryList = forwardRef(
+  (
+    props: { blogEntries: Array<BlogEntry>; prefix?: string },
+    ref: ForwardedRef<HTMLDivElement>
+  ) => {
+    const blog_previews = (
+      <div ref={ref}>
+        {props.blogEntries.map((blogEntry: BlogEntry, idx: number) => {
+          return (
+            <BlogSummary
+              blogEntry={blogEntry}
+              key={idx}
+              prefix={props.prefix}
+            />
+          );
+        })}
+      </div>
+    );
 
-  return <>{blog_previews}</>;
-};
+    return <>{blog_previews}</>;
+  }
+);
 
 export interface BlogHomeProps extends ChangerProps {
-  blog_entries: Array<BlogEntry>;
+  blogEntries: Array<BlogEntry>;
   loading: boolean;
   prefix: string;
 }
@@ -160,12 +162,12 @@ const BlogHome = (props: BlogHomeProps) => {
             <>
               <BlogPageChanger
                 current_page={props.current_page}
-                total_pages={props.total_pages}
+                totalPages={props.totalPages}
                 CustomSetter={props.CustomSetter}
               />
               <BlogSummaryList
-                _ref={ref}
-                blog_entries={props.blog_entries}
+                ref={ref}
+                blogEntries={props.blogEntries}
                 prefix={props.prefix}
               />
               {
@@ -175,7 +177,7 @@ const BlogHome = (props: BlogHomeProps) => {
                 ) : (
                   <BlogPageChanger
                     current_page={props.current_page}
-                    total_pages={props.total_pages}
+                    totalPages={props.totalPages}
                     CustomSetter={props.CustomSetter}
                   />
                 )

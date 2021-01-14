@@ -100,18 +100,18 @@ const SendButton = styled(animated.button)`
 `;
 
 const Contact = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
-  let [status, set_status] = useState("");
+  let [status, setStatus] = useState("");
 
-  let [anim, set_opacity] = useSpring(() => ({
+  let [anim, setOpacity] = useSpring(() => ({
     backgroundColor: "#1d1d1d",
   }));
 
-  const on_mouse_enter = () => {
-    set_opacity({ backgroundColor: "rgb(10, 10, 10)" });
+  const onMouseEnter = () => {
+    setOpacity({ backgroundColor: "rgb(10, 10, 10)" });
   };
 
-  const on_mouse_leave = () => {
-    set_opacity({ backgroundColor: "#1d1d1d" });
+  const onMouseLeave = () => {
+    setOpacity({ backgroundColor: "#1d1d1d" });
   };
 
   return (
@@ -119,7 +119,7 @@ const Contact = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
       <WrapperCenter>
         <WrapperInner>
           <Title>Contact Me&thinsp;</Title>
-          <ContactForm onSubmit={(e) => Form.submit(e, set_status)}>
+          <ContactForm onSubmit={(e) => Form.submit(e, setStatus)}>
             <EntryContainer>
               <Entry>
                 <EntryText>Your Email:</EntryText>
@@ -155,8 +155,8 @@ const Contact = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
               <SendButton
                 type="submit"
                 style={anim as any}
-                onMouseEnter={on_mouse_enter}
-                onMouseLeave={on_mouse_leave}
+                onMouseEnter={onMouseEnter}
+                onMouseLeave={onMouseLeave}
               >
                 Send
               </SendButton>

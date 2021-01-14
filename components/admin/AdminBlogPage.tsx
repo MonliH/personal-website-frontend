@@ -20,11 +20,11 @@ const AceEditor: ComponentType<IAceEditorProps> = dynamic(
 import Loading from "@components/Loading";
 import StyledLink from "@components/StyledLink";
 
-import { useAuth } from "@contexts/auth_context";
+import { useAuth } from "@contexts/authContext";
 
 import { BlogEntry } from "@lib/blog";
-import { format_date } from "@lib/date";
-import change_post from "@lib/change_post";
+import { formatDate } from "@lib/date";
+import changePost from "@lib/changePost";
 
 const ChangeBlogForm = styled.form`
   display: flex;
@@ -37,43 +37,43 @@ const ChangeBlogLabel = styled.label`
 
 const AdminBlogPage = ({
   blog,
-  show_url,
+  showUrl,
 }: {
   blog: BlogEntry;
-  show_url?: boolean;
+  showUrl?: boolean;
 }) => {
-  const [revised_blog, set_revised_blog] = useState<null | BlogEntry>(null);
-  const [is_authed, set_is_authed] = useState(false);
-  const [message, set_message] = useState("");
+  const [revisedBlog, setRevisedBlog] = useState<null | BlogEntry>(null);
+  const [isAuthed, setIsAuthed] = useState(false);
+  const [message, setMessage] = useState("");
 
   const { auth } = useAuth();
 
   useEffect(() => {
-    set_is_authed(true);
+    setIsAuthed(true);
   }, [auth]);
 
   useEffect(() => {
-    set_revised_blog(blog);
+    setRevisedBlog(blog);
   }, [blog]);
 
   const on_form_submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (auth.key) {
-      let ok = await change_post(auth.key, revised_blog!);
+      let ok = await changePost(auth.key, revisedBlog!);
       if (ok) {
-        set_message("Blog changed");
+        setMessage("Blog changed");
       } else {
-        set_message("Failed to change blog");
+        setMessage("Failed to change blog");
       }
     } else {
-      set_is_authed(false);
+      setIsAuthed(false);
     }
   };
 
-  if (!is_authed) {
+  if (!isAuthed) {
     return <Loading />;
   } else {
-    if (blog && revised_blog) {
+    if (blog && revisedBlog) {
       return (
         <div>
           <StyledLink link="/admin/" text="Admin Panel" />
@@ -88,10 +88,10 @@ const AdminBlogPage = ({
             <ChangeBlogLabel>Title</ChangeBlogLabel>
             <input
               type="text"
-              value={revised_blog.title}
+              value={revisedBlog.title}
               onChange={(e: React.FormEvent) => {
-                set_revised_blog({
-                  ...revised_blog,
+                setRevisedBlog({
+                  ...revisedBlog,
                   title: (e.target as HTMLInputElement).value,
                 } as BlogEntry);
               }}
@@ -99,23 +99,23 @@ const AdminBlogPage = ({
             <ChangeBlogLabel>Date</ChangeBlogLabel>
             <input
               type="date"
-              value={format_date(revised_blog.date)}
+              value={formatDate(revisedBlog.date)}
               onChange={(e: React.FormEvent) => {
-                set_revised_blog({
-                  ...revised_blog,
+                setRevisedBlog({
+                  ...revisedBlog,
                   date: new Date((e.target as HTMLInputElement).value),
                 });
               }}
             />
-            {show_url ? (
+            {showUrl ? (
               <>
                 <ChangeBlogLabel>URL</ChangeBlogLabel>
                 <input
                   type="text"
-                  value={revised_blog.url}
+                  value={revisedBlog.url}
                   onChange={(e: React.FormEvent) => {
-                    set_revised_blog({
-                      ...revised_blog,
+                    setRevisedBlog({
+                      ...revisedBlog,
                       url: (e.target as HTMLInputElement).value,
                     } as BlogEntry);
                   }}
@@ -128,10 +128,10 @@ const AdminBlogPage = ({
             <AceEditor
               mode="markdown"
               theme="tomorrow"
-              value={revised_blog.md_contents}
+              value={revisedBlog.md_contents}
               onChange={(md_contents: string) => {
-                set_revised_blog({
-                  ...revised_blog,
+                setRevisedBlog({
+                  ...revisedBlog,
                   md_contents,
                 } as BlogEntry);
               }}

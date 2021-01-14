@@ -56,7 +56,7 @@ const ModifiedTitle = styled(Title)`
 `;
 
 const About = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
-  let video_element = useRef(null);
+  let videoElement = useRef(null);
   return (
     <AboutStyled ref={ref}>
       <WrapperCenter>
@@ -64,9 +64,9 @@ const About = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
           <ModifiedTitle>About Me&thinsp;</ModifiedTitle>
           <AboutMeSection>
             <AboutVideo
-              onMouseEnter={() => video_element.current?.play()}
-              onMouseLeave={() => video_element.current?.pause()}
-              ref={video_element}
+              onMouseEnter={() => videoElement.current?.play()}
+              onMouseLeave={() => videoElement.current?.pause()}
+              ref={videoElement}
               playsInline
               muted
               loop

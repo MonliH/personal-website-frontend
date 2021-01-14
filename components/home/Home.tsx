@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import Header from "@components/home/Header";
 import { NameTitleWrapper } from "@components/Wrapper";
-import { shared_title } from "@components/Title";
+import { sharedTitle } from "@components/Title";
 import Contact from "@components/home/Contact";
 import About from "@components/home/About";
 import Projects from "@components/home/Projects";
@@ -25,7 +25,7 @@ const SubHeading = styled.div`
 `;
 
 const Jonathan = styled.div`
-  ${shared_title}
+  ${sharedTitle}
   font: bold 70px Montserrat, sans-serif;
   position: relative;
   height: 100px;
@@ -34,7 +34,7 @@ const Jonathan = styled.div`
 `;
 
 const Li = styled.div`
-  ${shared_title}
+  ${sharedTitle}
   font: bold 70px Montserrat, sans-serif;
   color: #ff3d0d;
   position: absolute;
@@ -179,6 +179,7 @@ const Home = () => {
               alt="My Artwork"
               layout="fill"
               priority={true}
+              sizes="70vh"
             />
 
             {/* Here we add noscript so people with javascript disabled can still see the image */}

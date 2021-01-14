@@ -4,8 +4,8 @@ import Layout from "@components/Layout";
 import BlogPageChanger from "@components/blog/BlogPageChanger";
 import Panel from "@components/admin/Panel";
 import useBlogEntries from "@hooks/useBlogEntries";
-import { posts_per_page } from "@pages/blog/[page_no]";
-import { withProtect } from "@contexts/auth_context";
+import { postsPerPage } from "@pages/blog/[pageNo]";
+import { withProtect } from "@contexts/authContext";
 import theme from "@styles/theme";
 
 const BlogPageButton = styled.button`
@@ -18,8 +18,8 @@ const BlogPageButton = styled.button`
 `;
 
 const Admin = () => {
-  const [pages, page_no, set_page_no, blog_entries, loading] = useBlogEntries(
-    posts_per_page
+  const [pages, pageNo, setPageNo, blogEntries, loading] = useBlogEntries(
+    postsPerPage
   );
 
   return (
@@ -29,18 +29,18 @@ const Admin = () => {
       theme={theme.lightBg}
     >
       <BlogPageChanger
-        current_page={page_no + 1}
-        CustomSetter={({ style, page_no }) => (
+        current_page={pageNo + 1}
+        CustomSetter={({ style, pageNo: page_no }) => (
           <BlogPageButton
-            onClick={() => set_page_no(page_no - 1)}
+            onClick={() => setPageNo(page_no - 1)}
             style={style}
           >
             {page_no}
           </BlogPageButton>
         )}
-        total_pages={pages}
+        totalPages={pages}
       />
-      <Panel loading={loading} blog_entries={blog_entries} />
+      <Panel loading={loading} blogEntries={blogEntries} />
     </Layout>
   );
 };

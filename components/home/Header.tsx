@@ -101,8 +101,8 @@ const HeaderNav = styled.button`
 
 interface HeaderSidebarProps {
   links: Array<JSX.Element>;
-  nav_on: boolean;
-  set_nav_on: (val: boolean) => void;
+  navOn: boolean;
+  setNavOn: (val: boolean) => void;
 }
 
 const Absolute = styled(animated.div)`
@@ -127,9 +127,9 @@ const Right = styled.div`
 `;
 
 const NavSidebar = (p: HeaderSidebarProps) => {
-  const style = useSpring({ translateX: p.nav_on ? "0vw" : "-100vw" });
+  const style = useSpring({ translateX: p.navOn ? "0vw" : "-100vw" });
   return (
-    <Absolute onClick={() => p.set_nav_on(false)} style={style as any}>
+    <Absolute onClick={() => p.setNavOn(false)} style={style as any}>
       {p.links.map((link: JSX.Element, i: number) => {
         return <Right key={i}>{link}</Right>;
       })}
@@ -146,12 +146,12 @@ const Header = ({
   keys: Array<string>;
   masterRef: MutableRefObject<HTMLDivElement>;
 }) => {
-  const [nav_on, set_nav_on] = useState(false);
+  const [navOn, setNavOn] = useState(false);
 
-  let links_left: Array<JSX.Element> = [];
+  let linksLeft: Array<JSX.Element> = [];
 
   for (let i = 0; i < keys.length; i++) {
-    links_left.push(
+    linksLeft.push(
       <HeaderLink
         onClick={(e) => {
           e.preventDefault();
@@ -164,14 +164,14 @@ const Header = ({
     );
   }
 
-  links_left.push(
+  linksLeft.push(
     <Link passHref={true} href="/blog" key="blog">
       <HeaderLinkA>Blog</HeaderLinkA>
     </Link>
   );
 
   // Github logo
-  links_left.push(
+  linksLeft.push(
     <HeaderLinkGithub
       key="github-image"
       href="https://github.com/MonliH"
@@ -189,13 +189,13 @@ const Header = ({
     </HeaderLinkGithub>
   );
 
-  const toggle_nav = () => {
-    set_nav_on(!nav_on);
+  const toggleNav = () => {
+    setNavOn(!navOn);
   };
 
   return (
     <>
-      <NavSidebar nav_on={nav_on} set_nav_on={set_nav_on} links={links_left} />
+      <NavSidebar navOn={navOn} setNavOn={setNavOn} links={linksLeft} />
       <HeaderMain>
         <HeaderName
           onClick={(e) => {
@@ -206,7 +206,7 @@ const Header = ({
           Jonathan Li
         </HeaderName>
         <HeaderNav
-          onClick={() => toggle_nav()}
+          onClick={() => toggleNav()}
           style={{ marginTop: "10px" }}
           aria-label="Menu"
         >
@@ -217,7 +217,7 @@ const Header = ({
             height={27}
           />
         </HeaderNav>
-        <HeaderLinks>{links_left}</HeaderLinks>
+        <HeaderLinks>{linksLeft}</HeaderLinks>
       </HeaderMain>
     </>
   );

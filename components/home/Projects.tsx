@@ -4,20 +4,21 @@ import { useTransition, animated, useSpring } from "react-spring";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 
-import { Tag, project_list, Project } from "@lib/projects";
+import { Tag, projectList, Project } from "@lib/projects";
 import CustomLink from "@components/StyledLink";
 
 import { Title } from "@components/Title";
 
-// Card width
-const cardw = 300;
-// Card height
-const cardh = 170;
-
-// Card left and right margin
-const cardwm = 20;
-// Card top and bottom margin
-const cardhm = 20;
+const cardDimensions = {
+  // Card width
+  width: 300,
+  // Card height
+  height: 170,
+  // Card left and right margin
+  lrMargin: 20,
+  // Card top and bottom margin
+  tbMargin: 20,
+};
 
 const tag_color = (tag: Tag) => {
   switch (tag) {
@@ -138,7 +139,7 @@ const ProjectCard = (p: ProjectCardProps) => {
       <div>
         <ProjectTags>{tags}</ProjectTags>
         <AnimatedProjectLink
-          text={p.project.display_name}
+          text={p.project.displayName}
           link={p.project.link}
           extern
         />
@@ -169,46 +170,50 @@ const ProjectGridAnimated = (p: ProjectGridProps) => {
   const width = p.width * 0.7;
 
   // Approximate the number of comlumns (without margin)
-  const approx_cols = Math.floor(width / cardw) || 1;
+  const approxCols = Math.floor(width / cardDimensions.width) || 1;
 
   // Account for margin after approximating number of columns
   const columns =
-    approx_cols != 1 ? Math.floor((width - cardwm * approx_cols) / cardw) : 1;
+    approxCols != 1
+      ? Math.floor(
+          (width - cardDimensions.lrMargin * approxCols) / cardDimensions.width
+        )
+      : 1;
 
-  let counter_col = 0;
-  let counter_row = 0;
+  let counterCol = 0;
+  let counterRow = 0;
   let grid_items: Array<ProjectPosition> = p.items.map((child, i) => {
-    counter_col++;
+    counterCol++;
 
     if (i % columns === 0) {
       if (i !== 0) {
         // New row
-        counter_row++;
+        counterRow++;
       }
       // Reset column
-      counter_col = 0;
+      counterCol = 0;
     }
 
     return {
-      xy: [(cardw + cardwm) * counter_col, counter_row * (cardh + cardhm)],
+      xy: [(cardDimensions.width + cardDimensions.lrMargin) * counterCol, counterRow * (cardDimensions.height + cardDimensions.tbMargin)],
       project: child,
     };
   });
 
-  counter_row += 1;
+  counterRow += 1;
 
   const transitions = useTransition(grid_items, {
-    from: () => ({ xy: [0, 0], width: cardw, height: cardh, opacity: 0 }),
+    from: () => ({ xy: [0, 0], width: cardDimensions.width, height: cardDimensions.height, opacity: 0 }),
     enter: ({ xy }) => ({
       xy: p.visible ? xy : [0, 0],
-      width: cardw,
-      height: cardh,
+      width: cardDimensions.width,
+      height: cardDimensions.height,
       opacity: p.visible ? 1 : 0,
     }),
     update: ({ xy }) => ({
       xy: p.visible ? xy : [0, 0],
-      width: cardw,
-      height: cardh,
+      width: cardDimensions.width,
+      height: cardDimensions.height,
       opacity: p.visible ? 1 : 0,
     }),
     leave: { height: 0, opacity: 0 },
@@ -232,29 +237,29 @@ const ProjectGridAnimated = (p: ProjectGridProps) => {
         >
           <ProjectCard
             project={item.project}
-            cardh={cardh}
-            cardw={cardw}
+            cardh={cardDimensions.height}
+            cardw={cardDimensions.width}
           ></ProjectCard>
         </animated.div>
       </CardWrapperDiv>
     );
   });
 
-  const [first_anim, set_first_anim] = useState(true);
+  const [firstAnim, setFirstAnim] = useState(true);
 
   let spring_options: { from: undefined | object; to: object } = {
     from: undefined,
     to: {
-      height: counter_row * (cardh + cardhm),
-      width: columns * (cardw + cardwm),
+      height: counterRow * (cardDimensions.height + cardDimensions.tbMargin),
+      width: columns * (cardDimensions.width + cardDimensions.lrMargin),
     },
   };
 
-  if (first_anim) {
-    set_first_anim(false);
+  if (firstAnim) {
+    setFirstAnim(false);
     spring_options.from = {
-      height: counter_row * (cardh + cardhm),
-      width: columns * (cardw + cardwm),
+      height: counterRow * (cardDimensions.height + cardDimensions.tbMargin),
+      width: columns * (cardDimensions.width + cardDimensions.lrMargin),
     };
   }
 
@@ -290,16 +295,16 @@ const ProjectGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, auto));
   justify-content: center;
-  grid-column-gap: ${cardwm}px;
-  column-gap: ${cardwm}px;
-  grid-row-gap: ${cardhm}px;
-  row-gap: ${cardhm}px;
+  grid-column-gap: ${cardDimensions.lrMargin}px;
+  column-gap: ${cardDimensions.lrMargin}px;
+  grid-row-gap: ${cardDimensions.tbMargin}px;
+  row-gap: ${cardDimensions.tbMargin}px;
   width: 70vw;
 `;
 
 const Projects = forwardRef(
   ({ width }: { width: number }, ref: ForwardedRef<HTMLDivElement>) => {
-    const [items] = useState(project_list);
+    const [items] = useState(projectList);
     const [gridRef, visible] = useInView({
       triggerOnce: true,
     });
@@ -320,8 +325,8 @@ const Projects = forwardRef(
                   <ProjectCard
                     key={idx}
                     project={val}
-                    cardh={cardh}
-                    cardw={cardw}
+                    cardh={cardDimensions.height}
+                    cardw={cardDimensions.width}
                   ></ProjectCard>
                 ))}
               </ProjectGrid>

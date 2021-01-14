@@ -7,9 +7,9 @@ import Loading from "@components/Loading";
 
 import useBg from "@hooks/useBg";
 
-import { get_all_urls, get_blog_post } from "@lib/blog_api";
+import { getAllUrls, getBlogPost } from "@lib/blogApi";
 import { BlogEntry } from "@lib/blog";
-import { from_unix_timestamp, to_unix_timestamp } from "@lib/date";
+import { fromUnixTimestamp, toUnixTimestamp } from "@lib/date";
 
 import theme from "@styles/theme";
 
@@ -25,7 +25,7 @@ const Post = ({ blog }: { blog: BlogEntry }) => {
         <BlogPage
           blog={{
             ...blog,
-            date: from_unix_timestamp(blog.date as any), // This actually is a number
+            date: fromUnixTimestamp(blog.date as any), // This actually is a number
           }}
         />
       )}
@@ -37,10 +37,10 @@ export default Post;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   let paths = [];
-  let all_urls = await get_all_urls();
-  for (const url of all_urls) {
+  let allUrls = await getAllUrls();
+  for (const url of allUrls) {
     paths.push({
-      params: { blog_url: url },
+      params: { blogUrl: url },
     });
   }
 
@@ -48,9 +48,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const blog = await get_blog_post(params.blog_url as string);
+  const blog = await getBlogPost(params.blogUrl as string);
   return {
-    props: { blog: { ...blog, date: to_unix_timestamp(blog.date) } },
+    props: { blog: { ...blog, date: toUnixTimestamp(blog.date) } },
     revalidate: 5,
   };
 };

@@ -3,27 +3,27 @@ import styled from "styled-components";
 
 type CustomSetter = FC<{
   style: CSSProperties;
-  page_no: number;
+  pageNo: number;
 }>;
 
 export interface ChangerProps {
   current_page: number;
-  total_pages: number;
+  totalPages: number;
   CustomSetter: CustomSetter;
 }
 
 const BlogPageChange = ({
-  page_no,
+  pageNo,
   bold,
   CustomSetter,
 }: {
-  page_no: number;
+  pageNo: number;
   bold: boolean;
   CustomSetter: CustomSetter;
 }) => {
   return (
     <CustomSetter
-      page_no={page_no + 1}
+      pageNo={pageNo + 1}
       style={{ fontWeight: bold ? "bold" : "normal" }}
     />
   );
@@ -51,11 +51,11 @@ const BlogPageChanger = (props: ChangerProps) => {
   return (
     <BlogChangerDiv>
       <PageText>Page</PageText>
-      {[...Array(props.total_pages).keys()].map((i: number) => {
+      {[...Array(props.totalPages).keys()].map((i: number) => {
         return (
           <BlogPageChange
             key={i}
-            page_no={i}
+            pageNo={i}
             bold={props.current_page === i + 1}
             CustomSetter={props.CustomSetter}
           />

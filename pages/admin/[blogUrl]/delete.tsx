@@ -2,13 +2,13 @@ import { useRouter } from "next/router";
 
 import Layout from "@components/Layout";
 import DeletePost from "@components/admin/DeletePost";
-import { withProtect } from "@contexts/auth_context";
+import { withProtect } from "@contexts/authContext";
 
 import theme from "@styles/theme";
 
 const DeletePage = () => {
   const router = useRouter();
-  const { blog_url } = router.query;
+  const { blogUrl } = router.query;
 
   return (
     <Layout
@@ -16,7 +16,7 @@ const DeletePage = () => {
       description="Delete page on admin panel."
       theme={theme.lightBg}
     >
-      <DeletePost blog_name={blog_url as string} />
+      <DeletePost blogName={blogUrl as string} />
     </Layout>
   );
 };

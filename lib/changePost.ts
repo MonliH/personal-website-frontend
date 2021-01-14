@@ -1,6 +1,6 @@
 import { API_DOMAIN } from "@lib/domains";
 import { BlogEntry } from "@lib/blog";
-import { format_date } from "@lib/date";
+import { formatDate } from "@lib/date";
 import hljs from "highlight.js";
 
 import { Remarkable } from "remarkable";
@@ -23,8 +23,8 @@ let md = new Remarkable({
   },
 });
 
-const change_post = async (key: string, new_post: BlogEntry) => {
-  const request_options = {
+const changePost = async (key: string, new_post: BlogEntry) => {
+  const requestOptions = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -34,14 +34,14 @@ const change_post = async (key: string, new_post: BlogEntry) => {
       blog: {
         ...new_post,
         html_contents: md.render(new_post.md_contents),
-        date: format_date(new_post.date),
+        date: formatDate(new_post.date),
       },
     }),
   };
 
-  const res = await fetch(`${API_DOMAIN}/admin/edit`, request_options);
+  const res = await fetch(`${API_DOMAIN}/admin/edit`, requestOptions);
 
   return res.ok;
 };
 
-export default change_post;
+export default changePost;

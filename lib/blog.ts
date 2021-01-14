@@ -8,12 +8,12 @@ export interface BlogEntry {
 
 export const BLOG_COLOR_BG = "#FAFAFA";
 
-export const into_blog_entry = (json: any): BlogEntry => {
+export const intoBlogEntry = (json: any): BlogEntry => {
   json.date = new Date(json.date);
   return json as BlogEntry;
 };
 
-export const default_blog = (): BlogEntry => {
+export const defaultBlog = (): BlogEntry => {
   return {
     title: "",
     url: "",

@@ -1,7 +1,7 @@
 import { API_DOMAIN } from "@lib/domains";
 
-const delete_post = async (key: string, url: string) => {
-  const request_options = {
+const deletePost = async (key: string, url: string) => {
+  const requestOptions = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -12,9 +12,9 @@ const delete_post = async (key: string, url: string) => {
     }),
   };
 
-  const res = await fetch(`${API_DOMAIN}/admin/delete`, request_options);
+  const res = await fetch(`${API_DOMAIN}/admin/delete`, requestOptions);
 
   return res.ok;
 };
 
-export default delete_post;
+export default deletePost;

@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import Loading from "@components/Loading";
 import redirect from "@lib/redirect";
-import validate_key from "@lib/validate_key";
+import validate_key from "@lib/validateKey";
 
 interface Auth {
   loading: boolean;
@@ -16,7 +16,7 @@ interface Auth {
 
 interface AuthContext {
   auth: Auth;
-  set_auth_data?: (v?: string) => void;
+  setAuthData?: (v?: string) => void;
 }
 
 export const AuthContext = createContext<AuthContext>({
@@ -49,7 +49,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, [auth]);
 
   return (
-    <AuthContext.Provider value={{ auth, set_auth_data }}>
+    <AuthContext.Provider value={{ auth, setAuthData: set_auth_data }}>
       {children}
     </AuthContext.Provider>
   );

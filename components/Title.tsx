@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const shared_title = `
+export const sharedTitle = `
   width: -moz-fit-content;
   width: -webkit-fit-content;
   width: fit-content;
@@ -32,7 +32,7 @@ export const shared_title = `
 `;
 
 export const Title = styled.pre`
-  ${shared_title}
+  ${sharedTitle}
   height: 75px;
   font: bold 60px Montserrat, sans-serif;
   background-position: left 19px top 40px;

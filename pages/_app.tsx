@@ -1,5 +1,5 @@
 import "@styles/index.css";
-import { AuthProvider } from "@contexts/auth_context";
+import { AuthProvider } from "@contexts/authContext";
 
 const App = ({ Component, pageProps }) => {
   return (

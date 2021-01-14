@@ -1,29 +1,29 @@
 import { useState, useEffect } from "react";
 import { BlogEntry } from "@lib/blog";
-import { get_preview_page } from "@lib/blog_api";
+import { getPreviewPage } from "@lib/blogApi";
 
 const useBlogEntries = (
   posts_per_page: number
 ): [number, number, (no: number) => void, Array<BlogEntry>, boolean] => {
-  const [blog_entries, set_blog_entries] = useState<Array<BlogEntry>>([]);
-  const [page_no, set_page_no] = useState(0);
-  const [loading, set_loading] = useState(true);
-  const [pages, set_pages] = useState(0);
+  const [blogEntries, setBlogEntries] = useState<Array<BlogEntry>>([]);
+  const [pageNo, setPageNo] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [pages, setPages] = useState(0);
 
   const fetch_entries = async () => {
-    set_loading(true);
-    const [pages, entries] = await get_preview_page(posts_per_page, page_no);
-    set_blog_entries(entries);
-    set_pages(pages);
-    set_loading(false);
+    setLoading(true);
+    const [pages, entries] = await getPreviewPage(posts_per_page, pageNo);
+    setBlogEntries(entries);
+    setPages(pages);
+    setLoading(false);
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     fetch_entries();
-  }, [page_no, posts_per_page]);
+  }, [pageNo, posts_per_page]);
 
-  return [pages, page_no, set_page_no, blog_entries, loading];
+  return [pages, pageNo, setPageNo, blogEntries, loading];
 };
 
 export default useBlogEntries;

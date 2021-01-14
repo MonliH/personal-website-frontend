@@ -1,24 +1,24 @@
 import styled from "styled-components";
 
-import { useAuth } from "@contexts/auth_context";
+import { useAuth } from "@contexts/authContext";
 import redirect from "@lib/redirect";
-import delete_post from "@lib/delete_post";
+import deletePost from "@lib/deletePost";
 
 const DivDeleteMsg = styled.div`
   color: black;
 `;
 
-const DeletePost = ({ blog_name }: { blog_name: string }) => {
+const DeletePost = ({ blogName }: { blogName: string }) => {
   const { auth } = useAuth();
 
   return (
     <div>
       <DivDeleteMsg>
-        Are you sure you want to delete <code>{blog_name}</code>?
+        Are you sure you want to delete <code>{blogName}</code>?
       </DivDeleteMsg>
       <button
         onClick={() => {
-          redirect(`/admin/blog/${blog_name}`);
+          redirect(`/admin/blog/${blogName}`);
         }}
       >
         NO!
@@ -26,7 +26,7 @@ const DeletePost = ({ blog_name }: { blog_name: string }) => {
       <button
         onClick={async () => {
           if (auth.key) {
-            await delete_post(auth.key, blog_name);
+            await deletePost(auth.key, blogName);
             redirect("/admin/");
           }
         }}

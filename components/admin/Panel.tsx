@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { useAuth } from "@contexts/auth_context";
+import { useAuth } from "@contexts/authContext";
 import { BlogEntry } from "@lib/blog";
 import redirect from "@lib/redirect";
 import Loading from "@components/Loading";
@@ -18,30 +18,30 @@ const PanelButton = styled.button``;
 
 interface PanelProps {
   loading: boolean;
-  blog_entries: Array<BlogEntry>;
+  blogEntries: Array<BlogEntry>;
 }
 
 const Panel = (p: PanelProps) => {
-  const { set_auth_data } = useAuth();
+  const { setAuthData } = useAuth();
 
-  const on_log_out = () => {
-    set_auth_data!(undefined);
+  const onLogOut = () => {
+    setAuthData!(undefined);
   };
 
-  const new_blog = () => {
+  const newBlog = () => {
     redirect("/admin/new");
   };
 
   return (
     <div>
       <Title>Admin Panel</Title>
-      <PanelButton onClick={on_log_out}>Log Out</PanelButton>
+      <PanelButton onClick={onLogOut}>Log Out</PanelButton>
       <SubTitle>Blogs</SubTitle>
-      <PanelButton onClick={new_blog}>New Post</PanelButton>
+      <PanelButton onClick={newBlog}>New Post</PanelButton>
       {p.loading ? (
         <Loading />
       ) : (
-        <BlogSummaryList blog_entries={p.blog_entries} prefix="/admin/blog/" />
+        <BlogSummaryList blogEntries={p.blogEntries} prefix="/admin/blog/" />
       )}
     </div>
   );

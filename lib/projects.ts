@@ -10,16 +10,16 @@ export enum Tag {
 }
 
 export interface Project {
-  display_name: string;
+  displayName: string;
   rank: number;
   link: string;
   tags: Array<Tag>;
   description: string;
 }
 
-export const project_list: Array<Project> = [
+export const projectList: Array<Project> = [
   {
-    display_name: "fluo-lang",
+    displayName: "fluo-lang",
     rank: 0,
     link: "https://github.com/fluo-lang/fluoc",
     tags: [Tag.Rust],
@@ -27,7 +27,7 @@ export const project_list: Array<Project> = [
   },
 
   {
-    display_name: "audioify",
+    displayName: "audioify",
     rank: 2,
     link: "https://github.com/MonliH/audioify",
     tags: [Tag.Typescript, Tag.React, Tag.Rust],
@@ -35,7 +35,7 @@ export const project_list: Array<Project> = [
   },
 
   {
-    display_name: "iNNteractive",
+    displayName: "iNNteractive",
     rank: 3,
     link: "https://github.com/MonliH/iNNteractive",
     tags: [Tag.Python, Tag.ML],
@@ -43,7 +43,7 @@ export const project_list: Array<Project> = [
   },
 
   {
-    display_name: "emu-rs",
+    displayName: "emu-rs",
     rank: 4,
     link: "https://github.com/MonliH/emurs",
     tags: [Tag.Rust],
@@ -51,7 +51,7 @@ export const project_list: Array<Project> = [
   },
 
   {
-    display_name: "pyarkovchain",
+    displayName: "pyarkovchain",
     rank: 5,
     link: "https://github.com/MonliH/pyarkovchain",
     tags: [Tag.Python],
@@ -59,7 +59,7 @@ export const project_list: Array<Project> = [
   },
 
   {
-    display_name: "four-ai",
+    displayName: "four-ai",
     rank: 6,
     link: "https://github.com/MonliH/four-ai",
     tags: [Tag.Rust, Tag.ML],
@@ -67,7 +67,7 @@ export const project_list: Array<Project> = [
   },
 
   {
-    display_name: "personal-website",
+    displayName: "personal-website",
     rank: 7,
     link: "https://github.com/MonliH/personal-website",
     tags: [Tag.Typescript, Tag.React],
@@ -75,7 +75,7 @@ export const project_list: Array<Project> = [
   },
 
   {
-    display_name: "neutron-lang",
+    displayName: "neutron-lang",
     rank: 8,
     link: "https://github.com/the-neutron-foundation/neutron-language",
     tags: [Tag.Python],

@@ -6,7 +6,7 @@ const capitalize = (str: string) => {
 
 export const submit = (
   e: React.FormEvent<HTMLFormElement>,
-  set_status: (value: string) => void
+  setStatus: (value: string) => void
 ) => {
   e.preventDefault();
   let target: any = e.target as any;
@@ -24,15 +24,15 @@ export const submit = (
   fetch("https://formspree.io/xbjzleev", requestOptions)
     .then((response) => response.json())
     .then((data) => {
-      let data_any = data as any;
-      if (data_any.error) {
-        if (data_any.error.includes("_replyto")) {
-          set_status("Please enter a valid email.");
+      let dataAny = data as any;
+      if (dataAny.error) {
+        if (dataAny.error.includes("_replyto")) {
+          setStatus("Please enter a valid email.");
         } else {
-          set_status(capitalize(data_any.error));
+          setStatus(capitalize(dataAny.error));
         }
       } else {
-        set_status("Message sent successfully!");
+        setStatus("Message sent successfully!");
         redirect("/thank-you-contact");
         window.location.reload();
       }
