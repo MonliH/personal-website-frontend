@@ -62,7 +62,7 @@ const ProjectTag = styled.span`
   width: -moz-fit-content;
   width: -fit-content;
 
-  font: 15px "Open Sans", sans-serif;
+  font: 15px "Lato", sans-serif;
 `;
 
 const ProjectTags = styled.div`
