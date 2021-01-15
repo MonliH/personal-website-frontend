@@ -136,6 +136,10 @@ const NoScriptImg = styled.img`
   left: 0;
 `;
 
+const TransparentDiv = styled.div`
+  color: transparent;
+`;
+
 const Home = () => {
   useEffect(() => {
     document.body.style.backgroundColor = "#1D1D1D";
@@ -174,13 +178,15 @@ const Home = () => {
             </NameTitleWrapper>
           </TitlePage>
           <TitleImageWrapper>
-            <Image
-              src="/graphics/title.png"
-              alt="My Artwork"
-              layout="fill"
-              priority={true}
-              sizes="70vh"
-            />
+            <TransparentDiv>
+              <Image
+                src="/graphics/title.png"
+                alt="My Artwork"
+                layout="fill"
+                priority={true}
+                sizes="70vh"
+              />
+            </TransparentDiv>
 
             {/* Here we add noscript so people with javascript disabled can still see the image */}
             <noscript>
