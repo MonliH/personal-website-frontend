@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "pretty-quick --staged && lint-staged"
+    "lint": "pretty-quick --staged && lint-staged",
+    "postinstall": "husky install"
   },
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
