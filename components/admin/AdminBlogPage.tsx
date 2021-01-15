@@ -79,7 +79,7 @@ const AdminBlogPage = ({
           <StyledLink link="/admin/" text="Admin Panel" />
           <button
             onClick={() => {
-              Router.replace(`/admin/${Router.query.blog_url}/delete`);
+              Router.replace(`/admin/${Router.query.blogUrl}/delete`);
             }}
           >
             DELETE

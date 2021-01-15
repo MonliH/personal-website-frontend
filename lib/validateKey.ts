@@ -1,14 +1,14 @@
 import { API_DOMAIN } from "@lib/domains";
 import { encodePwd } from "@contexts/authContext";
 
-const validate_key = async (
+const validateKey = async (
   username: string,
-  password: string
+  password?: string
 ): Promise<boolean> => {
   const requestOptions = {
     method: "GET",
     headers: {
-      Authorization: encodePwd(username, password),
+      Authorization: password ? encodePwd(username, password) : username,
     },
   };
 
@@ -17,4 +17,4 @@ const validate_key = async (
   return isCorrect.ok;
 };
 
-export default validate_key;
+export default validateKey;

@@ -27,7 +27,7 @@ export const BlogTitle = styled.div`
 `;
 
 const BlogTextPlaceholder = styled.div`
-  font: 16px Lato, sans-serif;
+  font: 16px "Open Sans", sans-serif;
   color: #191919;
   width: 750px;
   @media (max-width: 850px) {
