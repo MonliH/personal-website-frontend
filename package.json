@@ -48,12 +48,16 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "yarn lint"
     }
   },
   "lint-staged": {
-    "*.{js,ts,tsx}": ["eslint --quiet --fix"],
-    "*.{json,md,html}": ["prettier --write"],
+    "*.{js,ts,tsx}": [
+      "eslint --quiet --fix"
+    ],
+    "*.{json,md,html}": [
+      "prettier --write"
+    ],
     "*.js": "eslint --cache --fix"
   },
   "resolutions": {
