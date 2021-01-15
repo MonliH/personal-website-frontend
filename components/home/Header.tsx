@@ -130,8 +130,8 @@ const NavSidebar = (p: HeaderSidebarProps) => {
   const style = useSpring({ translateX: p.navOn ? "0vw" : "-100vw" });
   return (
     <Absolute onClick={() => p.setNavOn(false)} style={style as any}>
-      {p.links.map((link: JSX.Element, i: number) => {
-        return <Right key={i}>{link}</Right>;
+      {p.links.map((link: JSX.Element) => {
+        return <Right key={link.key}>{link}</Right>;
       })}
     </Absolute>
   );
@@ -148,7 +148,7 @@ const Header = ({
 }) => {
   const [navOn, setNavOn] = useState(false);
 
-  let linksLeft: Array<JSX.Element> = [];
+  const linksLeft: Array<JSX.Element> = [];
 
   for (let i = 0; i < keys.length; i++) {
     linksLeft.push(
@@ -165,7 +165,7 @@ const Header = ({
   }
 
   linksLeft.push(
-    <Link passHref={true} href="/blog" key="blog">
+    <Link passHref href="/blog" key="blog">
       <HeaderLinkA>Blog</HeaderLinkA>
     </Link>
   );
@@ -185,7 +185,7 @@ const Header = ({
         alt="Github"
         width={27}
         height={27}
-      ></HeaderImage>
+      />
     </HeaderLinkGithub>
   );
 

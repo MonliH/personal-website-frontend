@@ -1,9 +1,10 @@
 import { BlogEntry, intoBlogEntry } from "@lib/blog";
-import { API_DOMAIN } from "@lib/domains";
+import API_DOMAIN from "@lib/API_DOMAIN";
 
 export const getNumPosts = async (): Promise<number> => {
   const blogPostsNum = parseInt(
-    await (await fetch(`${API_DOMAIN}/blog/pages`)).text()
+    await (await fetch(`${API_DOMAIN}/blog/pages`)).text(),
+    10
   );
   return blogPostsNum;
 };
@@ -27,13 +28,13 @@ export const getRange = async (
 };
 
 export const getPreviewPage = async (
-  posts_per_page: number,
-  page_no: number
+  postsPerPage: number,
+  pageNo: number
 ): Promise<[number, BlogEntry[]]> => {
   const totalPostNums = await getNumPosts();
-  const blogPagesNum = Math.ceil(totalPostNums / posts_per_page);
-  const pageStart = posts_per_page * page_no;
-  const possibleEnd = pageStart + posts_per_page;
+  const blogPagesNum = Math.ceil(totalPostNums / postsPerPage);
+  const pageStart = postsPerPage * pageNo;
+  const possibleEnd = pageStart + postsPerPage;
   const entries = await getRange(
     pageStart,
     possibleEnd > totalPostNums ? totalPostNums : possibleEnd
@@ -41,8 +42,8 @@ export const getPreviewPage = async (
   return [blogPagesNum, entries];
 };
 
-export const getBlogPost = async (blog_url: string): Promise<BlogEntry> => {
-  const res = await fetch(`${API_DOMAIN}/blog/entry/${blog_url}`);
+export const getBlogPost = async (blogUrl: string): Promise<BlogEntry> => {
+  const res = await fetch(`${API_DOMAIN}/blog/entry/${blogUrl}`);
   const blogContents = intoBlogEntry(JSON.parse(await res.text()));
   return blogContents;
 };

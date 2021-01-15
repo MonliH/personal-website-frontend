@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "pretty-quick --staged && lint-staged",
+    "lint-all-fix": "eslint --fix components/**/*.* contexts/**/*.* hooks/**/*.* lib/**/*.* pages/**/*.*",
     "postinstall": "husky install"
   },
   "dependencies": {
@@ -48,12 +49,16 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "yarn lint"
     }
   },
   "lint-staged": {
-    "*.{js,ts,tsx}": ["eslint --quiet --fix"],
-    "*.{json,md,html}": ["prettier --write"],
+    "*.{js,ts,tsx}": [
+      "eslint --quiet --fix"
+    ],
+    "*.{json,md,html}": [
+      "prettier --write"
+    ],
     "*.js": "eslint --cache --fix"
   },
   "resolutions": {

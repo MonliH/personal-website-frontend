@@ -53,8 +53,8 @@ const SubBlogPage = ({ blog }: { blog: null | BlogEntry }) => {
           <BlogTitle>{blog.title}</BlogTitle>
           <BlogDate date={blog.date} />
           <BlogTextPlaceholder
-            dangerouslySetInnerHTML={{ __html: blog.html_contents }}
-          ></BlogTextPlaceholder>
+            dangerouslySetInnerHTML={{ __html: blog.htmlContents }}
+          />
         </>
       ) : (
         <Loading />

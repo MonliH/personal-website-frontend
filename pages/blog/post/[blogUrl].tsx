@@ -36,13 +36,10 @@ const Post = ({ blog }: { blog: BlogEntry }) => {
 export default Post;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  let paths = [];
-  let allUrls = await getAllUrls();
-  for (const url of allUrls) {
-    paths.push({
-      params: { blogUrl: url },
-    });
-  }
+  const allUrls = await getAllUrls();
+  const paths = allUrls.map((url) => ({
+    params: { blogUrl: url },
+  }));
 
   return { paths, fallback: true };
 };

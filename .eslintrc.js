@@ -3,6 +3,9 @@ module.exports = {
     browser: true,
     es2021: true,
   },
+  globals: {
+    JSX: "readonly",
+  },
   extends: [
     "airbnb",
 
@@ -19,7 +22,7 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 12,
+    ecmaVersion: 2017,
     sourceType: "module",
   },
   plugins: ["react", "@typescript-eslint", "jsx-a11y"],
@@ -35,9 +38,21 @@ module.exports = {
       { argsIgnorePattern: "^_$" },
     ],
 
-    "react/require-default-props": "off",
     "react/jsx-filename-extension": ["error", { extensions: [".jsx", ".tsx"] }],
     "react-hooks/exhaustive-deps": "off",
+    "react/require-default-props": "off",
+    "react/jsx-props-no-spreading": "off",
+
+    // Next.js
+    "react/react-in-jsx-scope": "off",
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        components: ["Link"],
+        specialLink: ["hrefLeft", "hrefRight"],
+        aspects: ["invalidHref", "preferButton"],
+      },
+    ],
 
     quotes: ["error", "double", { avoidEscape: true }],
     "comma-dangle": [
@@ -50,12 +65,14 @@ module.exports = {
         functions: "never",
       },
     ],
+
     "no-plusplus": [
       "error",
       {
         allowForLoopAfterthoughts: true,
       },
     ],
+
     "default-case": ["error", { commentPattern: "^All\\scases\\sspecified" }],
   },
   settings: {

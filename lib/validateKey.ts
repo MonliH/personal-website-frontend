@@ -1,4 +1,4 @@
-import { API_DOMAIN } from "@lib/domains";
+import API_DOMAIN from "@lib/API_DOMAIN";
 import { encodePwd } from "@contexts/authContext";
 
 const validateKey = async (

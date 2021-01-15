@@ -169,10 +169,10 @@ const Home = () => {
           <TitlePage>
             <NameTitleWrapper>
               <Jonathan>
-                <div>JONATHAN </div>
+                <div>JONATHAN&thinsp;</div>
               </Jonathan>
               <Li>
-                <div>LI </div>
+                <div>LI&thinsp;</div>
               </Li>
               <SubHeading>I Delight in Coding</SubHeading>
             </NameTitleWrapper>
@@ -183,7 +183,7 @@ const Home = () => {
                 src="/graphics/title.png"
                 alt="My Artwork"
                 layout="fill"
-                priority={true}
+                priority
                 sizes="70vh"
               />
             </TransparentDiv>
@@ -194,7 +194,7 @@ const Home = () => {
             </noscript>
           </TitleImageWrapper>
         </FrontPage>
-        <Bridge></Bridge>
+        <Bridge />
         {pages}
       </Background>
     </div>

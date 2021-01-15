@@ -1,4 +1,5 @@
 import { GetStaticProps, GetStaticPaths } from "next";
+import { CSSProperties } from "react";
 import Link from "next/link";
 
 import Layout from "@components/Layout";
@@ -9,14 +10,20 @@ import theme from "@styles/theme";
 
 export const postsPerPage = 10;
 
-const CustomSetter = ({ style, pageNo }) => (
-  <Link href={`/blog/${pageNo}`} passHref={true}>
+const CustomSetter = ({
+  style,
+  pageNo,
+}: {
+  style: CSSProperties;
+  pageNo: number;
+}) => (
+  <Link href={`/blog/${pageNo}`} passHref>
     <a style={{ ...style, fontSize: "18px" }}>{pageNo}</a>
   </Link>
 );
 
-const Blog = (props: BlogHomeProps) => {
-  const newBlogEntries = props.blogEntries.map((entry) => ({
+const Blog = ({ blogEntries, ...props }: BlogHomeProps) => {
+  const newBlogEntries = blogEntries.map((entry) => ({
     ...entry,
     date: fromUnixTimestamp(entry.date as any), // This actualy is a number
   }));
@@ -38,8 +45,8 @@ const Blog = (props: BlogHomeProps) => {
 export default Blog;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  let paths = [];
-  let numPages = Math.ceil((await getNumPosts()) / postsPerPage);
+  const paths = [];
+  const numPages = Math.ceil((await getNumPosts()) / postsPerPage);
   for (let i = 0; i < numPages; i++) {
     paths.push({
       params: { pageNo: (i + 1).toString() },
@@ -50,7 +57,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const currentPage = parseInt(params.pageNo as string);
+  const currentPage = parseInt(params.pageNo as string, 10);
   const [totalPages, blogEntries] = await getPreviewPage(
     postsPerPage,
     currentPage - 1
@@ -59,8 +66,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     props: {
       loading: false,
-      currentPage: currentPage,
-      totalPages: totalPages,
+      currentPage,
+      totalPages,
       blogEntries: blogEntries.map((entry) => ({
         ...entry,
         date: toUnixTimestamp(entry.date),

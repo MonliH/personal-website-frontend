@@ -101,41 +101,41 @@ const BlogSummary = ({
       <BlogSummaryInner>
         <div>
           <BlogTitle
-            link={`${prefix ? prefix : "/"}${blogEntry.url}`}
+            link={`${prefix || "/"}${blogEntry.url}`}
             text={blogEntry.title}
           />
-          <BlogDate date={blogEntry.date}></BlogDate>
+          <BlogDate date={blogEntry.date} />
         </div>
         <ContentPreview
-          dangerouslySetInnerHTML={{ __html: blogEntry.html_contents }}
-        ></ContentPreview>
+          dangerouslySetInnerHTML={{ __html: blogEntry.htmlContents }}
+        />
       </BlogSummaryInner>
     </BlogSummaryStyled>
   );
 };
 
-export const BlogSummaryList = forwardRef(
-  (
-    props: { blogEntries: Array<BlogEntry>; prefix?: string },
-    ref: ForwardedRef<HTMLDivElement>
-  ) => {
-    const blog_previews = (
-      <div ref={ref}>
-        {props.blogEntries.map((blogEntry: BlogEntry, idx: number) => {
-          return (
-            <BlogSummary
-              blogEntry={blogEntry}
-              key={idx}
-              prefix={props.prefix}
-            />
-          );
-        })}
-      </div>
-    );
+const BlogSummaryListInner = (
+  { blogEntries, prefix }: { blogEntries: Array<BlogEntry>; prefix?: string },
+  ref: ForwardedRef<HTMLDivElement>
+) => {
+  const blogPreviews = (
+    <div ref={ref}>
+      {blogEntries.map((blogEntry: BlogEntry) => {
+        return (
+          <BlogSummary
+            blogEntry={blogEntry}
+            key={blogEntry.title}
+            prefix={prefix}
+          />
+        );
+      })}
+    </div>
+  );
 
-    return <>{blog_previews}</>;
-  }
-);
+  return <>{blogPreviews}</>;
+};
+
+export const BlogSummaryList = forwardRef(BlogSummaryListInner);
 
 export interface BlogHomeProps extends ChangerProps {
   blogEntries: Array<BlogEntry>;
@@ -143,7 +143,14 @@ export interface BlogHomeProps extends ChangerProps {
   prefix: string;
 }
 
-const BlogHome = (props: BlogHomeProps) => {
+const BlogHome = ({
+  loading,
+  currentPage,
+  totalPages,
+  CustomSetter,
+  blogEntries,
+  prefix,
+}: BlogHomeProps) => {
   const [ref, visible] = useInView({
     threshold: 1,
     initialInView: true,
@@ -156,19 +163,19 @@ const BlogHome = (props: BlogHomeProps) => {
           <BlogHeaderWrapper>
             <BlogHeader />
           </BlogHeaderWrapper>
-          {props.loading ? (
+          {loading ? (
             <Loading />
           ) : (
             <>
               <BlogPageChanger
-                current_page={props.current_page}
-                totalPages={props.totalPages}
-                CustomSetter={props.CustomSetter}
+                currentPage={currentPage}
+                totalPages={totalPages}
+                CustomSetter={CustomSetter}
               />
               <BlogSummaryList
                 ref={ref}
-                blogEntries={props.blogEntries}
-                prefix={props.prefix}
+                blogEntries={blogEntries}
+                prefix={prefix}
               />
               {
                 /* If the whole thing fits in the screen, we don't need this  */
@@ -176,9 +183,9 @@ const BlogHome = (props: BlogHomeProps) => {
                   <></>
                 ) : (
                   <BlogPageChanger
-                    current_page={props.current_page}
-                    totalPages={props.totalPages}
-                    CustomSetter={props.CustomSetter}
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    CustomSetter={CustomSetter}
                   />
                 )
               }

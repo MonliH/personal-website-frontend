@@ -7,7 +7,7 @@ type CustomSetter = FC<{
 }>;
 
 export interface ChangerProps {
-  current_page: number;
+  currentPage: number;
   totalPages: number;
   CustomSetter: CustomSetter;
 }
@@ -47,17 +47,21 @@ const PageText = styled.b`
   margin-right: 8px;
 `;
 
-const BlogPageChanger = (props: ChangerProps) => {
+const BlogPageChanger = ({
+  totalPages,
+  currentPage,
+  CustomSetter,
+}: ChangerProps) => {
   return (
     <BlogChangerDiv>
       <PageText>Page</PageText>
-      {[...Array(props.totalPages).keys()].map((i: number) => {
+      {[...Array(totalPages).keys()].map((i: number) => {
         return (
           <BlogPageChange
             key={i}
             pageNo={i}
-            bold={props.current_page === i + 1}
-            CustomSetter={props.CustomSetter}
+            bold={currentPage === i + 1}
+            CustomSetter={CustomSetter}
           />
         );
       })}

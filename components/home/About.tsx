@@ -55,8 +55,8 @@ const ModifiedTitle = styled(Title)`
   }
 `;
 
-const About = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
-  let videoElement = useRef(null);
+const About = (_, ref: ForwardedRef<HTMLDivElement>) => {
+  const videoElement = useRef(null);
   return (
     <AboutStyled ref={ref}>
       <WrapperCenter>
@@ -91,6 +91,6 @@ const About = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
       </WrapperCenter>
     </AboutStyled>
   );
-});
+};
 
-export default About;
+export default forwardRef(About);

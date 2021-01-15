@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, FormEvent } from "react";
 import styled from "styled-components";
 
 import { useAuth } from "@contexts/authContext";
@@ -18,7 +18,7 @@ const SignIn = () => {
   const [user, setUsername] = useState<string>();
   const [wrong, setWrong] = useState(false);
 
-  const onSubmit = async (e: React.FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     if (await validateKey(user, password)) {

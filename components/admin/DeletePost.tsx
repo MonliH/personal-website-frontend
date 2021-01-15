@@ -17,6 +17,7 @@ const DeletePost = ({ blogName }: { blogName: string }) => {
         Are you sure you want to delete <code>{blogName}</code>?
       </DivDeleteMsg>
       <button
+        type="button"
         onClick={() => {
           redirect(`/admin/blog/${blogName}`);
         }}
@@ -24,6 +25,7 @@ const DeletePost = ({ blogName }: { blogName: string }) => {
         NO!
       </button>
       <button
+        type="button"
         onClick={async () => {
           if (auth.key) {
             await deletePost(auth.key, blogName);

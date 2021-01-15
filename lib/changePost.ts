@@ -1,29 +1,31 @@
-import { API_DOMAIN } from "@lib/domains";
-import { BlogEntry } from "@lib/blog";
-import { formatDate } from "@lib/date";
 import hljs from "highlight.js";
-
 import { Remarkable } from "remarkable";
 
-let md = new Remarkable({
+import API_DOMAIN from "@lib/API_DOMAIN";
+import { BlogEntry, intoServerEntry } from "@lib/blog";
+import { formatDate } from "@lib/date";
+
+const md = new Remarkable({
   typographer: true,
   html: true,
-  highlight: function (str: string, lang: string) {
-    if (lang && hljs.getLanguage(lang)) {
-      try {
-        return hljs.highlight(lang, str).value;
-      } catch (err) {}
-    }
-
+  // We can disable next-line lint because all of the paths return
+  // eslint-disable-next-line consistent-return
+  highlight(str: string, lang: string) {
     try {
-      return hljs.highlightAuto(str).value;
-    } catch (err) {}
-
-    return ""; // use external default escaping
+      if (lang && hljs.getLanguage(lang)) {
+        return hljs.highlight(lang, str).value;
+      }
+    } catch {
+      try {
+        return hljs.highlightAuto(str).value;
+      } catch (err) {
+        return ""; // use external default escaping
+      }
+    }
   },
 });
 
-const changePost = async (key: string, new_post: BlogEntry) => {
+const changePost = async (key: string, newPost: BlogEntry) => {
   const requestOptions = {
     method: "PUT",
     headers: {
@@ -31,9 +33,11 @@ const changePost = async (key: string, new_post: BlogEntry) => {
       Authorization: key,
     },
     body: JSON.stringify({
-      ...new_post,
-      html_contents: md.render(new_post.md_contents),
-      date: formatDate(new_post.date),
+      ...intoServerEntry({
+        ...newPost,
+        htmlContents: md.render(newPost.mdContents),
+      }),
+      date: formatDate(newPost.date),
     }),
   };
 

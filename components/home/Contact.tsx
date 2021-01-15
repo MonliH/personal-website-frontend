@@ -99,10 +99,10 @@ const SendButton = styled(animated.button)`
   flex: 0 0 110px;
 `;
 
-const Contact = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
-  let [status, setStatus] = useState("");
+const Contact = (_, ref: ForwardedRef<HTMLDivElement>) => {
+  const [status, setStatus] = useState("");
 
-  let [anim, setOpacity] = useSpring(() => ({
+  const [anim, setOpacity] = useSpring(() => ({
     backgroundColor: "#1d1d1d",
   }));
 
@@ -184,6 +184,6 @@ const Contact = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
       </WrapperCenter>
     </ContactStyled>
   );
-});
+};
 
-export default Contact;
+export default forwardRef(Contact);

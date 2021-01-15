@@ -20,7 +20,7 @@ const cardDimensions = {
   tbMargin: 20,
 };
 
-const tag_color = (tag: Tag) => {
+const tagColor = (tag: Tag) => {
   switch (tag) {
     case Tag.Rust: {
       return "#f9b922";
@@ -36,6 +36,9 @@ const tag_color = (tag: Tag) => {
     }
     case Tag.ML: {
       return "#f922eb";
+    }
+    default: {
+      return "#ffffff";
     }
   }
 };
@@ -104,37 +107,31 @@ const CardWrapperDiv = styled.div`
 `;
 
 const ProjectCard = (p: ProjectCardProps) => {
-  let tags = new Array(p.project.tags.length);
+  const tags = p.project.tags.map(([tag, i]) => (
+    <ProjectTag key={i}>
+      <ProjectCircle style={{ backgroundColor: tagColor(tag as Tag) }} />
+      {tag as string}
+    </ProjectTag>
+  ));
 
-  for (const [i, tag] of p.project.tags.entries()) {
-    tags.push(
-      <ProjectTag key={i}>
-        <ProjectCircle
-          style={{ backgroundColor: tag_color(tag) }}
-        ></ProjectCircle>
-        {tag as string}
-      </ProjectTag>
-    );
-  }
-
-  let [anim, set_shadow] = useSpring(() => ({
+  const [anim, setShadow] = useSpring(() => ({
     boxShadow: "0px 0px 0px #00000000",
   }));
 
-  const on_mouse_enter = () => {
-    set_shadow({ boxShadow: "2px 2px 4px #00000030" });
+  const onMouseEnter = () => {
+    setShadow({ boxShadow: "2px 2px 4px #00000030" });
   };
 
-  const on_mouse_leave = () => {
-    set_shadow({ boxShadow: "0px 0px 0px #00000000" });
+  const onMouseLeave = () => {
+    setShadow({ boxShadow: "0px 0px 0px #00000000" });
   };
 
   return (
     <ProjectCardStyled
       // XXX: Make sure to fix this after [this](https://github.com/react-spring/react-spring/issues/1102) is fixed
       style={{ width: p.cardw, height: p.cardh, ...(anim as any) }}
-      onMouseEnter={on_mouse_enter}
-      onMouseLeave={on_mouse_leave}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
       <div>
         <ProjectTags>{tags}</ProjectTags>
@@ -174,7 +171,7 @@ const ProjectGridAnimated = (p: ProjectGridProps) => {
 
   // Account for margin after approximating number of columns
   const columns =
-    approxCols != 1
+    approxCols !== 1
       ? Math.floor(
           (width - cardDimensions.lrMargin * approxCols) / cardDimensions.width
         )
@@ -182,28 +179,36 @@ const ProjectGridAnimated = (p: ProjectGridProps) => {
 
   let counterCol = 0;
   let counterRow = 0;
-  let grid_items: Array<ProjectPosition> = p.items.map((child, i) => {
-    counterCol++;
+  const gridItems: Array<ProjectPosition> = p.items.map((child, i) => {
+    counterCol += 1;
 
     if (i % columns === 0) {
       if (i !== 0) {
         // New row
-        counterRow++;
+        counterRow += 1;
       }
       // Reset column
       counterCol = 0;
     }
 
     return {
-      xy: [(cardDimensions.width + cardDimensions.lrMargin) * counterCol, counterRow * (cardDimensions.height + cardDimensions.tbMargin)],
+      xy: [
+        (cardDimensions.width + cardDimensions.lrMargin) * counterCol,
+        counterRow * (cardDimensions.height + cardDimensions.tbMargin),
+      ],
       project: child,
     };
   });
 
   counterRow += 1;
 
-  const transitions = useTransition(grid_items, {
-    from: () => ({ xy: [0, 0], width: cardDimensions.width, height: cardDimensions.height, opacity: 0 }),
+  const transitions = useTransition(gridItems, {
+    from: () => ({
+      xy: [0, 0],
+      width: cardDimensions.width,
+      height: cardDimensions.height,
+      opacity: 0,
+    }),
     enter: ({ xy }) => ({
       xy: p.visible ? xy : [0, 0],
       width: cardDimensions.width,
@@ -222,7 +227,7 @@ const ProjectGridAnimated = (p: ProjectGridProps) => {
   });
 
   const fragment = transitions((style: any, item: ProjectPosition) => {
-    let { xy, ...others } = style;
+    const { xy, ...others } = style;
     return (
       <CardWrapperDiv>
         <animated.div
@@ -239,7 +244,7 @@ const ProjectGridAnimated = (p: ProjectGridProps) => {
             project={item.project}
             cardh={cardDimensions.height}
             cardw={cardDimensions.width}
-          ></ProjectCard>
+          />
         </animated.div>
       </CardWrapperDiv>
     );
@@ -247,7 +252,7 @@ const ProjectGridAnimated = (p: ProjectGridProps) => {
 
   const [firstAnim, setFirstAnim] = useState(true);
 
-  let spring_options: { from: undefined | object; to: object } = {
+  const springOptions: { from: undefined | object; to: object } = {
     from: undefined,
     to: {
       height: counterRow * (cardDimensions.height + cardDimensions.tbMargin),
@@ -257,13 +262,13 @@ const ProjectGridAnimated = (p: ProjectGridProps) => {
 
   if (firstAnim) {
     setFirstAnim(false);
-    spring_options.from = {
+    springOptions.from = {
       height: counterRow * (cardDimensions.height + cardDimensions.tbMargin),
       width: columns * (cardDimensions.width + cardDimensions.lrMargin),
     };
   }
 
-  const anims = useSpring(spring_options);
+  const anims = useSpring(springOptions);
 
   return (
     <ProjectGridStyled style={{ display: "block", ...anims }}>
@@ -318,16 +323,16 @@ const Projects = forwardRef(
               items={items}
               visible={visible}
               width={width}
-            ></ProjectGridAnimated>
+            />
             <noscript>
               <ProjectGrid>
-                {items.map((val: Project, idx: number) => (
+                {items.map((proj: Project) => (
                   <ProjectCard
-                    key={idx}
-                    project={val}
+                    key={proj.description}
+                    project={proj}
                     cardh={cardDimensions.height}
                     cardw={cardDimensions.width}
-                  ></ProjectCard>
+                  />
                 ))}
               </ProjectGrid>
             </noscript>

@@ -29,13 +29,13 @@ const Admin = () => {
       theme={theme.lightBg}
     >
       <BlogPageChanger
-        current_page={pageNo + 1}
-        CustomSetter={({ style, pageNo: page_no }) => (
+        currentPage={pageNo + 1}
+        CustomSetter={({ style, pageNo: newPageNo }) => (
           <BlogPageButton
-            onClick={() => setPageNo(page_no - 1)}
+            onClick={() => setPageNo(newPageNo - 1)}
             style={style}
           >
-            {page_no}
+            {newPageNo}
           </BlogPageButton>
         )}
         totalPages={pages}
