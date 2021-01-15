@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { useAuth } from "@contexts/authContext";
 import redirect from "@lib/redirect";
-import validate_key from "@lib/validateKey";
+import validateKey from "@lib/validateKey";
 
 const Label = styled.label`
   color: black;
@@ -14,14 +14,15 @@ const Input = styled.input``;
 const SignIn = () => {
   const { setAuthData } = useAuth();
 
-  const [key, setKey] = useState<string>();
+  const [password, setPassword] = useState<string>();
+  const [user, setUsername] = useState<string>();
   const [wrong, setWrong] = useState(false);
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (await validate_key(key)) {
-      setAuthData(key);
+    if (await validateKey(user, password)) {
+      setAuthData(user, password);
       redirect("/admin/");
     } else {
       setWrong(true);
@@ -31,13 +32,25 @@ const SignIn = () => {
   return (
     <form onSubmit={onSubmit}>
       <Label>
-        Key:
+        Username:
+        <input
+          type="text"
+          name="username"
+          placeholder="Username"
+          onChange={(e) => {
+            setUsername(e.target.value);
+          }}
+        />
+      </Label>
+      <br />
+      <Label>
+        Password:
         <input
           type="password"
-          name="key"
-          placeholder="key"
+          name="password"
+          placeholder="Password"
           onChange={(e) => {
-            setKey(e.target.value);
+            setPassword(e.target.value);
           }}
         />
       </Label>

@@ -2,17 +2,13 @@ import { API_DOMAIN } from "@lib/domains";
 
 const deletePost = async (key: string, url: string) => {
   const requestOptions = {
-    method: "POST",
+    method: "DELETE",
     headers: {
-      "Content-Type": "application/json",
+      Authorization: key,
     },
-    body: JSON.stringify({
-      key,
-      url,
-    }),
   };
 
-  const res = await fetch(`${API_DOMAIN}/admin/delete`, requestOptions);
+  const res = await fetch(`${API_DOMAIN}/admin/delete/${url}`, requestOptions);
 
   return res.ok;
 };

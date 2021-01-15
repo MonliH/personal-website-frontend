@@ -25,17 +25,15 @@ let md = new Remarkable({
 
 const changePost = async (key: string, new_post: BlogEntry) => {
   const requestOptions = {
-    method: "POST",
+    method: "PUT",
     headers: {
       "Content-Type": "application/json",
+      Authorization: key,
     },
     body: JSON.stringify({
-      key,
-      blog: {
-        ...new_post,
-        html_contents: md.render(new_post.md_contents),
-        date: formatDate(new_post.date),
-      },
+      ...new_post,
+      html_contents: md.render(new_post.md_contents),
+      date: formatDate(new_post.date),
     }),
   };
 

@@ -16,30 +16,37 @@ interface Auth {
 
 interface AuthContext {
   auth: Auth;
-  setAuthData?: (v?: string) => void;
+  setAuthData?: (user?: string, pwd?: string) => void;
 }
 
 export const AuthContext = createContext<AuthContext>({
   auth: { loading: true },
 });
 
-export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [auth, set_auth] = useState<Auth>({ loading: true });
+export const encodePwd = (user: string, password: string) =>
+  `Basic ${btoa(`${user}:${password}`)}`;
 
-  const set_auth_data = (key: string) => {
-    set_auth({ loading: false, key });
+export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const [auth, setAuth] = useState<Auth>({ loading: true });
+
+  const setAuthData = (user?: string, pwd?: string) => {
+    setAuth({
+      loading: false,
+      key: user && pwd ? encodePwd(user, pwd) : undefined,
+    });
   };
 
   useEffect(() => {
     (async () => {
-      const key = window.localStorage.getItem("auth_data");
+      const user = window.localStorage.getItem("authUser");
+      const pwd = window.localStorage.getItem("authUser");
 
       // The key must be there, and it must be *valid*
-      if (key && (await validate_key(key))) {
-        set_auth_data(key);
+      if (user && pwd && (await validate_key(user, pwd))) {
+        setAuthData(user, pwd);
       } else {
         // No key, not loading
-        set_auth_data(undefined);
+        setAuthData(undefined);
       }
     })();
   }, []);
@@ -49,7 +56,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, [auth]);
 
   return (
-    <AuthContext.Provider value={{ auth, setAuthData: set_auth_data }}>
+    <AuthContext.Provider value={{ auth, setAuthData }}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,9 +1,15 @@
 import { API_DOMAIN } from "@lib/domains";
+import { encodePwd } from "@contexts/authContext";
 
-const validate_key = async (key: string): Promise<boolean> => {
+const validate_key = async (
+  username: string,
+  password: string
+): Promise<boolean> => {
   const requestOptions = {
-    method: "POST",
-    body: key,
+    method: "GET",
+    headers: {
+      Authorization: encodePwd(username, password),
+    },
   };
 
   const isCorrect = await fetch(`${API_DOMAIN}/admin/key`, requestOptions);
