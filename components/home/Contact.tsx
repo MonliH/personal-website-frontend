@@ -1,7 +1,7 @@
 import { ForwardedRef, useState, forwardRef } from "react";
 import { animated, useSpring } from "react-spring";
 
-import * as Form from "@lib/form";
+import submit from "@lib/form";
 import { WrapperCenter, WrapperInner } from "@components/Wrapper";
 import { Title } from "@components/Title";
 
@@ -119,7 +119,7 @@ const Contact = (_, ref: ForwardedRef<HTMLDivElement>) => {
       <WrapperCenter>
         <WrapperInner>
           <Title>Contact Me&thinsp;</Title>
-          <ContactForm onSubmit={(e) => Form.submit(e, setStatus)}>
+          <ContactForm onSubmit={(e) => submit(e, setStatus)}>
             <EntryContainer>
               <Entry>
                 <EntryText>Your Email:</EntryText>
