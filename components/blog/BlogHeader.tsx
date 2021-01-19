@@ -20,7 +20,8 @@ const BlogHeader = ({ blog, font }: { blog?: boolean; font?: string }) => {
   return (
     <Header style={{ fontSize: font }}>
       <StyledAnimatedLink link="/" text="Jonathan Li" />
-      &#39s {blog ? <StyledAnimatedLink link="/blog" text="blog" /> : <>blog</>}
+      &#39;s{" "}
+      {blog ? <StyledAnimatedLink link="/blog" text="blog" /> : <>blog</>}
     </Header>
   );
 };

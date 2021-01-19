@@ -107,8 +107,8 @@ const CardWrapperDiv = styled.div`
 `;
 
 const ProjectCard = (p: ProjectCardProps) => {
-  const tags = p.project.tags.map(([tag, i]) => (
-    <ProjectTag key={i}>
+  const tags = p.project.tags.map((tag) => (
+    <ProjectTag key={`${tag}-${p.project.displayName}`}>
       <ProjectCircle style={{ backgroundColor: tagColor(tag as Tag) }} />
       {tag as string}
     </ProjectTag>

@@ -12,7 +12,7 @@ export const intoBlogEntry = (json: any): BlogEntry => {
   return {
     title: json.title,
     url: json.url,
-    date: json.date,
+    date: new Date(json.date),
     htmlContents: json.html_contents,
     mdContents: json.md_contents,
   };

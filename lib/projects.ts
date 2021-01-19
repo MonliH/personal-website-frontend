@@ -27,11 +27,11 @@ export const projectList: Array<Project> = [
   },
 
   {
-    displayName: "audioify",
+    displayName: "personal-website",
     rank: 2,
-    link: "https://github.com/MonliH/audioify",
-    tags: [Tag.Typescript, Tag.React, Tag.Rust],
-    description: "generate music from code",
+    link: "https://github.com/MonliH/personal-website",
+    tags: [Tag.Typescript, Tag.React],
+    description: "you're looking at it right now",
   },
 
   {
@@ -67,11 +67,11 @@ export const projectList: Array<Project> = [
   },
 
   {
-    displayName: "personal-website",
+    displayName: "audioify",
     rank: 7,
-    link: "https://github.com/MonliH/personal-website",
-    tags: [Tag.Typescript, Tag.React],
-    description: "you're looking at it right now",
+    link: "https://github.com/MonliH/audioify",
+    tags: [Tag.Typescript, Tag.React, Tag.Rust],
+    description: "generate music from code",
   },
 
   {

@@ -32,7 +32,7 @@ const NoMatch = () => {
       <LeftAlignContainer>
         Thanks for getting in touch!
         <ThanksText>
-          I've recived your message, and wll reply shortly.
+          I&#39;ve recived your message, and will reply shortly.
           <CustomLink
             style={{ marginTop: "10px", display: "block" }}
             link="/"
