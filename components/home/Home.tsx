@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 
@@ -141,10 +141,6 @@ const TransparentDiv = styled.div`
 `;
 
 const Home = () => {
-  useEffect(() => {
-    document.body.style.backgroundColor = "#1D1D1D";
-  }, []);
-
   const [width] = useWindowSize();
   const refs = useRef<Record<string, HTMLDivElement>>({});
   const masterRef = useRef<HTMLDivElement>();

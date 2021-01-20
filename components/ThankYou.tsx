@@ -1,7 +1,7 @@
+import Link from "next/link";
 import styled from "styled-components";
 
-import CustomLink from "@components/StyledLink";
-import useBg from "@hooks/useBg";
+import Bg from "@components/Bg";
 
 const ThanksContainer = styled.div`
   display: flex;
@@ -9,16 +9,16 @@ const ThanksContainer = styled.div`
   align-items: center;
   flex-direction: column;
   height: 90vh;
-  color: black;
-  font: 600 40px "IBM Plex Mono", monospace;
+  color: ${({ theme }) => theme.colors.fontColor};
+  font: 600 40px ${(props) => props.theme.fonts.sansSerif};
 `;
 
 const ThanksText = styled.div`
-  color: #393939;
+  color: #d9d9d9;
   margin-top: 30px;
   width: 500px;
   flex: left;
-  font: 400 20px "IBM Plex Mono", monospace;
+  font: 400 20px ${(props) => props.theme.fonts.sansSerif};
 `;
 
 const LeftAlignContainer = styled.div`
@@ -26,21 +26,22 @@ const LeftAlignContainer = styled.div`
 `;
 
 const NoMatch = () => {
-  useBg("#FFFFFF");
   return (
-    <ThanksContainer>
-      <LeftAlignContainer>
-        Thanks for getting in touch!
-        <ThanksText>
-          I&#39;ve recived your message, and will reply shortly.
-          <CustomLink
-            style={{ marginTop: "10px", display: "block" }}
-            link="/"
-            text="Go back to home page."
-          />
-        </ThanksText>
-      </LeftAlignContainer>
-    </ThanksContainer>
+    <Bg altColor>
+      <ThanksContainer>
+        <LeftAlignContainer>
+          Thanks for getting in touch!
+          <ThanksText>
+            I&#39;ve recived your message, and will reply shortly.
+            <Link href="/" passHref>
+              <a style={{ marginTop: "10px", display: "block" }}>
+                Go Back to Home Page
+              </a>
+            </Link>
+          </ThanksText>
+        </LeftAlignContainer>
+      </ThanksContainer>
+    </Bg>
   );
 };
 

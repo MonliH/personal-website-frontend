@@ -1,24 +1,26 @@
 import styled from "styled-components";
 
-import { useAuth } from "@contexts/authContext";
-import { BlogEntry } from "@lib/blog";
-import redirect from "@lib/redirect";
 import Loading from "@components/Loading";
 import { BlogSummaryList } from "@components/blog/BlogHome";
 
-const Title = styled.div`
-  color: black;
+import { useAuth } from "@contexts/authContext";
+
+import { BlogEntryPreview } from "@lib/blog";
+import redirect from "@lib/redirect";
+
+const Title = styled.h1`
+  font-family: ${({ theme }) => theme.fonts.sansSerif};
 `;
 
 const SubTitle = styled.div`
-  color: black;
+  font-family: ${({ theme }) => theme.fonts.sansSerif};
 `;
 
 const PanelButton = styled.button``;
 
 interface PanelProps {
   loading: boolean;
-  blogEntries: Array<BlogEntry>;
+  blogEntries: Array<BlogEntryPreview>;
 }
 
 const Panel = (p: PanelProps) => {
@@ -33,7 +35,7 @@ const Panel = (p: PanelProps) => {
   };
 
   return (
-    <div>
+    <>
       <Title>Admin Panel</Title>
       <PanelButton onClick={onLogOut}>Log Out</PanelButton>
       <SubTitle>Blogs</SubTitle>
@@ -43,7 +45,7 @@ const Panel = (p: PanelProps) => {
       ) : (
         <BlogSummaryList blogEntries={p.blogEntries} prefix="/admin/blog/" />
       )}
-    </div>
+    </>
   );
 };
 

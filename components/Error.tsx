@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import useBg from "@hooks/useBg";
+import Bg from "@components/Bg";
 
 const NoMatchStyled = styled.div`
   display: flex;
@@ -8,13 +8,12 @@ const NoMatchStyled = styled.div`
   align-items: center;
   flex-direction: column;
   height: 90vh;
-  color: black;
-  font: 600 100px "IBM Plex Mono", monospace;
+  font: 600 100px ${(props) => props.theme.fonts.sansSerif};
 `;
 
 const NoMatchText = styled.div`
   color: #393939;
-  font: 400 20px "IBM Plex Mono", monospace;
+  font: 400 20px ${(props) => props.theme.fonts.sansSerif};
 `;
 
 interface NoMatchProps {
@@ -22,13 +21,14 @@ interface NoMatchProps {
   code?: number;
 }
 
-const NoMatch = (props: NoMatchProps) => {
-  useBg("#FFFFFF");
+const NoMatch = ({ code, msg }: NoMatchProps) => {
   return (
-    <NoMatchStyled>
-      {props.code ? props.code : "404"}
-      {props.msg ? <NoMatchText>{props.msg}</NoMatchText> : <></>}
-    </NoMatchStyled>
+    <Bg altColor>
+      <NoMatchStyled>
+        {code || "404"}
+        {msg ? <NoMatchText>{msg}</NoMatchText> : <></>}
+      </NoMatchStyled>
+    </Bg>
   );
 };
 

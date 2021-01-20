@@ -11,7 +11,11 @@ const EditBlog = () => {
   const { blogUrl } = router.query;
 
   return (
-    <Layout title="Edit a blog" description="Edit a blog" theme={theme.lightBg}>
+    <Layout
+      title="Edit a blog"
+      description="Edit a blog"
+      theme={theme.colors.lightBg}
+    >
       <EditPost blogPath={blogUrl as string} />
     </Layout>
   );

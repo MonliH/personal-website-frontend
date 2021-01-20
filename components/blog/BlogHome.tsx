@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { forwardRef, ForwardedRef } from "react";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
@@ -6,14 +7,14 @@ import { sharedTitle } from "@components/Title";
 import BlogPageChanger, {
   ChangerProps,
 } from "@components/blog/BlogPageChanger";
-import CustomLink from "@components/StyledLink";
 import BlogHeader from "@components/blog/BlogHeader";
 import Loading from "@components/Loading";
 
-import { BlogEntry, BLOG_COLOR_BG } from "@lib/blog";
+import { BlogEntryPreview } from "@lib/blog";
 
 const BlogHomeWrapper = styled.div`
-  background-color: ${BLOG_COLOR_BG};
+  background-color: ${({ theme }) => theme.colors.lightBg};
+  color: ${({ theme }) => theme.colors.fontColor};
   min-height: 100vh;
 `;
 
@@ -34,16 +35,15 @@ export const Title = styled.pre`
 `;
 
 const ContentPreview = styled.div`
-  max-height: 100px;
+  max-height: 200px;
   overflow: hidden;
-  color: #191919;
   mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
 `;
 
 const BlogSummaryStyled = styled.div`
   padding-top: 15px;
   padding-bottom: 15px;
-  font: 15px Lato, sans-serif;
+  font: 15px ${(props) => props.theme.fonts.sansSerifBody};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -69,8 +69,8 @@ const BlogHeaderWrapper = styled.div`
   }
 `;
 
-const BlogTitle = styled(CustomLink)`
-  font: 600 25px "IBM Plex Mono", monospace;
+const BlogTitle = styled.a`
+  font: 600 25px ${(props) => props.theme.fonts.sansSerif};
   width: 600px;
   line-height: 1.1;
 
@@ -80,9 +80,8 @@ const BlogTitle = styled(CustomLink)`
 `;
 
 const StyledBlogTime = styled.div`
-  color: black;
-  font: 15px Lato, sans-serif;
-  margin-top: 5px;
+  font: 15px ${(props) => props.theme.fonts.sansSerifBody};
+  margin-top: 10px;
 `;
 
 export const BlogDate = ({ date }: { date: Date }) => {
@@ -93,21 +92,21 @@ const BlogSummary = ({
   blogEntry,
   prefix,
 }: {
-  blogEntry: BlogEntry;
+  blogEntry: BlogEntryPreview;
   prefix?: string;
 }) => {
   return (
     <BlogSummaryStyled>
       <BlogSummaryInner>
         <div>
-          <BlogTitle
-            link={`${prefix || "/"}${blogEntry.url}`}
-            text={blogEntry.title}
-          />
+          <Link href={`${prefix || "/"}${blogEntry.url}`} passHref>
+            <BlogTitle>{blogEntry.title}</BlogTitle>
+          </Link>
           <BlogDate date={blogEntry.date} />
         </div>
         <ContentPreview
-          dangerouslySetInnerHTML={{ __html: blogEntry.htmlContents }}
+          dangerouslySetInnerHTML={{ __html: blogEntry.htmlPreview }}
+          className="blog-content"
         />
       </BlogSummaryInner>
     </BlogSummaryStyled>
@@ -115,16 +114,19 @@ const BlogSummary = ({
 };
 
 const BlogSummaryListInner = (
-  { blogEntries, prefix }: { blogEntries: Array<BlogEntry>; prefix?: string },
+  {
+    blogEntries,
+    prefix,
+  }: { blogEntries: Array<BlogEntryPreview>; prefix?: string },
   ref: ForwardedRef<HTMLDivElement>
 ) => {
   const blogPreviews = (
     <div ref={ref}>
-      {blogEntries.map((blogEntry: BlogEntry) => {
+      {blogEntries.map((blogEntry: BlogEntryPreview) => {
         return (
           <BlogSummary
             blogEntry={blogEntry}
-            key={blogEntry.title}
+            key={blogEntry.url}
             prefix={prefix}
           />
         );
@@ -138,7 +140,7 @@ const BlogSummaryListInner = (
 export const BlogSummaryList = forwardRef(BlogSummaryListInner);
 
 export interface BlogHomeProps extends ChangerProps {
-  blogEntries: Array<BlogEntry>;
+  blogEntries: Array<BlogEntryPreview>;
   loading: boolean;
   prefix: string;
 }

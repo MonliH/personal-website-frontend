@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FormEvent, ComponentType, useEffect, useState } from "react";
 
 import Router from "next/router";
@@ -7,20 +8,24 @@ import styled from "styled-components";
 import { IAceEditorProps } from "react-ace";
 
 import Loading from "@components/Loading";
-import StyledLink from "@components/StyledLink";
+import Bg from "@components/Bg";
 
 import { useAuth } from "@contexts/authContext";
 
-import { BlogEntry } from "@lib/blog";
-import { formatDate } from "@lib/date";
-import changePost from "@lib/changePost";
+import { BlogEntryAdmin } from "@lib/blog";
+import changePost from "@lib/upsertPost";
+
+import theme from "@styles/theme";
 
 const AceEditor: ComponentType<IAceEditorProps> = dynamic(
   async () => {
     const ace = await import("react-ace");
-    import("ace-builds/src-noconflict/keybinding-vim");
-    import("ace-builds/src-noconflict/theme-tomorrow");
-    import("ace-builds/src-noconflict/mode-markdown");
+    /* eslint-disable */
+    require("ace-builds/src-noconflict/keybinding-vim");
+    require("ace-builds/src-noconflict/theme-monokai");
+    require("ace-builds/src-noconflict/mode-markdown");
+    require("ace-builds/src-noconflict/keybinding-vim");
+    /* eslint-enable */
     return ace;
   },
   { ssr: false }
@@ -32,17 +37,21 @@ const ChangeBlogForm = styled.form`
 `;
 
 const ChangeBlogLabel = styled.label`
-  color: black;
+  font-size: 20px;
+`;
+
+const AdminPanelWrapper = styled.div`
+  font-family: ${({ theme: t }) => t.fonts.sansSerif};
 `;
 
 const AdminBlogPage = ({
   blog,
   showUrl = false,
 }: {
-  blog: BlogEntry;
+  blog: BlogEntryAdmin;
   showUrl?: boolean;
 }) => {
-  const [revisedBlog, setRevisedBlog] = useState<null | BlogEntry>(null);
+  const [revisedBlog, setRevisedBlog] = useState<null | BlogEntryAdmin>(null);
   const [isAuthed, setIsAuthed] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -75,75 +84,81 @@ const AdminBlogPage = ({
   }
   if (blog && revisedBlog) {
     return (
-      <div>
-        <StyledLink link="/admin/" text="Admin Panel" />
-        <button
-          type="button"
-          onClick={() => {
-            Router.replace(`/admin/${Router.query.blogUrl}/delete`);
-          }}
-        >
-          DELETE
-        </button>
-        <ChangeBlogForm onSubmit={onFormSubmit}>
-          <ChangeBlogLabel>Title</ChangeBlogLabel>
-          <input
-            type="text"
-            value={revisedBlog.title}
-            onChange={(e: FormEvent) => {
-              setRevisedBlog({
-                ...revisedBlog,
-                title: (e.target as HTMLInputElement).value,
-              } as BlogEntry);
+      <Bg altColor>
+        <AdminPanelWrapper>
+          <Link href="/admin/" passHref>
+            <a>Admin Panel</a>
+          </Link>
+          <button
+            type="button"
+            onClick={() => {
+              Router.replace(`/admin/${Router.query.blogUrl}/delete`);
             }}
-          />
-          <ChangeBlogLabel>Date</ChangeBlogLabel>
-          <input
-            type="date"
-            value={formatDate(revisedBlog.date)}
-            onChange={(e: FormEvent) => {
-              setRevisedBlog({
-                ...revisedBlog,
-                date: new Date((e.target as HTMLInputElement).value),
-              });
-            }}
-          />
-          {showUrl ? (
-            <>
-              <ChangeBlogLabel>URL</ChangeBlogLabel>
-              <input
-                type="text"
-                value={revisedBlog.url}
-                onChange={(e: FormEvent) => {
-                  setRevisedBlog({
-                    ...revisedBlog,
-                    url: (e.target as HTMLInputElement).value,
-                  } as BlogEntry);
-                }}
-              />
-            </>
-          ) : (
-            <></>
-          )}
-          <ChangeBlogLabel>Markdown</ChangeBlogLabel>
-          <AceEditor
-            mode="markdown"
-            theme="tomorrow"
-            value={revisedBlog.mdContents}
-            onChange={(mdContents: string) => {
-              setRevisedBlog({
-                ...revisedBlog,
-                mdContents,
-              } as BlogEntry);
-            }}
-            keyboardHandler="vim"
-            width="50vw"
-            fontSize={16}
-          />
-          <input type="submit" value="Change" />
-          <ChangeBlogLabel>{message}</ChangeBlogLabel>
-        </ChangeBlogForm>
-      </div>
+          >
+            DELETE
+          </button>
+          <ChangeBlogForm onSubmit={onFormSubmit}>
+            <ChangeBlogLabel>Title</ChangeBlogLabel>
+            <input
+              type="text"
+              value={revisedBlog.title}
+              onChange={(e: FormEvent) => {
+                setRevisedBlog({
+                  ...revisedBlog,
+                  title: (e.target as HTMLInputElement).value,
+                } as BlogEntryAdmin);
+              }}
+            />
+            <ChangeBlogLabel>Date</ChangeBlogLabel>
+            <input
+              type="date"
+              value={revisedBlog.date.toISOString().split("T")[0]}
+              onChange={(e: FormEvent) => {
+                setRevisedBlog({
+                  ...revisedBlog,
+                  date: new Date((e.target as HTMLInputElement).value),
+                });
+              }}
+            />
+            {showUrl ? (
+              <>
+                <ChangeBlogLabel>URL</ChangeBlogLabel>
+                <input
+                  type="text"
+                  value={revisedBlog.url}
+                  onChange={(e: FormEvent) => {
+                    setRevisedBlog({
+                      ...revisedBlog,
+                      url: (e.target as HTMLInputElement).value,
+                    } as BlogEntryAdmin);
+                  }}
+                />
+              </>
+            ) : (
+              <></>
+            )}
+            <ChangeBlogLabel>Markdown</ChangeBlogLabel>
+            <AceEditor
+              mode="markdown"
+              theme="monokai"
+              style={{ fontFamily: theme.fonts.monospace }}
+              value={revisedBlog.mdContents}
+              onChange={(mdContents: string) => {
+                setRevisedBlog({
+                  ...revisedBlog,
+                  mdContents,
+                } as BlogEntryAdmin);
+              }}
+              keyboardHandler="vim"
+              width="100%"
+              height="80vh"
+              fontSize={16}
+            />
+            <input type="submit" value="Change" />
+            <ChangeBlogLabel>{message}</ChangeBlogLabel>
+          </ChangeBlogForm>
+        </AdminPanelWrapper>
+      </Bg>
     );
   }
   return <Loading />;

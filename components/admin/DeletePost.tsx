@@ -1,21 +1,16 @@
-import styled from "styled-components";
+import Bg from "@components/Bg";
 
 import { useAuth } from "@contexts/authContext";
+
 import redirect from "@lib/redirect";
 import deletePost from "@lib/deletePost";
-
-const DivDeleteMsg = styled.div`
-  color: black;
-`;
 
 const DeletePost = ({ blogName }: { blogName: string }) => {
   const { auth } = useAuth();
 
   return (
-    <div>
-      <DivDeleteMsg>
-        Are you sure you want to delete <code>{blogName}</code>?
-      </DivDeleteMsg>
+    <Bg altColor>
+      Are you sure you want to delete <code>{blogName}</code>?
       <button
         type="button"
         onClick={() => {
@@ -35,7 +30,7 @@ const DeletePost = ({ blogName }: { blogName: string }) => {
       >
         YES!
       </button>
-    </div>
+    </Bg>
   );
 };
 

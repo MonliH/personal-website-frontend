@@ -3,9 +3,14 @@ import styled from "styled-components";
 import Layout from "@components/Layout";
 import BlogPageChanger from "@components/blog/BlogPageChanger";
 import Panel from "@components/admin/Panel";
+import Bg from "@components/Bg";
+
 import useBlogEntries from "@hooks/useBlogEntries";
+
 import { postsPerPage } from "@pages/blog/[pageNo]";
+
 import { withProtect } from "@contexts/authContext";
+
 import theme from "@styles/theme";
 
 const BlogPageButton = styled.button`
@@ -26,21 +31,23 @@ const Admin = () => {
     <Layout
       title="Admin Panel"
       description="Jonathan's personal website admin panel."
-      theme={theme.lightBg}
+      theme={theme.colors.lightBg}
     >
-      <BlogPageChanger
-        currentPage={pageNo + 1}
-        CustomSetter={({ style, pageNo: newPageNo }) => (
-          <BlogPageButton
-            onClick={() => setPageNo(newPageNo - 1)}
-            style={style}
-          >
-            {newPageNo}
-          </BlogPageButton>
-        )}
-        totalPages={pages}
-      />
-      <Panel loading={loading} blogEntries={blogEntries} />
+      <Bg altColor>
+        <BlogPageChanger
+          currentPage={pageNo + 1}
+          CustomSetter={({ style, pageNo: newPageNo }) => (
+            <BlogPageButton
+              onClick={() => setPageNo(newPageNo - 1)}
+              style={style}
+            >
+              {newPageNo}
+            </BlogPageButton>
+          )}
+          totalPages={pages}
+        />
+        <Panel loading={loading} blogEntries={blogEntries} />
+      </Bg>
     </Layout>
   );
 };

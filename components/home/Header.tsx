@@ -57,8 +57,14 @@ const HeaderLinkGithub = styled.a`
   font: 15px Montserrat, sans-serif;
   color: white;
   text-decoration: none;
-  padding-left: 30px;
+  border: none;
+  margin-left: 30px;
   cursor: pointer;
+  transition: filter 0.2s ease-in-out;
+
+  &:hover {
+    filter: brightness(70%);
+  }
 `;
 
 const HeaderName = styled.button`
@@ -165,7 +171,7 @@ const Header = ({
   }
 
   linksLeft.push(
-    <Link passHref href="/blog" key="blog">
+    <Link href="/blog" key="blog" passHref>
       <HeaderLinkA>Blog</HeaderLinkA>
     </Link>
   );

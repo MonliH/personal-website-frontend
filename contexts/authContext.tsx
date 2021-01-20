@@ -5,7 +5,10 @@ import React, {
   useEffect,
   useState,
 } from "react";
+
 import Loading from "@components/Loading";
+import Bg from "@components/Bg";
+
 import redirect from "@lib/redirect";
 import validateKey from "@lib/validateKey";
 
@@ -66,7 +69,11 @@ export const useAuth = () => useContext(AuthContext);
 export const ProtectRoute = ({ children }) => {
   const { auth } = useAuth();
   if (auth.loading) {
-    return <Loading />;
+    return (
+      <Bg altColor>
+        <Loading />
+      </Bg>
+    );
   }
   if (!auth.key) {
     redirect("/admin/sign-in");

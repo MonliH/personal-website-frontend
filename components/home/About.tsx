@@ -22,7 +22,7 @@ const AboutText = styled.div`
   text-align: left;
   width: 370px;
   color: white;
-  font: 400 18px Lato, sans-serif;
+  font: 400 18px ${(props) => props.theme.fonts.sansSerifBody};
 `;
 
 const AboutMeSection = styled.div`
@@ -75,7 +75,7 @@ const About = (_, ref: ForwardedRef<HTMLDivElement>) => {
               <source src="/graphics/about_me.mp4" type="video/mp4" />
             </AboutVideo>
             <AboutText>
-              Hey! My name is Jonathan Li.
+              Hey! I&#39;m Jonathan Li.
               <br />
               <br />
               I’m passionate about coding, design, and making simulations.

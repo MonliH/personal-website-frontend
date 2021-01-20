@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import Layout from "@components/Layout";
 import BlogHome, { BlogHomeProps } from "@components/blog/BlogHome";
-import { getPreviewPage, getNumPosts } from "@lib/blogApi";
+import { getPreviewPage, getNumPosts } from "@lib/fetchBlog";
 import { fromUnixTimestamp, toUnixTimestamp } from "@lib/date";
 import theme from "@styles/theme";
 
@@ -31,7 +31,7 @@ const Blog = ({ blogEntries, ...props }: BlogHomeProps) => {
     <Layout
       title="Jonathan Li's Blog"
       description="Jonathan's personal blog."
-      theme={theme.lightBg}
+      theme={theme.colors.lightBg}
     >
       <BlogHome
         {...props}

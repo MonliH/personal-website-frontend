@@ -7,7 +7,7 @@ const ThankYou = () => {
     <Layout
       title="Thank you!"
       description="Thank you for contacting me (Jonathan Li)!"
-      theme={theme.lightBg}
+      theme={theme.colors.lightBg}
     >
       <ThankYouContact />
     </Layout>

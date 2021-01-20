@@ -14,7 +14,7 @@ const DeletePage = () => {
     <Layout
       title="Delete Page"
       description="Delete page on admin panel."
-      theme={theme.lightBg}
+      theme={theme.colors.lightBg}
     >
       <DeletePost blogName={blogUrl as string} />
     </Layout>

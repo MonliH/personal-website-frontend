@@ -5,7 +5,6 @@ import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 
 import { Tag, projectList, Project } from "@lib/projects";
-import CustomLink from "@components/StyledLink";
 
 import { Title } from "@components/Title";
 
@@ -65,7 +64,7 @@ const ProjectTag = styled.span`
   width: -moz-fit-content;
   width: -fit-content;
 
-  font: 15px "Lato", sans-serif;
+  font: 15px ${(props) => props.theme.fonts.sansSerifBody};
 `;
 
 const ProjectTags = styled.div`
@@ -73,7 +72,7 @@ const ProjectTags = styled.div`
 `;
 
 const ProjectText = styled.div`
-  font: 400 15px "Lato", sans-serif;
+  font: 400 15px ${(props) => props.theme.fonts.sansSerifBody};
   width: 250px;
   margin-top: 5px;
 `;
@@ -88,15 +87,15 @@ const ProjectCardStyled = styled(animated.div)`
   padding: 25px;
 `;
 
-const AnimatedProjectLink = styled(CustomLink)`
+const AnimatedProjectLink = styled.a`
   color: #15a1ff;
-  text-decoration-color: #15a1ff00;
+  border-bottom-color: #15a1ff00;
 
   font: bold 20px "Montserrat", sans-serif;
 
   &:hover {
-    color: #1581ff;
-    text-decoration-color: #1581ffff;
+    color: #52a2ff;
+    border-bottom-color: #52a2ffff;
   }
 `;
 
@@ -136,10 +135,12 @@ const ProjectCard = (p: ProjectCardProps) => {
       <div>
         <ProjectTags>{tags}</ProjectTags>
         <AnimatedProjectLink
-          text={p.project.displayName}
-          link={p.project.link}
-          extern
-        />
+          href={p.project.link}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          {p.project.displayName}
+        </AnimatedProjectLink>
         <ProjectText>{p.project.description}</ProjectText>
       </div>
     </ProjectCardStyled>
@@ -290,6 +291,7 @@ const ProjectsStyled = styled.div`
   margin-top: -14vh;
   margin-bottom: 20vh;
   background-color: #1d1d1d;
+  color: ${({ theme }) => theme.colors.fontColor};
 
   @media (max-width: 500px) {
     margin-bottom: 10vh;

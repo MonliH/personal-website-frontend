@@ -30,11 +30,9 @@ const BlogPageChange = ({
 };
 
 const BlogChangerDiv = styled.div`
-  color: black;
-  font: 15px "IBM Plex Mono", monospace;
+  font: 15px ${(props) => props.theme.fonts.sansSerif};
   margin-bottom: 20px;
   margin-top: 20px;
-  margin-left: 3px;
 
   @media (max-width: 825px) {
     width: 95vw;

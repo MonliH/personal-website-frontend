@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { BlogEntry } from "@lib/blog";
-import { getPreviewPage } from "@lib/blogApi";
+import { BlogEntryPreview } from "@lib/blog";
+import { getPreviewPage } from "@lib/fetchBlog";
 
 const useBlogEntries = (
   postsPerPage: number
-): [number, number, (no: number) => void, Array<BlogEntry>, boolean] => {
-  const [blogEntries, setBlogEntries] = useState<Array<BlogEntry>>([]);
+): [number, number, (no: number) => void, Array<BlogEntryPreview>, boolean] => {
+  const [blogEntries, setBlogEntries] = useState<Array<BlogEntryPreview>>([]);
   const [pageNo, setPageNo] = useState(0);
   const [loading, setLoading] = useState(true);
   const [pages, setPages] = useState(0);
