@@ -89,13 +89,13 @@ const ProjectCardStyled = styled(animated.div)`
 
 const AnimatedProjectLink = styled.a`
   color: #15a1ff;
-  border-bottom-color: #15a1ff00;
+  text-decoration-color: #15a1ff00;
 
   font: bold 20px ${({ theme }) => theme.fonts.sansSerifAlt};
 
   &:hover {
     color: #52a2ff;
-    border-bottom-color: #52a2ffff;
+    text-decoration-color: #52a2ffff;
   }
 `;
 
@@ -134,10 +134,7 @@ const ProjectCard = (p: ProjectCardProps) => {
         // FIXME: Make sure to remove the `as any` cast after
         // https://github.com/react-spring/react-spring/issues/1102 is fixed
         boxShadow: anim.boxShadow.to(
-          (s) =>
-            `${s + 1}px ${s + 1}px ${s * 7 + 1}px rgba(0, 0, 0, ${
-              s * 0.2 + 0.1
-            })`
+          (s) => `0px 0px ${s * 7 + 1}px rgba(0, 0, 0, ${s * 0.2 + 0.1})`
         ) as any,
         transform: anim.scale.to((s) => `scale(${s})`),
       }}

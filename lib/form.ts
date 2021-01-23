@@ -1,45 +1,32 @@
 import { FormEvent } from "react";
+
 import redirect from "@lib/redirect";
+import API_DOMAIN from "@lib/API_DOMAIN";
 
-const capitalize = (str: string) => {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-};
-
-const submit = (
+const submit = async (
   e: FormEvent<HTMLFormElement>,
   setStatus: (value: string) => void
 ) => {
   e.preventDefault();
-  const target: any = e.target as any;
+  const target: HTMLFormElement = e.target as HTMLFormElement;
 
   const requestOptions = {
     method: "POST",
-    headers: { Accept: "application/json", "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      // We can disable lint because it's an api thing
-      // eslint-disable-next-line no-underscore-dangle
-      _replyto: target._replyto.value,
-      name: target.name.value,
-      message: target.message.value,
+      email: target.email.value,
+      sender_name: target.sender_name.value,
+      contents: target.contents.value,
     }),
   };
 
-  fetch("https://formspree.io/xbjzleev", requestOptions)
-    .then((response) => response.json())
-    .then((data) => {
-      const dataAny = data as any;
-      if (dataAny.error) {
-        if (dataAny.error.includes("_replyto")) {
-          setStatus("Please enter a valid email.");
-        } else {
-          setStatus(capitalize(dataAny.error));
-        }
-      } else {
-        setStatus("Message sent successfully!");
-        redirect("/thank-you-contact");
-        window.location.reload();
-      }
-    });
+  const res = await fetch(`${API_DOMAIN}/contact/submit`, requestOptions);
+  if (res.ok) {
+    redirect("/thank-you-contact");
+  } else {
+    const msg = await res.text();
+    setStatus(msg);
+  }
 };
 
 export default submit;

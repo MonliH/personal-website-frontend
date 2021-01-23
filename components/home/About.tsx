@@ -51,7 +51,11 @@ const AboutStyled = styled.div`
 
 const ModifiedTitle = styled(Title)`
   @media (max-width: 901px) {
-    margin-left: 50px;
+    margin-left: -50px;
+  }
+
+  @media (max-width: 430px) {
+    margin-left: -9px;
   }
 `;
 

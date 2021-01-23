@@ -40,6 +40,7 @@ const Li = styled(ThemedTitle)`
   white-space: pre;
 
   @media (max-width: 430px) {
+    font-size: 40px;
     background-position: left 10px top 0px !important;
     top: 145px;
   }

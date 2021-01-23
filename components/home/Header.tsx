@@ -1,7 +1,8 @@
-import { MutableRefObject, useState } from "react";
-import styled from "styled-components";
-import { animated, useSpring } from "react-spring";
 import Link from "next/link";
+import { MutableRefObject, useState } from "react";
+import { animated, useSpring } from "react-spring";
+import styled from "styled-components";
+import { Menu, ArrowLeft } from "react-feather";
 
 const HeaderMain = styled.div`
   overflow: hidden;
@@ -100,9 +101,15 @@ const HeaderNav = styled.button`
   background: none;
   border: none;
   display: none;
+  margin-top: 10px;
   @media (max-width: 644px) {
     display: block;
   }
+`;
+
+const HeaderClose = styled(HeaderNav)`
+  margin-left: 10px;
+  float: left;
 `;
 
 interface HeaderSidebarProps {
@@ -112,11 +119,13 @@ interface HeaderSidebarProps {
 }
 
 const Absolute = styled(animated.div)`
-  position: absolute;
+  position: fixed;
   width: 100vw;
   height: 100vh;
+  top: 0;
+  left: 0;
   z-index: 101;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   overflow: hidden;
@@ -155,6 +164,13 @@ const Header = ({
   const [navOn, setNavOn] = useState(false);
 
   const linksLeft: Array<JSX.Element> = [];
+  linksLeft.push(
+    <HeaderClose onClick={() => setNavOn(false)} aria-label="Close Menu">
+      <HeaderImage as="div">
+        <ArrowLeft width={27} height={27} color="white" />
+      </HeaderImage>
+    </HeaderClose>
+  );
 
   for (let i = 0; i < keys.length; i++) {
     linksLeft.push(
@@ -184,6 +200,7 @@ const Header = ({
       target="_blank"
       rel="noopener noreferrer"
       className="header-link"
+      style={navOn ? { float: "left", marginLeft: "22px" } : {}}
     >
       <HeaderImage
         src="/graphics/github-white.png"
@@ -194,10 +211,6 @@ const Header = ({
       />
     </HeaderLinkGithub>
   );
-
-  const toggleNav = () => {
-    setNavOn(!navOn);
-  };
 
   return (
     <>
@@ -211,17 +224,10 @@ const Header = ({
         >
           Jonathan Li
         </HeaderName>
-        <HeaderNav
-          onClick={() => toggleNav()}
-          style={{ marginTop: "10px" }}
-          aria-label="Menu"
-        >
-          <HeaderImage
-            src="/graphics/menu.svg"
-            alt="Menu"
-            width={27}
-            height={27}
-          />
+        <HeaderNav onClick={() => setNavOn(true)} aria-label="Menu">
+          <HeaderImage as="div">
+            <Menu width={27} height={27} color="white" />
+          </HeaderImage>
         </HeaderNav>
         <HeaderLinks>{linksLeft}</HeaderLinks>
       </HeaderMain>

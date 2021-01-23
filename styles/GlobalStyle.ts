@@ -28,16 +28,14 @@ a {
   font-family: ${(props) => props.theme.fonts.sansSerif};
   font-weight: bold;
   color: #4c84ff;
-  border-bottom: 1px solid #4c84ff;
-  padding-bottom: 1px;
-  text-decoration: none;
+  text-underline-offset: 0.35em;
   cursor: pointer;
-  transition: border-bottom-color 0.2s, color 0.2s;
+  transition: text-decoration-color 0.2s, color 0.2s;
 }
 
 a:hover {
   color: #6092FF;
-  border-bottom-color: #8BAFFF;
+  text-decoration-color: #8BAFFF;
 }
 
 h1 {

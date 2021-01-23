@@ -125,7 +125,7 @@ const Contact = (_: {}, ref: ForwardedRef<HTMLDivElement>) => {
                 <EntryText>Your Email:</EntryText>
                 <EntryInput
                   type="email"
-                  name="_replyto"
+                  name="email"
                   id="email"
                   placeholder="Email"
                   required
@@ -135,7 +135,7 @@ const Contact = (_: {}, ref: ForwardedRef<HTMLDivElement>) => {
                 <EntryText>Your Name:</EntryText>
                 <EntryInput
                   type="text"
-                  name="name"
+                  name="sender_name"
                   placeholder="Name"
                   required
                 />
@@ -144,7 +144,7 @@ const Contact = (_: {}, ref: ForwardedRef<HTMLDivElement>) => {
             <ContactMessage>
               <EntryText>Your message:</EntryText>
               <MessageTextarea
-                name="message"
+                name="contents"
                 style={{ resize: "none" }}
                 id="message-textarea"
                 placeholder="Message"

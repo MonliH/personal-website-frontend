@@ -24,14 +24,14 @@ export const ThemedTitle = styled.div`
     no-repeat;
   color: #ff3d0d;
 
-  @media (max-width: 430px) {
-    font-size: 40px;
-    background-position: left 10px top 25px;
-    height: 50px;
-  }
-
   font: bold 60px ${({ theme }) => theme.fonts.sansSerifAlt};
   background-position: left 19px top 40px;
+
+  @media (max-width: 430px) {
+    font-size: 40px !important;
+    height: 50px !important;
+    background-position: left 10px top 25px;
+  }
 `;
 
 export const Title = styled(ThemedTitle).attrs({ as: "pre" })`
