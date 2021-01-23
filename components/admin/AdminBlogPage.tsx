@@ -31,11 +31,6 @@ const AceEditor: ComponentType<IAceEditorProps> = dynamic(
   { ssr: false }
 );
 
-const ChangeBlogForm = styled.form`
-  display: flex;
-  flex-direction: column;
-`;
-
 const ChangeBlogLabel = styled.label`
   font-size: 20px;
 `;
@@ -97,7 +92,7 @@ const AdminBlogPage = ({
           >
             DELETE
           </button>
-          <ChangeBlogForm onSubmit={onFormSubmit}>
+          <form onSubmit={onFormSubmit}>
             <ChangeBlogLabel>Title</ChangeBlogLabel>
             <input
               type="text"
@@ -156,7 +151,7 @@ const AdminBlogPage = ({
             />
             <input type="submit" value="Change" />
             <ChangeBlogLabel>{message}</ChangeBlogLabel>
-          </ChangeBlogForm>
+          </form>
         </AdminPanelWrapper>
       </Bg>
     );

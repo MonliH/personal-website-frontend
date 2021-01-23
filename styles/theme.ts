@@ -8,6 +8,7 @@ const theme: DefaultTheme = {
   },
   fonts: {
     sansSerif: 'Raleway, "Open Sans", Helvetica, sans-serif',
+    sansSerifAlt: 'Montserrat, "Open Sans", Helvetica, sans-serif',
     sansSerifBody: '"Open Sans", Helvetica, sans-serif',
     monospace: '"IBM Plex Mono", monospace',
   },

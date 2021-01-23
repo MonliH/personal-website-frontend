@@ -1,6 +1,13 @@
 import styled from "styled-components";
 
-export const WrapperCenter = styled.div`
+export const WrapperCenterColumn = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+
+export const WrapperCenterRow = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,7 +1,7 @@
 import { ForwardedRef, forwardRef, useRef } from "react";
 import styled from "styled-components";
 
-import { WrapperCenter, WrapperInner } from "@components/Wrapper";
+import { WrapperCenterRow, WrapperInner } from "@components/Wrapper";
 import { Title } from "@components/Title";
 
 const AboutVideo = styled.video`
@@ -55,11 +55,11 @@ const ModifiedTitle = styled(Title)`
   }
 `;
 
-const About = (_, ref: ForwardedRef<HTMLDivElement>) => {
+const About = (_: {}, ref: ForwardedRef<HTMLDivElement>) => {
   const videoElement = useRef(null);
   return (
     <AboutStyled ref={ref}>
-      <WrapperCenter>
+      <WrapperCenterRow>
         <WrapperInner>
           <ModifiedTitle>About Me&thinsp;</ModifiedTitle>
           <AboutMeSection>
@@ -88,7 +88,7 @@ const About = (_, ref: ForwardedRef<HTMLDivElement>) => {
             </AboutText>
           </AboutMeSection>
         </WrapperInner>
-      </WrapperCenter>
+      </WrapperCenterRow>
     </AboutStyled>
   );
 };

@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import Header from "@components/home/Header";
 import { NameTitleWrapper } from "@components/Wrapper";
-import { sharedTitle } from "@components/Title";
+import { ThemedTitle } from "@components/Title";
 import Contact from "@components/home/Contact";
 import About from "@components/home/About";
 import Projects from "@components/home/Projects";
@@ -12,7 +12,7 @@ import Projects from "@components/home/Projects";
 import useWindowSize from "@hooks/useWindowSize";
 
 const SubHeading = styled.div`
-  font: bold 30px Montserrat, sans-serif;
+  font: bold 30px ${({ theme }) => theme.fonts.sansSerifAlt};
   position: relative;
   top: 100px;
   padding-left: 10px;
@@ -24,27 +24,23 @@ const SubHeading = styled.div`
   }
 `;
 
-const Jonathan = styled.div`
-  ${sharedTitle}
-  font: bold 70px Montserrat, sans-serif;
+const Jonathan = styled(ThemedTitle)`
+  font: bold 70px ${({ theme }) => theme.fonts.sansSerifAlt};
   position: relative;
   height: 100px;
-  background-position: left 19px top 40px;
   white-space: pre;
 `;
 
-const Li = styled.div`
-  ${sharedTitle}
-  font: bold 70px Montserrat, sans-serif;
-  color: #ff3d0d;
+const Li = styled(ThemedTitle)`
+  font: bold 70px ${({ theme }) => theme.fonts.sansSerifAlt};
+  background-position: left 19px top 0px !important;
   position: absolute;
   top: 290px;
-  background-position: left 19px top 0px;
   height: 90px;
   white-space: pre;
 
   @media (max-width: 430px) {
-    background-position: left 10px top 0px;
+    background-position: left 10px top 0px !important;
     top: 145px;
   }
 `;
@@ -79,13 +75,13 @@ const TitleImageWrapper = styled.div`
   margin-right: 15vw;
   margin-top: 120px;
   filter: saturate(105%);
-  transition: 0.8s;
-  transform: translateY(0);
   z-index: 10;
   display: block;
   min-width: 70vh;
   min-height: 70vh;
   margin-left: -100px;
+
+  transition: filter 0.3s;
 
   @media (max-width: 430px) {
     margin-top: 100px;
@@ -94,6 +90,10 @@ const TitleImageWrapper = styled.div`
     min-width: 85vw;
     min-height: 85vw;
     margin-left: 7vw;
+  }
+
+  &:hover {
+    filter: saturate(120%);
   }
 `;
 

@@ -2,7 +2,7 @@ import { ForwardedRef, useState, forwardRef } from "react";
 import { animated, useSpring } from "react-spring";
 
 import submit from "@lib/form";
-import { WrapperCenter, WrapperInner } from "@components/Wrapper";
+import { WrapperCenterRow, WrapperInner } from "@components/Wrapper";
 import { Title } from "@components/Title";
 
 import styled from "styled-components";
@@ -18,7 +18,7 @@ const ContactForm = styled.form`
   display: flex;
   flex-direction: column;
   width: 500px;
-  font: "Montserrat", sans-serif;
+  font-family: ${({ theme }) => theme.fonts.sansSerifAlt};
 
   @media (max-width: 580px) {
     width: 80vw;
@@ -51,7 +51,7 @@ const Entry = styled.label`
 const EntryText = styled.div`
   margin-bottom: 10px;
   color: white;
-  font: bold 17px Montserrat, sans-serif;
+  font: bold 17px ${({ theme }) => theme.fonts.sansSerifAlt};
 `;
 
 const EntryInput = styled.input`
@@ -70,7 +70,7 @@ const MessageTextarea = styled.textarea`
   border: 1px solid;
   color: white;
   padding: 7px;
-  font: 14px "Montserrat", sans-serif;
+  font: 14px ${({ theme }) => theme.fonts.sansSerifAlt};
 `;
 
 const ContactMessage = styled.label`
@@ -99,7 +99,7 @@ const SendButton = styled(animated.button)`
   flex: 0 0 110px;
 `;
 
-const Contact = (_, ref: ForwardedRef<HTMLDivElement>) => {
+const Contact = (_: {}, ref: ForwardedRef<HTMLDivElement>) => {
   const [status, setStatus] = useState("");
 
   const [anim, setOpacity] = useSpring(() => ({
@@ -116,7 +116,7 @@ const Contact = (_, ref: ForwardedRef<HTMLDivElement>) => {
 
   return (
     <ContactStyled ref={ref}>
-      <WrapperCenter>
+      <WrapperCenterRow>
         <WrapperInner>
           <Title>Contact Me&thinsp;</Title>
           <ContactForm onSubmit={(e) => submit(e, setStatus)}>
@@ -181,7 +181,7 @@ const Contact = (_, ref: ForwardedRef<HTMLDivElement>) => {
             </ContactButtonLabel>
           </ContactForm>
         </WrapperInner>
-      </WrapperCenter>
+      </WrapperCenterRow>
     </ContactStyled>
   );
 };

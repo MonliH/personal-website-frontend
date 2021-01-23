@@ -3,12 +3,12 @@ import { forwardRef, ForwardedRef } from "react";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 
-import { sharedTitle } from "@components/Title";
 import BlogPageChanger, {
   ChangerProps,
 } from "@components/blog/BlogPageChanger";
 import BlogHeader from "@components/blog/BlogHeader";
 import Loading from "@components/Loading";
+import { WrapperCenterColumn } from "@components/Wrapper";
 
 import { BlogEntryPreview } from "@lib/blog";
 
@@ -16,22 +16,6 @@ const BlogHomeWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.lightBg};
   color: ${({ theme }) => theme.colors.fontColor};
   min-height: 100vh;
-`;
-
-const BlogTitleWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-`;
-
-export const Title = styled.pre`
-  ${sharedTitle}
-  height: 57px;
-  font: bold 45px Montserrat, sans-serif;
-  background-position: left 19px top 34px;
-  margin-left: -9px;
-  margin-bottom: 50px;
 `;
 
 const ContentPreview = styled.div`
@@ -160,7 +144,7 @@ const BlogHome = ({
 
   return (
     <BlogHomeWrapper>
-      <BlogTitleWrapper>
+      <WrapperCenterColumn>
         <BlogMainInner>
           <BlogHeaderWrapper>
             <BlogHeader />
@@ -194,7 +178,7 @@ const BlogHome = ({
             </>
           )}
         </BlogMainInner>
-      </BlogTitleWrapper>
+      </WrapperCenterColumn>
     </BlogHomeWrapper>
   );
 };

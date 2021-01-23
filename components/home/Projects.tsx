@@ -54,7 +54,7 @@ const ProjectCircle = styled.div`
   border-radius: 100%;
 
   display: inline-block;
-  margin-right: 4px;
+  margin-right: 6px;
 `;
 
 const ProjectTag = styled.span`
@@ -91,7 +91,7 @@ const AnimatedProjectLink = styled.a`
   color: #15a1ff;
   border-bottom-color: #15a1ff00;
 
-  font: bold 20px "Montserrat", sans-serif;
+  font: bold 20px ${({ theme }) => theme.fonts.sansSerifAlt};
 
   &:hover {
     color: #52a2ff;
@@ -114,21 +114,33 @@ const ProjectCard = (p: ProjectCardProps) => {
   ));
 
   const [anim, setShadow] = useSpring(() => ({
-    boxShadow: "0px 0px 0px #00000000",
+    boxShadow: 0,
+    scale: 1,
   }));
 
   const onMouseEnter = () => {
-    setShadow({ boxShadow: "2px 2px 4px #00000030" });
+    setShadow({ boxShadow: 1, scale: 1.01 });
   };
 
   const onMouseLeave = () => {
-    setShadow({ boxShadow: "0px 0px 0px #00000000" });
+    setShadow({ boxShadow: 0, scale: 1 });
   };
 
   return (
     <ProjectCardStyled
-      // XXX: Make sure to fix this after [this](https://github.com/react-spring/react-spring/issues/1102) is fixed
-      style={{ width: p.cardw, height: p.cardh, ...(anim as any) }}
+      style={{
+        width: p.cardw,
+        height: p.cardh,
+        // FIXME: Make sure to remove the `as any` cast after
+        // https://github.com/react-spring/react-spring/issues/1102 is fixed
+        boxShadow: anim.boxShadow.to(
+          (s) =>
+            `${s + 1}px ${s + 1}px ${s * 7 + 1}px rgba(0, 0, 0, ${
+              s * 0.2 + 0.1
+            })`
+        ) as any,
+        transform: anim.scale.to((s) => `scale(${s})`),
+      }}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >

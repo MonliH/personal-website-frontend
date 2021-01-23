@@ -18,7 +18,7 @@ const HeaderMain = styled.div`
 `;
 
 const HeaderLinks = styled.div`
-  font: 15px Montserrat, sans-serif;
+  font: 15px ${({ theme }) => theme.fonts.sansSerifAlt};
   float: right;
   display: flex;
   flex: 0 0;
@@ -34,7 +34,7 @@ const HeaderLinks = styled.div`
 `;
 
 const HeaderLink = styled.button`
-  font: 15px Montserrat, sans-serif;
+  font: 15px ${({ theme }) => theme.fonts.sansSerifAlt};
   color: white;
   text-decoration: none;
   cursor: pointer;
@@ -54,7 +54,7 @@ const HeaderLinkA = styled(HeaderLink).attrs({ as: "r" })`
 `;
 
 const HeaderLinkGithub = styled.a`
-  font: 15px Montserrat, sans-serif;
+  font: 15px ${({ theme }) => theme.fonts.sansSerifAlt};
   color: white;
   text-decoration: none;
   border: none;
@@ -69,7 +69,7 @@ const HeaderLinkGithub = styled.a`
 
 const HeaderName = styled.button`
   margin-left: 22px;
-  font: bold 20px Montserrat, sans-serif;
+  font: bold 20px ${({ theme }) => theme.fonts.sansSerifAlt};
   margin-bottom: 20px;
   float: left;
   color: white;

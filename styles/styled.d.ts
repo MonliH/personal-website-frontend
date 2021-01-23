@@ -9,6 +9,7 @@ declare module "styled-components" {
     };
     fonts: {
       sansSerif: string;
+      sansSerifAlt: string;
       sansSerifBody: string;
       monospace: string;
     };

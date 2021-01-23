@@ -31,13 +31,12 @@ const BlogPageChange = ({
 
 const BlogChangerDiv = styled.div`
   font: 15px ${(props) => props.theme.fonts.sansSerif};
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   margin-top: 20px;
 
   @media (max-width: 825px) {
     width: 95vw;
-    padding-left: 15px;
-    padding-right: 15px;
+    margin-left: 15px;
   }
 `;
 

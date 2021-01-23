@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const sharedTitle = `
+export const ThemedTitle = styled.div`
   width: -moz-fit-content;
   width: -webkit-fit-content;
   width: fit-content;
@@ -29,13 +29,13 @@ export const sharedTitle = `
     background-position: left 10px top 25px;
     height: 50px;
   }
+
+  font: bold 60px ${({ theme }) => theme.fonts.sansSerifAlt};
+  background-position: left 19px top 40px;
 `;
 
-export const Title = styled.pre`
-  ${sharedTitle}
+export const Title = styled(ThemedTitle).attrs({ as: "pre" })`
   height: 75px;
-  font: bold 60px Montserrat, sans-serif;
-  background-position: left 19px top 40px;
   margin-left: -9px;
   margin-bottom: 50px;
 `;
