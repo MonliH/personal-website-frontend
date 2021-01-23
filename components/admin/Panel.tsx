@@ -1,50 +1,34 @@
 import styled from "styled-components";
 
-import Loading from "@components/Loading";
-import { BlogSummaryList } from "@components/blog/BlogHome";
-
+import BlogsDashboard, {
+  BlogPanelProps,
+} from "@components/admin/BlogsDashboard";
+import ContactsDashboard from "@components/admin/ContactsDashboard";
 import { useAuth } from "@contexts/authContext";
-
-import { BlogEntryPreview } from "@lib/blog";
-import redirect from "@lib/redirect";
 
 const Title = styled.h1`
   font-family: ${({ theme }) => theme.fonts.sansSerif};
 `;
 
-const SubTitle = styled.div`
+export const SubTitle = styled.div`
   font-family: ${({ theme }) => theme.fonts.sansSerif};
 `;
 
-const PanelButton = styled.button``;
+export const PanelButton = styled.button``;
 
-interface PanelProps {
-  loading: boolean;
-  blogEntries: Array<BlogEntryPreview>;
-}
-
-const Panel = (p: PanelProps) => {
+const Panel = (p: BlogPanelProps) => {
   const { setAuthData } = useAuth();
 
   const onLogOut = () => {
     setAuthData!(undefined);
   };
 
-  const newBlog = () => {
-    redirect("/admin/new");
-  };
-
   return (
     <>
       <Title>Admin Panel</Title>
       <PanelButton onClick={onLogOut}>Log Out</PanelButton>
-      <SubTitle>Blogs</SubTitle>
-      <PanelButton onClick={newBlog}>New Post</PanelButton>
-      {p.loading ? (
-        <Loading />
-      ) : (
-        <BlogSummaryList blogEntries={p.blogEntries} prefix="/admin/blog/" />
-      )}
+      <BlogsDashboard blogEntries={p.blogEntries} loading={p.loading} />
+      <ContactsDashboard />
     </>
   );
 };

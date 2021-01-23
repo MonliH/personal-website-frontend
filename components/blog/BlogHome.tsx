@@ -56,7 +56,7 @@ const BlogHeaderWrapper = styled.div`
 const BlogTitle = styled.a`
   font: 600 25px ${(props) => props.theme.fonts.sansSerif};
   width: 600px;
-  line-height: 1.1;
+  line-height: 1.4;
 
   @media (max-width: 825px) {
     width: 95vw;
@@ -65,7 +65,7 @@ const BlogTitle = styled.a`
 
 const StyledBlogTime = styled.div`
   font: 15px ${(props) => props.theme.fonts.sansSerifBody};
-  margin-top: 10px;
+  margin-top: 5px;
 `;
 
 export const BlogDate = ({ date }: { date: Date }) => {
