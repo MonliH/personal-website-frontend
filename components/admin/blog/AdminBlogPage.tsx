@@ -1,7 +1,5 @@
-import Link from "next/link";
 import { FormEvent, ComponentType, useEffect, useState } from "react";
 
-import Router from "next/router";
 import dynamic from "next/dynamic";
 
 import styled from "styled-components";
@@ -9,11 +7,15 @@ import { IAceEditorProps } from "react-ace";
 
 import Loading from "@components/Loading";
 import Bg from "@components/Bg";
+import { Button, RedButton, InputWrapper, Input } from "@components/Inputs";
+import { WrapperHorizontalCenterRow } from "@components/Wrapper";
+import AdminPanelLink from "@components/admin/AdminPanelLink";
 
 import { useAuth } from "@contexts/authContext";
 
-import { BlogEntryAdmin } from "@lib/blog";
-import changePost from "@lib/upsertPost";
+import { BlogEntryAdmin } from "@lib/blog_api/blog";
+import changePost from "@lib/blog_api/upsertPost";
+import redirect from "@lib/redirect";
 
 import theme from "@styles/theme";
 
@@ -37,6 +39,8 @@ const ChangeBlogLabel = styled.label`
 
 const AdminPanelWrapper = styled.div`
   font-family: ${({ theme: t }) => t.fonts.sansSerif};
+  margin-top: 20px;
+  margin-left: 20px;
 `;
 
 const AdminBlogPage = ({
@@ -47,14 +51,9 @@ const AdminBlogPage = ({
   showUrl?: boolean;
 }) => {
   const [revisedBlog, setRevisedBlog] = useState<null | BlogEntryAdmin>(null);
-  const [isAuthed, setIsAuthed] = useState(false);
   const [message, setMessage] = useState("");
 
   const { auth } = useAuth();
-
-  useEffect(() => {
-    setIsAuthed(true);
-  }, [auth]);
 
   useEffect(() => {
     setRevisedBlog(blog);
@@ -69,69 +68,69 @@ const AdminBlogPage = ({
       } else {
         setMessage("Failed to change blog");
       }
-    } else {
-      setIsAuthed(false);
     }
   };
 
-  if (!isAuthed) {
-    return <Loading />;
-  }
   if (blog && revisedBlog) {
     return (
       <Bg altColor>
         <AdminPanelWrapper>
-          <Link href="/admin/" passHref>
-            <a>Admin Panel</a>
-          </Link>
-          <button
-            type="button"
-            onClick={() => {
-              Router.replace(`/admin/${Router.query.blogUrl}/delete`);
-            }}
-          >
-            DELETE
-          </button>
+          <AdminPanelLink />
           <form onSubmit={onFormSubmit}>
-            <ChangeBlogLabel>Title</ChangeBlogLabel>
-            <input
-              type="text"
-              value={revisedBlog.title}
-              onChange={(e: FormEvent) => {
-                setRevisedBlog({
-                  ...revisedBlog,
-                  title: (e.target as HTMLInputElement).value,
-                } as BlogEntryAdmin);
+            <Button as="input" type="submit" value="Apply Changes" />
+            <RedButton
+              type="button"
+              onClick={() => {
+                redirect(`/admin/blog/${blog.url}/delete`);
               }}
-            />
-            <ChangeBlogLabel>Date</ChangeBlogLabel>
-            <input
-              type="date"
-              value={revisedBlog.date.toISOString().split("T")[0]}
-              onChange={(e: FormEvent) => {
-                setRevisedBlog({
-                  ...revisedBlog,
-                  date: new Date((e.target as HTMLInputElement).value),
-                });
-              }}
-            />
-            {showUrl ? (
-              <>
-                <ChangeBlogLabel>URL</ChangeBlogLabel>
-                <input
+            >
+              DELETE THIS POST
+            </RedButton>
+            <WrapperHorizontalCenterRow>
+              <InputWrapper>
+                <ChangeBlogLabel>Title</ChangeBlogLabel>
+                <Input
                   type="text"
-                  value={revisedBlog.url}
+                  value={revisedBlog.title}
                   onChange={(e: FormEvent) => {
                     setRevisedBlog({
                       ...revisedBlog,
-                      url: (e.target as HTMLInputElement).value,
+                      title: (e.target as HTMLInputElement).value,
                     } as BlogEntryAdmin);
                   }}
                 />
-              </>
-            ) : (
-              <></>
-            )}
+              </InputWrapper>
+              <InputWrapper>
+                <ChangeBlogLabel>Date</ChangeBlogLabel>
+                <Input
+                  type="date"
+                  value={revisedBlog.date.toISOString().split("T")[0]}
+                  onChange={(e: FormEvent) => {
+                    setRevisedBlog({
+                      ...revisedBlog,
+                      date: new Date((e.target as HTMLInputElement).value),
+                    });
+                  }}
+                />
+              </InputWrapper>
+              {showUrl ? (
+                <InputWrapper>
+                  <ChangeBlogLabel>URL</ChangeBlogLabel>
+                  <Input
+                    type="text"
+                    value={revisedBlog.url}
+                    onChange={(e: FormEvent) => {
+                      setRevisedBlog({
+                        ...revisedBlog,
+                        url: (e.target as HTMLInputElement).value,
+                      } as BlogEntryAdmin);
+                    }}
+                  />
+                </InputWrapper>
+              ) : (
+                <></>
+              )}
+            </WrapperHorizontalCenterRow>
             <ChangeBlogLabel>Markdown</ChangeBlogLabel>
             <AceEditor
               mode="markdown"
@@ -145,11 +144,10 @@ const AdminBlogPage = ({
                 } as BlogEntryAdmin);
               }}
               keyboardHandler="vim"
-              width="100%"
+              width="calc(100% - 20px)"
               height="80vh"
               fontSize={16}
             />
-            <input type="submit" value="Change" />
             <ChangeBlogLabel>{message}</ChangeBlogLabel>
           </form>
         </AdminPanelWrapper>

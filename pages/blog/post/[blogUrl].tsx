@@ -7,8 +7,8 @@ import Loading from "@components/Loading";
 
 import theme from "@styles/theme";
 
-import { getAllUrls, getBlogPostDisplay } from "@lib/fetchBlog";
-import { BlogEntryDisplay } from "@lib/blog";
+import { getAllUrls, getBlogPostDisplay } from "@lib/blog_api/fetchBlog";
+import { BlogEntryDisplay } from "@lib/blog_api/blog";
 import { fromUnixTimestamp, toUnixTimestamp } from "@lib/date";
 
 const Post = ({ blog }: { blog: BlogEntryDisplay }) => {

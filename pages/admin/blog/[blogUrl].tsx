@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 
 import Layout from "@components/Layout";
-import EditPost from "@components/admin/EditPost";
+import EditPost from "@components/admin/blog/EditPost";
 import { withProtect } from "@contexts/authContext";
 
 import theme from "@styles/theme";

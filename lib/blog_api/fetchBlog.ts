@@ -5,7 +5,7 @@ import {
   intoBlogEntryDisplay,
   BlogEntryAdmin,
   intoBlogEntryAdmin,
-} from "@lib/blog";
+} from "@lib/blog_api/blog";
 import API_DOMAIN from "@lib/API_DOMAIN";
 
 export const getNumPosts = async (): Promise<number> => {
@@ -18,7 +18,7 @@ export const getNumPosts = async (): Promise<number> => {
 
 export const getAllUrls = async (): Promise<Array<string>> => {
   const entriesRes = await fetch(`${API_DOMAIN}/blog/all_urls`);
-  const entries: Array<string> = JSON.parse(await entriesRes.text());
+  const entries: Array<string> = await entriesRes.json();
 
   return entries;
 };
@@ -28,8 +28,8 @@ export const getRange = async (
   end: number
 ): Promise<Array<BlogEntryPreview>> => {
   const entriesRes = await fetch(`${API_DOMAIN}/blog/entries/${start}/${end}`);
-  const entries: Array<BlogEntryPreview> = JSON.parse(
-    await entriesRes.text()
+  const entries: Array<BlogEntryPreview> = (
+    await entriesRes.json()
   ).map((entry: any) => intoBlogEntryPreview(entry));
   return entries;
 };
@@ -53,8 +53,7 @@ export const getBlogPostDisplay = async (
   blogUrl: string
 ): Promise<BlogEntryDisplay> => {
   const res = await fetch(`${API_DOMAIN}/blog/entry/display/${blogUrl}`);
-  const text = await res.text();
-  const blogContents = intoBlogEntryDisplay(JSON.parse(text));
+  const blogContents = intoBlogEntryDisplay(await res.json());
   return blogContents;
 };
 
@@ -62,6 +61,6 @@ export const getBlogPostAdmin = async (
   blogUrl: string
 ): Promise<BlogEntryAdmin> => {
   const res = await fetch(`${API_DOMAIN}/blog/entry/admin/${blogUrl}`);
-  const blogContents = intoBlogEntryAdmin(JSON.parse(await res.text()));
+  const blogContents = intoBlogEntryAdmin(await res.json());
   return blogContents;
 };

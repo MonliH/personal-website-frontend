@@ -4,7 +4,7 @@ import BlogHeader from "@components/blog/BlogHeader";
 import Loading from "@components/Loading";
 import { BlogDate } from "@components/blog/BlogHome";
 
-import { BlogEntryDisplay } from "@lib/blog";
+import { BlogEntryDisplay } from "@lib/blog_api/blog";
 
 const BlogPageWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.lightBg};

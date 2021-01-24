@@ -1,6 +1,6 @@
 import useBlogPostAdmin from "@hooks/useBlogPostAdmin";
 
-import AdminBlogPage from "@components/admin/AdminBlogPage";
+import AdminBlogPage from "@components/admin/blog/AdminBlogPage";
 import Loading from "@components/Loading";
 import Bg from "@components/Bg";
 

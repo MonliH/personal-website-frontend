@@ -8,7 +8,8 @@ export default styled.div`
     altColor?: boolean;
     theme: DefaultTheme;
   }) => (altColor ? theme.colors.lightBg : theme.colors.darkBg)};
-  height: 100%;
+  min-height: 100%;
+  height: fit-content;
   width: 100%;
   position: absolute;
 `;

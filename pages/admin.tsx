@@ -1,15 +1,24 @@
+import { Dispatch, useReducer } from "react";
 import styled from "styled-components";
 
 import Layout from "@components/Layout";
-import BlogPageChanger from "@components/blog/BlogPageChanger";
+import PageChanger from "@components/PageChanger";
 import Panel from "@components/admin/Panel";
 import Bg from "@components/Bg";
 
-import useBlogEntries from "@hooks/useBlogEntries";
-
-import { postsPerPage } from "@pages/blog/[pageNo]";
-
-import { withProtect } from "@contexts/authContext";
+import usePaged from "@hooks/usePaged";
+import { postsPerPage as blogPostsPerPage } from "@pages/blog/[pageNo]";
+import { withProtect, useAuth } from "@contexts/authContext";
+import { BlogEntryPreview } from "@lib/blog_api/blog";
+import { getPreviewPage } from "@lib/blog_api/fetchBlog";
+import Contact from "@lib/contact_api/form";
+import { getContactsPage } from "@lib/contact_api/fetchContacts";
+import pagedReducer, {
+  PAGED_INITAL_STATE,
+  PagedAction,
+  PagedState,
+  PagedActionTypes,
+} from "@reducers/pagedReducer";
 
 import theme from "@styles/theme";
 
@@ -23,8 +32,21 @@ const BlogPageButton = styled.button`
 `;
 
 const Admin = () => {
-  const [pages, pageNo, setPageNo, blogEntries, loading] = useBlogEntries(
-    postsPerPage
+  const { auth } = useAuth();
+  const [blogState, blogDispatch] = useReducer(
+    pagedReducer,
+    PAGED_INITAL_STATE
+  ) as [PagedState<BlogEntryPreview>, Dispatch<PagedAction<BlogEntryPreview>>];
+
+  usePaged(blogPostsPerPage, blogState.pageNo, blogDispatch, getPreviewPage);
+
+  const [contactState, contactDispatch] = useReducer(
+    pagedReducer,
+    PAGED_INITAL_STATE
+  ) as [PagedState<Contact>, Dispatch<PagedAction<Contact>>];
+
+  usePaged(blogPostsPerPage, contactState.pageNo, contactDispatch, (...args) =>
+    getContactsPage(auth.key, ...args)
   );
 
   return (
@@ -34,19 +56,30 @@ const Admin = () => {
       theme={theme.colors.lightBg}
     >
       <Bg altColor>
-        <BlogPageChanger
-          currentPage={pageNo + 1}
-          CustomSetter={({ style, pageNo: newPageNo }) => (
-            <BlogPageButton
-              onClick={() => setPageNo(newPageNo - 1)}
-              style={style}
-            >
-              {newPageNo}
-            </BlogPageButton>
-          )}
-          totalPages={pages}
-        />
-        <Panel loading={loading} blogEntries={blogEntries} />
+        <Panel
+          blogLoading={blogState.loading}
+          contactsLoading={contactState.loading}
+          blogEntries={blogState.entries}
+          contacts={contactState.entries}
+        >
+          <PageChanger
+            currentPage={blogState.pageNo + 1}
+            CustomSetter={({ style, pageNo: newPageNo }) => (
+              <BlogPageButton
+                onClick={() =>
+                  blogDispatch({
+                    type: PagedActionTypes.SET_PAGE_NO,
+                    pageNo: newPageNo - 1,
+                  })
+                }
+                style={style}
+              >
+                {newPageNo}
+              </BlogPageButton>
+            )}
+            totalPages={blogState.pages}
+          />
+        </Panel>
       </Bg>
     </Layout>
   );

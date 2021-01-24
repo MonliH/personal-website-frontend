@@ -1,6 +1,6 @@
 import Layout from "@components/Layout";
-import AdminBlogPage from "@components/admin/AdminBlogPage";
-import { defaultBlog } from "@lib/blog";
+import AdminBlogPage from "@components/admin/blog/AdminBlogPage";
+import { defaultBlog } from "@lib/blog_api/blog";
 import { withProtect } from "@contexts/authContext";
 import theme from "@styles/theme";
 

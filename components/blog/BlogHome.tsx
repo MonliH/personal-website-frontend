@@ -3,14 +3,12 @@ import { forwardRef, ForwardedRef } from "react";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 
-import BlogPageChanger, {
-  ChangerProps,
-} from "@components/blog/BlogPageChanger";
+import PageChanger, { ChangerProps } from "@components/PageChanger";
 import BlogHeader from "@components/blog/BlogHeader";
 import Loading from "@components/Loading";
 import { WrapperCenterColumn } from "@components/Wrapper";
 
-import { BlogEntryPreview } from "@lib/blog";
+import { BlogEntryPreview } from "@lib/blog_api/blog";
 
 const BlogHomeWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.lightBg};
@@ -153,7 +151,7 @@ const BlogHome = ({
             <Loading />
           ) : (
             <>
-              <BlogPageChanger
+              <PageChanger
                 currentPage={currentPage}
                 totalPages={totalPages}
                 CustomSetter={CustomSetter}
@@ -168,7 +166,7 @@ const BlogHome = ({
                 visible ? (
                   <></>
                 ) : (
-                  <BlogPageChanger
+                  <PageChanger
                     currentPage={currentPage}
                     totalPages={totalPages}
                     CustomSetter={CustomSetter}

@@ -12,7 +12,7 @@ export interface ChangerProps {
   CustomSetter: CustomSetter;
 }
 
-const BlogPageChange = ({
+const SiglePageChange = ({
   pageNo,
   bold,
   CustomSetter,
@@ -29,7 +29,7 @@ const BlogPageChange = ({
   );
 };
 
-const BlogChangerDiv = styled.div`
+const PageChangerDiv = styled.div`
   font: 15px ${(props) => props.theme.fonts.sansSerif};
   margin-bottom: 30px;
   margin-top: 20px;
@@ -44,17 +44,17 @@ const PageText = styled.b`
   margin-right: 8px;
 `;
 
-const BlogPageChanger = ({
+const PageChanger = ({
   totalPages,
   currentPage,
   CustomSetter,
 }: ChangerProps) => {
   return (
-    <BlogChangerDiv>
+    <PageChangerDiv>
       <PageText>Page</PageText>
       {[...Array(totalPages).keys()].map((i: number) => {
         return (
-          <BlogPageChange
+          <SiglePageChange
             key={i}
             pageNo={i}
             bold={currentPage === i + 1}
@@ -62,8 +62,8 @@ const BlogPageChanger = ({
           />
         );
       })}
-    </BlogChangerDiv>
+    </PageChangerDiv>
   );
 };
 
-export default BlogPageChanger;
+export default PageChanger;

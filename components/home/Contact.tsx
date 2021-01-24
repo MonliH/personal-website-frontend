@@ -1,7 +1,7 @@
 import { ForwardedRef, useState, forwardRef } from "react";
 import { animated, useSpring } from "react-spring";
 
-import submit from "@lib/form";
+import submit from "@lib/contact_api/submitForm";
 import { WrapperCenterRow, WrapperInner } from "@components/Wrapper";
 import { Title } from "@components/Title";
 
@@ -88,7 +88,7 @@ const ContactButtonLabel = styled.div`
 const SendButton = styled(animated.button)`
   width: 110px;
   height: 40px;
-  border: 2px solid;
+  border: 1px solid;
   color: white;
   background-color: #1d1d1d;
   background-color: rgba(0, 0, 0, 0);

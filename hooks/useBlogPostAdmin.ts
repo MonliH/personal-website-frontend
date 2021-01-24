@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 
-import { BlogEntryAdmin } from "@lib/blog";
-import { getBlogPostAdmin } from "@lib/fetchBlog";
+import { BlogEntryAdmin } from "@lib/blog_api/blog";
+import { getBlogPostAdmin } from "@lib/blog_api/fetchBlog";
 
-const useBlogPost = (blogUrl: string): null | BlogEntryAdmin => {
+const useBlogPostAdmin = (blogUrl: string): null | BlogEntryAdmin => {
   const [blog, setBlog] = useState<BlogEntryAdmin | null>(null);
 
   useEffect(() => {
@@ -13,4 +13,4 @@ const useBlogPost = (blogUrl: string): null | BlogEntryAdmin => {
   return blog;
 };
 
-export default useBlogPost;
+export default useBlogPostAdmin;

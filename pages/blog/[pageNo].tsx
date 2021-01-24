@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import Layout from "@components/Layout";
 import BlogHome, { BlogHomeProps } from "@components/blog/BlogHome";
-import { getPreviewPage, getNumPosts } from "@lib/fetchBlog";
+import { getPreviewPage, getNumPosts } from "@lib/blog_api/fetchBlog";
 import { fromUnixTimestamp, toUnixTimestamp } from "@lib/date";
 import theme from "@styles/theme";
 

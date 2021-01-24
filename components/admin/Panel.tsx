@@ -1,22 +1,36 @@
 import styled from "styled-components";
 
 import BlogsDashboard, {
-  BlogPanelProps,
-} from "@components/admin/BlogsDashboard";
-import ContactsDashboard from "@components/admin/ContactsDashboard";
+  BlogDashboardProps,
+} from "@components/admin/blog/BlogsDashboard";
+import ContactsDashboard, {
+  ContactDashboardProps,
+} from "@components/admin/contact/ContactsDashboard";
+import { Row } from "@components/Wrapper";
+import { Button } from "@components/Inputs";
+
 import { useAuth } from "@contexts/authContext";
 
-const Title = styled.h1`
-  font-family: ${({ theme }) => theme.fonts.sansSerif};
+const PlainTitle = styled.div`
+  font: bold 70px ${({ theme }) => theme.fonts.sansSerif};
 `;
 
-export const SubTitle = styled.div`
-  font-family: ${({ theme }) => theme.fonts.sansSerif};
+export const DashboardMargin = styled.div`
+  margin-bottom: 50px;
 `;
 
-export const PanelButton = styled.button``;
+export const DashboardWrapper = styled.div`
+  margin-left: 50px;
+  margin-top: 50px;
+`;
 
-const Panel = (p: BlogPanelProps) => {
+const Panel = ({
+  blogEntries,
+  blogLoading,
+  contacts,
+  contactsLoading,
+  children,
+}: BlogDashboardProps & ContactDashboardProps) => {
   const { setAuthData } = useAuth();
 
   const onLogOut = () => {
@@ -24,12 +38,21 @@ const Panel = (p: BlogPanelProps) => {
   };
 
   return (
-    <>
-      <Title>Admin Panel</Title>
-      <PanelButton onClick={onLogOut}>Log Out</PanelButton>
-      <BlogsDashboard blogEntries={p.blogEntries} loading={p.loading} />
-      <ContactsDashboard />
-    </>
+    <DashboardWrapper>
+      <DashboardMargin>
+        <PlainTitle>Admin Panel</PlainTitle>
+        <Button onClick={onLogOut}>Log Out</Button>
+      </DashboardMargin>
+      <Row>
+        <BlogsDashboard blogEntries={blogEntries} blogLoading={blogLoading}>
+          {children}
+        </BlogsDashboard>
+        <ContactsDashboard
+          contacts={contacts}
+          contactsLoading={contactsLoading}
+        />
+      </Row>
+    </DashboardWrapper>
   );
 };
 

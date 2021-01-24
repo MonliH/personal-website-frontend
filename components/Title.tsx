@@ -39,3 +39,8 @@ export const Title = styled(ThemedTitle).attrs({ as: "pre" })`
   margin-left: -9px;
   margin-bottom: 50px;
 `;
+
+export const SubTitle = styled.div`
+  font: 30px ${({ theme }) => theme.fonts.sansSerif};
+  margin-bottom: 10px;
+`;

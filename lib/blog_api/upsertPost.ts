@@ -1,5 +1,5 @@
 import API_DOMAIN from "@lib/API_DOMAIN";
-import { BlogEntryAdmin, intoBlogEntryBackend } from "@lib/blog";
+import { BlogEntryAdmin, intoBlogEntryBackend } from "@lib/blog_api/blog";
 
 const changePost = async (key: string, newPost: BlogEntryAdmin) => {
   const requestOptions = {

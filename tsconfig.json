@@ -22,6 +22,7 @@
       "@contexts/*": ["contexts/*"],
       "@lib/*": ["lib/*"],
       "@hooks/*": ["hooks/*"],
+      "@reducers/*": ["reducers/*"],
       "@public/*": ["public/*"]
     }
   },

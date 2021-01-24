@@ -7,8 +7,16 @@ export const WrapperCenterColumn = styled.div`
   flex-direction: column;
 `;
 
-export const WrapperCenterRow = styled.div`
+export const Row = styled.div`
   display: flex;
+  flex-direction: row;
+`;
+
+export const WrapperHorizontalCenterRow = styled(Row)`
+  align-items: center;
+`;
+
+export const WrapperCenterRow = styled(Row)`
   align-items: center;
   justify-content: center;
 `;
