@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Contact from "@lib/contact_api/form";
 
 import Bg from "@components/Bg";
-import { SubTitle } from "@components/Title";
+import { SubTitle, LargeCode } from "@components/Title";
 import { DashboardWrapper } from "@components/admin/Panel";
 import AdminPanelLink from "@components/admin/AdminPanelLink";
 import { RedButton } from "@components/Inputs";
@@ -24,7 +24,6 @@ const ContactPage = ({ contact }: { contact: Contact }) => {
     <Bg altColor>
       <DashboardWrapper>
         <AdminPanelLink />
-
         <RedButton
           type="button"
           onClick={() => {
@@ -33,7 +32,10 @@ const ContactPage = ({ contact }: { contact: Contact }) => {
         >
           DELETE THIS MESSAGE
         </RedButton>
-        <SubTitle>A Message From {contact.senderName}</SubTitle>
+        <SubTitle>
+          A Message From {contact.senderName} (
+          <LargeCode>{contact.email}</LargeCode>)
+        </SubTitle>
         <Date>{contact.datetime.toLocaleString()}</Date>
         <ContactContents>{contact.contents}</ContactContents>
       </DashboardWrapper>

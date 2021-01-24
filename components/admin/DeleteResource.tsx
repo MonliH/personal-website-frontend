@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Bg from "@components/Bg";
 import { Button, RedButton } from "@components/Inputs";
 
-import { SubTitle } from "@components/Title";
+import { SubTitle, LargeCode } from "@components/Title";
 
 import redirect from "@lib/redirect";
 
@@ -24,8 +24,7 @@ const DeleteResource = ({
     <Bg altColor>
       <DeleteWrapper>
         <SubTitle>
-          Are you sure you want to delete{" "}
-          <code style={{ fontSize: "23px" }}>{resourceName}</code>?
+          Are you sure you want to delete <LargeCode>{resourceName}</LargeCode>?
         </SubTitle>
         <Button
           type="button"

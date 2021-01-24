@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const LargeCode = styled.code`
+  font-size: 23px;
+`;
+
 export const ThemedTitle = styled.div`
   width: -moz-fit-content;
   width: -webkit-fit-content;
