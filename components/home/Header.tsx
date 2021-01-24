@@ -165,7 +165,11 @@ const Header = ({
 
   const linksLeft: Array<JSX.Element> = [];
   linksLeft.push(
-    <HeaderClose onClick={() => setNavOn(false)} aria-label="Close Menu">
+    <HeaderClose
+      onClick={() => setNavOn(false)}
+      aria-label="Close Menu"
+      key="close-menu"
+    >
       <HeaderImage as="div">
         <ArrowLeft width={27} height={27} color="white" />
       </HeaderImage>
