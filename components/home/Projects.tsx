@@ -36,6 +36,9 @@ const tagColor = (tag: Tag) => {
     case Tag.ML: {
       return "#f922eb";
     }
+    case Tag.CS: {
+      return "#178600";
+    }
     default: {
       return "#ffffff";
     }
@@ -106,8 +109,9 @@ const CardWrapperDiv = styled.div`
 `;
 
 const ProjectCard = (p: ProjectCardProps) => {
-  const tags = p.project.tags.map((tag) => (
-    <ProjectTag key={`${tag}-${p.project.displayName}`}>
+  const { project, cardw, cardh } = p;
+  const tags = project.tags.map((tag) => (
+    <ProjectTag key={`${tag}-${project.displayName}`}>
       <ProjectCircle style={{ backgroundColor: tagColor(tag as Tag) }} />
       {tag as string}
     </ProjectTag>
@@ -129,8 +133,8 @@ const ProjectCard = (p: ProjectCardProps) => {
   return (
     <ProjectCardStyled
       style={{
-        width: p.cardw,
-        height: p.cardh,
+        width: cardw,
+        height: cardh,
         // FIXME: Make sure to remove the `as any` cast after
         // https://github.com/react-spring/react-spring/issues/1102 is fixed
         boxShadow: anim.boxShadow.to(
@@ -144,13 +148,13 @@ const ProjectCard = (p: ProjectCardProps) => {
       <div>
         <ProjectTags>{tags}</ProjectTags>
         <AnimatedProjectLink
-          href={p.project.link}
+          href={project.link}
           rel="noopener noreferrer"
           target="_blank"
         >
-          {p.project.displayName}
+          {project.displayName}
         </AnimatedProjectLink>
-        <ProjectText>{p.project.description}</ProjectText>
+        <ProjectText>{project.description}</ProjectText>
       </div>
     </ProjectCardStyled>
   );
@@ -173,8 +177,9 @@ const ProjectGridStyled = styled(animated.div)`
 `;
 
 const ProjectGridAnimated = (p: ProjectGridProps) => {
+  const { width: pWidth, visible, items } = p;
   // Calculate on client side
-  const width = p.width * 0.7;
+  const width = pWidth * 0.7;
 
   // Approximate the number of comlumns (without margin)
   const approxCols = Math.floor(width / cardDimensions.width) || 1;
@@ -189,7 +194,7 @@ const ProjectGridAnimated = (p: ProjectGridProps) => {
 
   let counterCol = 0;
   let counterRow = 0;
-  const gridItems: Array<ProjectPosition> = p.items.map((child, i) => {
+  const gridItems: Array<ProjectPosition> = items.map((child, i) => {
     counterCol += 1;
 
     if (i % columns === 0) {
@@ -220,16 +225,16 @@ const ProjectGridAnimated = (p: ProjectGridProps) => {
       opacity: 0,
     }),
     enter: ({ xy }) => ({
-      xy: p.visible ? xy : [0, 0],
+      xy: visible ? xy : [0, 0],
       width: cardDimensions.width,
       height: cardDimensions.height,
-      opacity: p.visible ? 1 : 0,
+      opacity: visible ? 1 : 0,
     }),
     update: ({ xy }) => ({
-      xy: p.visible ? xy : [0, 0],
+      xy: visible ? xy : [0, 0],
       width: cardDimensions.width,
       height: cardDimensions.height,
-      opacity: p.visible ? 1 : 0,
+      opacity: visible ? 1 : 0,
     }),
     leave: { height: 0, opacity: 0 },
     config: { mass: 5, tension: 500, friction: 100 },
@@ -353,5 +358,7 @@ const Projects = forwardRef(
     );
   }
 );
+
+Projects.displayName = "Projects";
 
 export default Projects;

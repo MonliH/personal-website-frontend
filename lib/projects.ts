@@ -3,6 +3,7 @@ export enum Tag {
   Typescript = "Typescript",
   Rust = "Rust",
   Python = "Python",
+  CS = "C#",
 
   // Libraries/frameworks
   React = "React",
@@ -19,66 +20,66 @@ export interface Project {
 
 export const projectList: Array<Project> = [
   {
-    displayName: "fluo-lang",
+    displayName: "lulz",
     rank: 0,
-    link: "https://github.com/fluo-lang/fluoc",
+    link: "https://github.com/MonliH/lulz",
     tags: [Tag.Rust],
-    description: "a compiled programming language",
+    description: "a fast and spec-compliant LOLCODE implementation",
   },
 
   {
     displayName: "personal-website",
-    rank: 2,
+    rank: 1,
     link: "https://github.com/MonliH/personal-website",
     tags: [Tag.Typescript, Tag.React],
     description: "you're looking at it right now",
   },
 
   {
-    displayName: "iNNteractive",
-    rank: 3,
-    link: "https://github.com/MonliH/iNNteractive",
-    tags: [Tag.Python, Tag.ML],
-    description: "interactive neural networks behind a GUI",
-  },
-
-  {
-    displayName: "emu-rs",
-    rank: 4,
-    link: "https://github.com/MonliH/emurs",
+    displayName: "crabfish",
+    rank: 2,
+    link: "https://github.com/MonliH/crabfish",
     tags: [Tag.Rust],
-    description: "an emulator for the 8080 microprocessor",
+    description: "a chess engine in rust",
   },
 
   {
-    displayName: "pyarkovchain",
-    rank: 5,
-    link: "https://github.com/MonliH/pyarkovchain",
-    tags: [Tag.Python],
-    description: "a markov chain library",
+    displayName: "issuebase",
+    rank: 3,
+    link: "https://github.com/MonliH/issuebase",
+    tags: [Tag.Typescript, Tag.Rust, Tag.React],
+    description: " list good first issues in popular github repositories ",
+  },
+
+  {
+    displayName: "zircon",
+    rank: 4,
+    link: "https://github.com/MonliH/zircon",
+    tags: [Tag.CS],
+    description: "an interpreted and purely functional toy language",
   },
 
   {
     displayName: "four-ai",
-    rank: 6,
+    rank: 5,
     link: "https://github.com/MonliH/four-ai",
     tags: [Tag.Rust, Tag.ML],
     description: "connect four neural networks",
   },
 
   {
-    displayName: "audioify",
-    rank: 7,
-    link: "https://github.com/MonliH/audioify",
-    tags: [Tag.Typescript, Tag.React, Tag.Rust],
-    description: "generate music from code",
+    displayName: "emu-rs",
+    rank: 6,
+    link: "https://github.com/MonliH/emurs",
+    tags: [Tag.Rust],
+    description: "an emulator for the 8080 microprocessor",
   },
 
   {
-    displayName: "neutron-lang",
-    rank: 8,
-    link: "https://github.com/the-neutron-foundation/neutron-language",
-    tags: [Tag.Python],
-    description: "an interpreted programming language",
+    displayName: "iNNteractive",
+    rank: 7,
+    link: "https://github.com/MonliH/iNNteractive",
+    tags: [Tag.Python, Tag.ML],
+    description: "interactive neural networks behind a GUI",
   },
 ];

@@ -86,6 +86,7 @@ const AdminBlogPage = ({
             >
               DELETE THIS POST
             </RedButton>
+            <ChangeBlogLabel>{message}</ChangeBlogLabel>
             <WrapperHorizontalCenterRow>
               <InputWrapper>
                 <ChangeBlogLabel>Title</ChangeBlogLabel>
@@ -148,7 +149,6 @@ const AdminBlogPage = ({
               height="80vh"
               fontSize={16}
             />
-            <ChangeBlogLabel>{message}</ChangeBlogLabel>
           </form>
         </AdminPanelWrapper>
       </Bg>
