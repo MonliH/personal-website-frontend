@@ -2,9 +2,9 @@ import { DefaultTheme } from "styled-components";
 
 const theme: DefaultTheme = {
   colors: {
-    lightBg: "#232323",
-    darkBg: "#1D1D1D",
-    fontColor: "#F6F6F6",
+    lightBg: "#F0F0F0",
+    darkBg: "#F6F6F6",
+    fontColor: "#131313",
   },
   fonts: {
     sansSerif: 'Raleway, "Open Sans", Helvetica, sans-serif',

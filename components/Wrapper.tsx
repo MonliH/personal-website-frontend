@@ -17,6 +17,7 @@ export const WrapperHorizontalCenterRow = styled(Row)`
 `;
 
 export const WrapperCenterRow = styled(Row)`
+  height: 100%;
   align-items: center;
   justify-content: center;
 `;
