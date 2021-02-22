@@ -41,6 +41,9 @@ const Layout = ({
           href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@400;700&display=swap"
           rel="stylesheet"
         />
+        <noscript>
+          <style>{".home-page-no-cursor {cursor: auto !important;}"}</style>
+        </noscript>
       </Head>
       <main>{children}</main>
     </>
