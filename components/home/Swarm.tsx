@@ -5,6 +5,10 @@ import * as COLORS from "nice-color-palettes";
 
 import { CursorState } from "@components/home/Cursor";
 
+const possibleSchemes = [COLORS[0], COLORS[3], COLORS[14]];
+const scheme =
+  possibleSchemes[Math.floor(Math.random() * possibleSchemes.length)];
+
 const Swarm = ({
   count,
   setCursor,
@@ -15,7 +19,7 @@ const Swarm = ({
   const [hover, setHover] = useState<null | number>(null);
   const tempColor = new THREE.Color();
   const colors = useRef(
-    new Array(count).fill(0).map(() => COLORS[0][Math.floor(Math.random() * 5)])
+    new Array(count).fill(0).map(() => scheme[Math.floor(Math.random() * 5)])
   );
 
   useEffect(() => {

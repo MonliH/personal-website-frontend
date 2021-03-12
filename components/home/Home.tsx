@@ -8,6 +8,7 @@ import styled from "styled-components";
 import { WrapperCenterRow } from "@components/Wrapper";
 import Swarm from "@components/home/Swarm";
 import { CursorState } from "@components/home/Cursor";
+import useWindowSize from "@hooks/useWindowSize";
 
 const cursorOuterRadius = 50;
 
@@ -17,8 +18,9 @@ const CursorOuter = styled(animated.div)`
   height: ${cursorOuterRadius}px;
   background-color: rgba(0, 0, 0, 0);
   border: 1px solid #000000;
-  position: absolute;
+  position: fixed;
   pointer-events: none;
+  z-index: 100;
 `;
 
 const CursorInner = styled.div`
@@ -26,10 +28,11 @@ const CursorInner = styled.div`
   width: 5px;
   height: 5px;
   background-color: #000000;
-  position: absolute;
+  position: fixed;
   top: -5px;
   left: -5px;
   pointer-events: none;
+  z-index: 100;
 `;
 
 const Page = styled.div.attrs({ className: "home-page-no-cursor" })`
@@ -65,6 +68,10 @@ const Transparent = styled.div`
   margin-left: -40vw;
 `;
 
+const Red = styled.span`
+  color: #ff5b5b;
+`;
+
 const defaultCursor = {
   size: 1,
   color: "rgba(0, 0, 0, 0)",
@@ -81,6 +88,7 @@ const HomePage = () => {
   const [glitch, setGlitch] = useState<boolean>(false);
 
   const [outer, setOuter] = useSpring(() => defaultInitCursor);
+  const [, windowHeight] = useWindowSize();
 
   useEffect(() => {
     switch (cursor.kind) {
@@ -115,28 +123,6 @@ const HomePage = () => {
         setOuter({ xy: [x, y] });
       }}
     >
-      <Canvas
-        concurrent
-        style={{ position: "absolute", zIndex: 0 }}
-        gl={{ antialias: false }}
-        camera={{ position: [0, 0, 75], fov: 75, near: 10, far: 150 }}
-      >
-        <ambientLight intensity={0.5} />
-        <pointLight position={[150, 150, 150]} intensity={0.55} castShadow />
-        <Swarm count={150} setCursor={setCursor} />
-        {glitch && (
-          <EffectComposer multisampling={0}>
-            <Glitch
-              delay={[0.1, 0.3]}
-              duration={[0.2, 0.3]}
-              ratio={0.85}
-              mode={GlitchMode.SPORADIC}
-              active
-            />
-            <Noise premultiply blendFunction={BlendFunction.ADD} />
-          </EffectComposer>
-        )}
-      </Canvas>
       <CursorInner ref={mouseRef} />
       <CursorOuter
         style={{
@@ -153,6 +139,34 @@ const HomePage = () => {
         }}
       />
       <Page>
+        <Canvas
+          concurrent
+          shadowMap
+          style={{ position: "absolute", height: windowHeight, zIndex: 0 }}
+          gl={{ antialias: false }}
+          camera={{ position: [0, 0, 75], fov: 75, near: 10, far: 150 }}
+        >
+          <ambientLight intensity={0.7} />
+          <pointLight position={[150, 150, 150]} intensity={1} castShadow />
+          <pointLight
+            position={[-100, -100, -100]}
+            intensity={0.5}
+            castShadow
+          />
+          <Swarm count={150} setCursor={setCursor} />
+          {glitch && (
+            <EffectComposer multisampling={0}>
+              <Glitch
+                delay={[0.1, 0.3]}
+                duration={[0.2, 0.3]}
+                ratio={0.85}
+                mode={GlitchMode.SPORADIC}
+                active
+              />
+              <Noise premultiply blendFunction={BlendFunction.ADD} />
+            </EffectComposer>
+          )}
+        </Canvas>
         <WrapperCenterRow>
           <Transparent>
             <Huge
@@ -174,7 +188,7 @@ const HomePage = () => {
                 setGlitch(true);
                 setCursor({
                   kind: "color",
-                  color: "rgba(0, 69, 255, 0.3)",
+                  color: "rgba(255, 0, 0, 0.3)",
                 });
               }}
               onMouseLeave={() => {
@@ -182,11 +196,18 @@ const HomePage = () => {
                 setCursor({ kind: "default" });
               }}
             >
-              {glitch ? "I break stuff" : "I make stuff"}
+              {glitch ? (
+                <>
+                  I <Red>break</Red> stuff
+                </>
+              ) : (
+                <>I make stuff</>
+              )}
             </Sub>
           </Transparent>
         </WrapperCenterRow>
       </Page>
+      <Page />
     </HomeWrapper>
   );
 };
