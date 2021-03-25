@@ -1,13 +1,13 @@
-import { useState, useMemo, useEffect, useRef } from "react";
+import { useCallback, useState, useMemo, useEffect, useRef } from "react";
 import { useFrame } from "react-three-fiber";
 import * as THREE from "three";
-import * as COLORS from "nice-color-palettes";
+import palettes from "nice-color-palettes";
 
 import { CursorState } from "@components/home/Cursor";
+import throttle from "lodash.throttle";
 
-const possibleSchemes = [COLORS[0], COLORS[3], COLORS[14]];
-const scheme =
-  possibleSchemes[Math.floor(Math.random() * possibleSchemes.length)];
+const scheme = palettes[0];
+const fps = 60;
 
 const Swarm = ({
   count,
@@ -61,45 +61,49 @@ const Swarm = ({
     return temp;
   }, [count]);
 
-  useFrame((state) => {
-    if (mesh.current) {
-      particles.forEach((particle, i) => {
-        const { factor, speed, xFactor, yFactor, zFactor } = particle;
-        let { t } = particle;
-        /* eslint-disable no-param-reassign */
-        particle.t += speed / 2;
-        t = particle.t;
-        const a = Math.cos(t) + Math.sin(t * 1) / 10;
-        const b = Math.sin(t) + Math.cos(t * 2) / 10;
-        const s = Math.max(1.5, Math.cos(t) * 5);
-        particle.mx +=
-          (state.mouse.x * state.viewport.width - particle.mx) * 0.02;
-        particle.my +=
-          (state.mouse.y * state.viewport.height - particle.my) * 0.02;
-        /* eslint-enable no-param-reassign */
-        dummy.position.set(
-          (particle.mx / 10) * a +
-            xFactor +
-            Math.cos((t / 10) * factor) +
-            (Math.sin(t * 1) * factor) / 10,
-          (particle.my / 10) * b +
-            yFactor +
-            Math.sin((t / 10) * factor) +
-            (Math.cos(t * 2) * factor) / 10,
-          (particle.my / 10) * b +
-            zFactor +
-            Math.cos((t / 10) * factor) +
-            (Math.sin(t * 3) * factor) / 10
-        );
-        dummy.scale.set(s, s, s);
-        dummy.updateMatrix();
-        mesh.current.setMatrixAt(i, dummy.matrix);
-        tempColor.set(colors.current[i]).toArray(colorArray, i * 3);
-        mesh.current.geometry.attributes.color.needsUpdate = true;
-      });
-      mesh.current.instanceMatrix.needsUpdate = true;
-    }
-  });
+  const update = useCallback(
+    throttle((state) => {
+      if (mesh.current) {
+        particles.forEach((particle, i) => {
+          const { factor, speed, xFactor, yFactor, zFactor } = particle;
+          let { t } = particle;
+          /* eslint-disable no-param-reassign */
+          particle.t += speed / 2;
+          t = particle.t;
+          const a = Math.cos(t) + Math.sin(t * 1) / 10;
+          const b = Math.sin(t) + Math.cos(t * 2) / 10;
+          const s = Math.max(1.5, Math.cos(t) * 5);
+          particle.mx +=
+            (state.mouse.x * state.viewport.width - particle.mx) * 0.02;
+          particle.my +=
+            (state.mouse.y * state.viewport.height - particle.my) * 0.02;
+          /* eslint-enable no-param-reassign */
+          dummy.position.set(
+            (particle.mx / 10) * a +
+              xFactor +
+              Math.cos((t / 10) * factor) +
+              (Math.sin(t * 1) * factor) / 10,
+            (particle.my / 10) * b +
+              yFactor +
+              Math.sin((t / 10) * factor) +
+              (Math.cos(t * 2) * factor) / 10,
+            (particle.my / 10) * b +
+              zFactor +
+              Math.cos((t / 10) * factor) +
+              (Math.sin(t * 3) * factor) / 10
+          );
+          dummy.scale.set(s, s, s);
+          dummy.updateMatrix();
+          mesh.current.setMatrixAt(i, dummy.matrix);
+          tempColor.set(colors.current[i]).toArray(colorArray, i * 3);
+          mesh.current.geometry.attributes.color.needsUpdate = true;
+        });
+        mesh.current.instanceMatrix.needsUpdate = true;
+      }
+    }, 1000 / fps)
+  );
+
+  useFrame(update);
 
   return (
     <>
@@ -111,7 +115,7 @@ const Swarm = ({
         castShadow
         receiveShadow
       >
-        <sphereBufferGeometry args={[1, 32, 32]} attach="geometry">
+        <sphereBufferGeometry args={[1.5, 26, 26]} attach="geometry">
           <instancedBufferAttribute
             attachObject={["attributes", "color"]}
             args={[colorArray, 3]}

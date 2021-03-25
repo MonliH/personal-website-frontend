@@ -1,14 +1,17 @@
 import { useState, useEffect, useRef } from "react";
 import { to, useSpring, animated } from "react-spring";
 import { Canvas } from "react-three-fiber";
-import { EffectComposer, Noise, Glitch } from "react-postprocessing";
+import { EffectComposer, Noise, Glitch, SSAO } from "react-postprocessing";
 import { GlitchMode, BlendFunction } from "postprocessing";
 import styled from "styled-components";
+import { softShadows } from "@react-three/drei";
 
 import { WrapperCenterRow } from "@components/Wrapper";
 import Swarm from "@components/home/Swarm";
 import { CursorState } from "@components/home/Cursor";
 import useWindowSize from "@hooks/useWindowSize";
+
+softShadows();
 
 const cursorOuterRadius = 50;
 
@@ -143,9 +146,18 @@ const HomePage = () => {
           concurrent
           shadowMap
           style={{ position: "absolute", height: windowHeight, zIndex: 0 }}
-          gl={{ antialias: false }}
+          gl={{ antialias: true }}
           camera={{ position: [0, 0, 75], fov: 75, near: 10, far: 150 }}
         >
+          <EffectComposer multisampling={0}>
+            <SSAO
+              samples={31}
+              radius={20}
+              intensity={40}
+              luminanceInfluence={0.1}
+              color="black"
+            />
+          </EffectComposer>
           <ambientLight intensity={0.7} />
           <pointLight position={[150, 150, 150]} intensity={1} castShadow />
           <pointLight
@@ -153,7 +165,7 @@ const HomePage = () => {
             intensity={0.5}
             castShadow
           />
-          <Swarm count={150} setCursor={setCursor} />
+          <Swarm count={60} setCursor={setCursor} />
           {glitch && (
             <EffectComposer multisampling={0}>
               <Glitch
@@ -207,7 +219,6 @@ const HomePage = () => {
           </Transparent>
         </WrapperCenterRow>
       </Page>
-      <Page />
     </HomeWrapper>
   );
 };
