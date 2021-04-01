@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { to, useSpring, animated } from "react-spring";
 import { Canvas } from "react-three-fiber";
-import { EffectComposer, Noise, Glitch, SSAO } from "react-postprocessing";
+import { EffectComposer, Noise, Glitch } from "react-postprocessing";
 import { GlitchMode, BlendFunction } from "postprocessing";
 import styled from "styled-components";
 import { softShadows } from "@react-three/drei";
@@ -149,15 +149,6 @@ const HomePage = () => {
           gl={{ antialias: true }}
           camera={{ position: [0, 0, 75], fov: 75, near: 10, far: 150 }}
         >
-          <EffectComposer multisampling={0}>
-            <SSAO
-              samples={31}
-              radius={20}
-              intensity={40}
-              luminanceInfluence={0.1}
-              color="black"
-            />
-          </EffectComposer>
           <ambientLight intensity={0.7} />
           <pointLight position={[150, 150, 150]} intensity={1} castShadow />
           <pointLight
