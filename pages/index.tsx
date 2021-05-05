@@ -7,7 +7,7 @@ const Home = () => {
     <Layout
       title="Jonathan Li"
       description="Jonathan's personal website."
-      theme={theme.colors.darkBg}
+      theme={theme.colors.darkerBg}
     >
       <HomePage />
     </Layout>

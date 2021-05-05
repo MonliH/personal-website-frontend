@@ -38,3 +38,17 @@ export const NameTitleWrapper = styled.div`
     padding-top: 100px;
   }
 `;
+
+interface MarginProps {
+  left?: number;
+  right?: number;
+  top?: number;
+  bottom?: number;
+}
+
+export const Margin = styled.div<MarginProps & JSX.IntrinsicElements["div"]>`
+  ${(props) => (props.left ? `margin-left: ${props.left}px;` : "")}
+  ${(props) => (props.right ? `margin-right: ${props.right}px;` : "")}
+  ${(props) => (props.top ? `margin-top: ${props.top}px;` : "")}
+  ${(props) => (props.bottom ? `margin-bottom: ${props.bottom}px;` : "")}
+`;

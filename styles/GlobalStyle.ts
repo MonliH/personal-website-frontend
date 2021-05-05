@@ -10,7 +10,7 @@ html, body, main, #__next {
   margin: 0;
   padding: 0;
   position: relative;
-  min-height: 100vh;
+  height: 100%;
   background-color: ${({ theme }) => theme.colors.darkBg};
   color: ${({ theme }) => theme.colors.fontColor};
 }
