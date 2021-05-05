@@ -196,6 +196,16 @@ const Header = ({
     </Link>
   );
 
+  linksLeft.push(
+    <Link
+      href="https://www.linkedin.com/in/jonathan-x-li"
+      key="linkedin"
+      passHref
+    >
+      <HeaderLinkA>Linkedin</HeaderLinkA>
+    </Link>
+  );
+
   // Github logo
   linksLeft.push(
     <HeaderLinkGithub
