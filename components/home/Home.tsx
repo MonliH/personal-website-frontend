@@ -1,39 +1,44 @@
 import { useRef } from "react";
-import { useSpring } from "react-spring";
-
 import styled from "styled-components";
 
-import { withCursorProvider } from "@contexts/cursorContext";
-import Cursor, {
-  CursorStyle,
-  defaultInitCursor,
-} from "@components/home/Cursor";
-import { colorSize } from "@lib/cursor";
-import { Margin } from "@components/Wrapper";
+import Typed from "@components/home/Typed";
 
 const HomeWrapper = styled.div`
   overflow: hidden;
   position: relative;
   height: 100%;
   background-color: ${({ theme }) => theme.colors.darkerBg};
-  cursor: none;
 `;
 
-const Title = styled.h1`
-  font-size: 200px;
-  font-family: "Monument Extended";
+const SubTitle = styled.h2`
+  font-size: 40px;
+  font-family: "Open Sans", sans-serif;
   font-weight: bold;
-  user-select: none;
   margin: 0;
+  cursor: default;
   padding: 0;
   margin-left: 100px;
   width: fit-content;
 `;
 
+const Title = styled.h1`
+  font-size: 200px;
+  font-family: "Monument Extended", Arial, Roboto, sans-serif;
+  font-weight: black;
+  margin: 0;
+  cursor: default;
+  padding: 0;
+  margin-left: 100px;
+  width: fit-content;
+`;
+
+const TitleWrapper = styled.div`
+  padding: 0;
+  margin-top: 20vh;
+`;
+
 const HomePage = () => {
   const mouseRef = useRef<HTMLDivElement | null>(null);
-
-  const [outer, setOuter] = useSpring(() => defaultInitCursor);
 
   return (
     <>
@@ -46,18 +51,23 @@ const HomePage = () => {
             mouseRef.current.style.left = "0";
             window.requestAnimationFrame(() => {});
           }
-          setOuter.start({ xy: [x, y] });
         }}
       >
-        <Cursor mouseRef={mouseRef} outer={outer} setOuter={setOuter} />
-        <Margin top={300}>
-          <CursorStyle cursor={colorSize("rgba(0, 21, 134, 0.5)", 1.5)}>
-            <Title>Jonathan</Title>
-          </CursorStyle>
-          <CursorStyle cursor={colorSize("rgba(0, 21, 134, 0.5)", 1.5)}>
-            <Title>Li</Title>
-          </CursorStyle>
-        </Margin>
+        <TitleWrapper>
+          <Title>Jonathan</Title>
+          <Title>Li</Title>
+        </TitleWrapper>
+        <SubTitle>
+          i&apos;m a dev interested in{" "}
+          <Typed
+            items={[
+              "building compilers",
+              "deep learning",
+              "functional programming",
+              "web design",
+            ]}
+          />
+        </SubTitle>
       </HomeWrapper>
       <noscript>
         <style>{`
@@ -70,4 +80,4 @@ const HomePage = () => {
   );
 };
 
-export default withCursorProvider(HomePage);
+export default HomePage;

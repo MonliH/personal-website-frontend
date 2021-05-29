@@ -27,15 +27,15 @@ body {
 a {
   font-family: ${(props) => props.theme.fonts.sansSerif};
   font-weight: bold;
-  color: #3071FF;
+  color: #3373FF;
   text-underline-offset: 0.35em;
   cursor: pointer;
   transition: text-decoration-color 0.2s, color 0.2s;
 }
 
 a:hover {
-  color: #004FFF;
-  text-decoration-color: #004FFF;
+  color: #558AFF;
+  text-decoration-color: #558AFF;
 }
 
 .blog-content h1 {
@@ -80,7 +80,7 @@ a:hover {
 
 code {
   font: 500 15px ${({ theme }) => theme.fonts.monospace};
-  background-color: #D2D2D2;
+  background-color: #353535;
   padding: 2px 4px;
   border-radius: 3px;
 }
