@@ -198,7 +198,7 @@ const Header = ({
 
   linksLeft.push(
     <Link
-      href="https://www.linkedin.com/in/jonathan-x-li"
+      href="https://www.linkedin.com/in/jonatli"
       key="linkedin"
       passHref
     >
