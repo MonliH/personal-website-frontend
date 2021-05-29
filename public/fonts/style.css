@@ -1,11 +1,5 @@
 @font-face {
   font-family: "Monument Extended";
-  src: url("MonumentExtended-Regular.otf");
-  font-weight: normal;
-}
-
-@font-face {
-  font-family: "Monument Extended";
-  src: url("MonumentExtended-Ultrabold.otf");
+  src: url("MonumentExtended-Ultrabold-stripped.otf");
   font-weight: bold;
 }

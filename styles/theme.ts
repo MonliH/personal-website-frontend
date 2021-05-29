@@ -8,7 +8,7 @@ const theme: DefaultTheme = {
     fontColor: "#F6F6F6",
   },
   fonts: {
-    sansSerif: 'Raleway, "Open Sans", Helvetica, sans-serif',
+    sansSerif: '"Open Sans", Helvetica, sans-serif',
     sansSerifAlt: 'Montserrat, "Open Sans", Helvetica, sans-serif',
     sansSerifBody: '"Open Sans", Helvetica, sans-serif',
     monospace: '"IBM Plex Mono", monospace',

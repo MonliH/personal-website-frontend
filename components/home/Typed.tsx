@@ -14,12 +14,12 @@ const emptyWordTime = 300;
 
 const BlinkingSpan = styled.div`
   position: relative;
-  animation: blink 0.8s ease 0s infinite normal none;
+  animation: blink 1s ease 0s infinite normal none;
   width: 2px;
   background-color: #ffffff;
-  height: 35px;
+  height: 32px;
   display: inline-block;
-  top: 5px;
+  top: 2px;
   margin-left: 3px;
   @keyframes blink {
     30% {

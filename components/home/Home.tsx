@@ -2,22 +2,23 @@ import { useRef } from "react";
 import styled from "styled-components";
 
 import Typed from "@components/home/Typed";
+import Icons from "@components/home/Icons";
 
 const HomeWrapper = styled.div`
   overflow: hidden;
   position: relative;
   height: 100%;
   background-color: ${({ theme }) => theme.colors.darkerBg};
+  padding-left: 7vw;
 `;
 
 const SubTitle = styled.h2`
-  font-size: 40px;
-  font-family: "Open Sans", sans-serif;
+  font-size: 35px;
+  font-family: ${({ theme }) => theme.fonts.sansSerifBody};
   font-weight: bold;
   margin: 0;
   cursor: default;
   padding: 0;
-  margin-left: 100px;
   width: fit-content;
 `;
 
@@ -28,7 +29,6 @@ const Title = styled.h1`
   margin: 0;
   cursor: default;
   padding: 0;
-  margin-left: 100px;
   width: fit-content;
 `;
 
@@ -58,7 +58,7 @@ const HomePage = () => {
           <Title>Li</Title>
         </TitleWrapper>
         <SubTitle>
-          i&apos;m a dev interested in{" "}
+          i&apos;m a developer interested in{" "}
           <Typed
             items={[
               "building compilers",
@@ -68,6 +68,7 @@ const HomePage = () => {
             ]}
           />
         </SubTitle>
+        <Icons />
       </HomeWrapper>
       <noscript>
         <style>{`
