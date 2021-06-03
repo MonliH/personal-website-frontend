@@ -13,6 +13,19 @@ const Text = styled.div`
   color: inherit;
 `;
 
+const Absolute = styled.div`
+  position: relative;
+
+  @media (max-width: 726px) {
+    position: absolute;
+    bottom: 20px;
+  }
+`;
+
+const IconRow = styled(Row)`
+  flex-wrap: wrap;
+`;
+
 const entries: [FC<IconProps>, string, string, boolean][] = [
   [GitHub, "github", "https://github.com/MonliH", false],
   [Linkedin, "linkedin", "https://linkedin.com/in/jonatli", false],
@@ -22,29 +35,31 @@ const entries: [FC<IconProps>, string, string, boolean][] = [
 
 const Icons = () => {
   return (
-    <Margin top={15}>
-      <Row>
-        {entries.map(([Icon, text, link, internal]) => {
-          const inner = (
-            <RowAlign>
-              <WhiteLink className="white-link">
-                <Icon />
-              </WhiteLink>
-              <Text className="white-text">{text}</Text>
-            </RowAlign>
-          );
-          return internal ? (
-            <Link key={text} href={link} passHref>
-              <StyledLink>{inner}</StyledLink>
-            </Link>
-          ) : (
-            <StyledLink key={text} href={link}>
-              {inner}
-            </StyledLink>
-          );
-        })}
-      </Row>
-    </Margin>
+    <Absolute>
+      <Margin top={15}>
+        <IconRow>
+          {entries.map(([Icon, text, link, internal]) => {
+            const inner = (
+              <RowAlign>
+                <WhiteLink className="white-link">
+                  <Icon />
+                </WhiteLink>
+                <Text className="white-text">{text}</Text>
+              </RowAlign>
+            );
+            return internal ? (
+              <Link key={text} href={link} passHref>
+                <StyledLink>{inner}</StyledLink>
+              </Link>
+            ) : (
+              <StyledLink key={text} href={link}>
+                {inner}
+              </StyledLink>
+            );
+          })}
+        </IconRow>
+      </Margin>
+    </Absolute>
   );
 };
 

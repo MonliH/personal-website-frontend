@@ -20,6 +20,11 @@ const SubTitle = styled.h2`
   cursor: default;
   padding: 0;
   width: fit-content;
+  padding-right: 50px;
+
+  @media (max-width: 1170px) {
+    font-size: max(2.8vw, 27px);
+  }
 `;
 
 const Title = styled.h1`
@@ -30,6 +35,10 @@ const Title = styled.h1`
   cursor: default;
   padding: 0;
   width: fit-content;
+
+  @media (max-width: 1460px) {
+    font-size: 13.5vw;
+  }
 `;
 
 const TitleWrapper = styled.div`
@@ -60,10 +69,10 @@ const HomePage = () => {
         i&apos;m a dev interested in{" "}
         <Typed
           items={[
-            "building compilers",
+            /* "building compilers", */
             "deep learning",
             "functional programming",
-            "web design",
+            /* "web design", */
           ]}
         />
       </SubTitle>
