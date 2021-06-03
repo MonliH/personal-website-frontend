@@ -34,7 +34,6 @@ const Layout = ({
           type="image/png"
           sizes="32x32"
         />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link

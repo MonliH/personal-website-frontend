@@ -2,7 +2,7 @@ import Link from "next/link";
 import styled from "styled-components";
 
 const Header = styled.div`
-  font: 500 45px ${(props) => props.theme.fonts.sansSerif};
+  font: bold 45px ${(props) => props.theme.fonts.sansSerif};
   width: 700px;
   margin-left: 3px;
 

@@ -15,6 +15,9 @@ const BackHomeWrapper = styled(RowAlign)`
   position: absolute;
   top: 20px;
   left: 25px;
+  @media (max-width: 825px) {
+    left: 10px;
+  }
 `;
 
 const BackHome = ({ link, text }: { link?: string; text?: string }) => {
