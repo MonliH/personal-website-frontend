@@ -53,9 +53,9 @@ const Admin = () => {
     <Layout
       title="Admin Panel"
       description="Jonathan's personal website admin panel."
-      theme={theme.colors.lightBg}
+      theme={theme.colors.darkerBg}
     >
-      <Bg altColor>
+      <Bg>
         <Panel
           blogLoading={blogState.loading}
           contactsLoading={contactState.loading}

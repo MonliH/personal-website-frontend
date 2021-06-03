@@ -70,7 +70,7 @@ export const ProtectRoute = ({ children }) => {
   const { auth } = useAuth();
   if (auth.loading) {
     return (
-      <Bg altColor>
+      <Bg>
         <Loading />
       </Bg>
     );

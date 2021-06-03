@@ -7,7 +7,7 @@ import { BlogDate } from "@components/blog/BlogHome";
 import { BlogEntryDisplay } from "@lib/blog_api/blog";
 
 const BlogPageWrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.lightBg};
+  background-color: ${({ theme }) => theme.colors.darkerBg};
   color: ${({ theme }) => theme.colors.fontColor};
   min-height: 100vh;
   display: flex;

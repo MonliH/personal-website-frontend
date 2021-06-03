@@ -7,7 +7,7 @@ export default function Home() {
     <Layout
       title="Jonathan Li"
       description="Jonathan's personal website."
-      theme={theme.colors.lightBg}
+      theme={theme.colors.darkerBg}
     >
       <Err />
     </Layout>

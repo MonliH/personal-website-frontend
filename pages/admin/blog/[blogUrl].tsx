@@ -14,7 +14,7 @@ const EditBlog = () => {
     <Layout
       title="Edit a blog"
       description="Edit a blog"
-      theme={theme.colors.lightBg}
+      theme={theme.colors.darkerBg}
     >
       <EditPost blogPath={blogUrl as string} />
     </Layout>

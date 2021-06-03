@@ -1,16 +1,27 @@
-import { ForwardedRef, useState, forwardRef } from "react";
-import { animated, useSpring } from "react-spring";
-
-import submit from "@lib/contact_api/submitForm";
-import { WrapperCenterRow, WrapperInner } from "@components/Wrapper";
-import { Title } from "@components/Title";
-
+import { useState } from "react";
 import styled from "styled-components";
 
-const ContactStyled = styled.div`
-  height: 100vh;
-  padding-top: 100px;
-  margin-top: -100px;
+import submit from "@lib/contact_api/submitForm";
+import BackHome from "@components/BackHome";
+
+const Title = styled.h1`
+  font: 800 30px ${(props) => props.theme.fonts.sansSerif};
+  font-weight: black;
+  margin: 0;
+  cursor: default;
+  padding: 0;
+  width: fit-content;
+  margin-bottom: 50px;
+`;
+
+const ContactWrapper = styled.div`
+  background-color: ${({ theme }) => theme.colors.darkerBg};
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 `;
 
 const ContactForm = styled.form`
@@ -19,7 +30,6 @@ const ContactForm = styled.form`
   flex-direction: column;
   width: 500px;
   font-family: ${({ theme }) => theme.fonts.sansSerifAlt};
-
   @media (max-width: 580px) {
     width: 80vw;
     padding-bottom: 50px;
@@ -29,7 +39,6 @@ const ContactForm = styled.form`
 const EntryContainer = styled.div`
   display: flex;
   flex-direction: row;
-
   @media (max-width: 580px) {
     flex-direction: column;
   }
@@ -41,7 +50,6 @@ const Entry = styled.label`
   margin-right: 10px;
   margin-bottom: 20px;
   flex: 0 0 245px;
-
   @media (max-width: 580px) {
     flex: 0 0 0;
     width: 80vw;
@@ -50,7 +58,7 @@ const Entry = styled.label`
 
 const EntryText = styled.div`
   margin-bottom: 10px;
-  color: white;
+  color: #c7c7c7;
   font: bold 17px ${({ theme }) => theme.fonts.sansSerifAlt};
 `;
 
@@ -61,6 +69,9 @@ const EntryInput = styled.input`
   border: 1px solid;
   color: white;
   padding-left: 7px;
+  &:focus {
+    outline: 1px solid #ffffff;
+  }
 `;
 
 const MessageTextarea = styled.textarea`
@@ -71,6 +82,10 @@ const MessageTextarea = styled.textarea`
   color: white;
   padding: 7px;
   font: 14px ${({ theme }) => theme.fonts.sansSerifAlt};
+
+  &:focus {
+    outline: 1px solid #c7c7c7;
+  }
 `;
 
 const ContactMessage = styled.label`
@@ -85,105 +100,86 @@ const ContactButtonLabel = styled.div`
   align-items: center;
 `;
 
-const SendButton = styled(animated.button)`
+const SendButton = styled.button`
   width: 110px;
   height: 40px;
   border: 1px solid;
   color: white;
-  background-color: #1d1d1d;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: ${({ theme }) => theme.colors.darkerBg};
   border-radius: 2px;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   transition: 0.5s;
   flex: 0 0 110px;
+
+  &:hover {
+    background-color: #1a1a1a;
+  }
 `;
 
-const Contact = (_: {}, ref: ForwardedRef<HTMLDivElement>) => {
+const Contact = () => {
   const [status, setStatus] = useState("");
 
-  const [anim, setOpacity] = useSpring(() => ({
-    backgroundColor: "#1d1d1d",
-  }));
-
-  const onMouseEnter = () => {
-    setOpacity({ backgroundColor: "rgb(10, 10, 10)" });
-  };
-
-  const onMouseLeave = () => {
-    setOpacity({ backgroundColor: "#1d1d1d" });
-  };
-
   return (
-    <ContactStyled ref={ref}>
-      <WrapperCenterRow>
-        <WrapperInner>
-          <Title>Contact Me&thinsp;</Title>
-          <ContactForm onSubmit={(e) => submit(e, setStatus)}>
-            <EntryContainer>
-              <Entry>
-                <EntryText>Your Email:</EntryText>
-                <EntryInput
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="Email"
-                  required
-                />
-              </Entry>
-              <Entry>
-                <EntryText>Your Name:</EntryText>
-                <EntryInput
-                  type="text"
-                  name="sender_name"
-                  placeholder="Name"
-                  required
-                />
-              </Entry>
-            </EntryContainer>
-            <ContactMessage>
-              <EntryText>Your message:</EntryText>
-              <MessageTextarea
-                name="contents"
-                style={{ resize: "none" }}
-                id="message-textarea"
-                placeholder="Message"
-                required
-              />
-            </ContactMessage>
-            <ContactButtonLabel>
-              <SendButton
-                type="submit"
-                style={anim as any}
-                onMouseEnter={onMouseEnter}
-                onMouseLeave={onMouseLeave}
-              >
-                Send
-              </SendButton>
-              <EntryText
-                style={{
-                  marginLeft: "20px",
-                  marginTop: "7px",
-                }}
-              >
-                {status}
-              </EntryText>
-              <noscript>
-                <EntryText
-                  style={{
-                    marginTop: "7px",
-                  }}
-                >
-                  You need to enable javascript to send me a message, sorry for
-                  the inconvenience
-                </EntryText>
-              </noscript>
-            </ContactButtonLabel>
-          </ContactForm>
-        </WrapperInner>
-      </WrapperCenterRow>
-    </ContactStyled>
+    <ContactWrapper>
+      <BackHome />
+      <Title>Let&apos;s get in touch</Title>
+      <ContactForm onSubmit={(e) => submit(e, setStatus)}>
+        <EntryContainer>
+          <Entry>
+            <EntryText>Your Email:</EntryText>
+            <EntryInput
+              type="email"
+              name="email"
+              id="email"
+              placeholder="e.g. john.doe@example.com"
+              required
+            />
+          </Entry>
+          <Entry>
+            <EntryText>Your Name:</EntryText>
+            <EntryInput
+              type="text"
+              name="sender_name"
+              placeholder="e.g. John Doe"
+              required
+            />
+          </Entry>
+        </EntryContainer>
+        <ContactMessage>
+          <EntryText>Your message:</EntryText>
+          <MessageTextarea
+            name="contents"
+            style={{ resize: "none" }}
+            id="message-textarea"
+            placeholder="Message"
+            required
+          />
+        </ContactMessage>
+        <ContactButtonLabel>
+          <SendButton type="submit">Send</SendButton>
+          <EntryText
+            style={{
+              marginLeft: "20px",
+              marginTop: "7px",
+            }}
+          >
+            {status}
+          </EntryText>
+          <noscript>
+            <EntryText
+              style={{
+                marginTop: "7px",
+              }}
+            >
+              You need to enable javascript to send me a message, sorry for the
+              inconvenience
+            </EntryText>
+          </noscript>
+        </ContactButtonLabel>
+      </ContactForm>
+    </ContactWrapper>
   );
 };
 
-export default forwardRef(Contact);
+export default Contact;

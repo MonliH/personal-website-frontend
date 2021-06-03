@@ -6,10 +6,10 @@ export const Input = styled.input`
   height: 45px;
   padding: 10px;
 
-  background-color: #2b2b2b;
+  background-color: #151515;
   border: 1px solid #7f7f7f;
   border-radius: 3px;
-  color: white;
+  color: ${({ theme }) => theme.colors.fontColor};
 `;
 
 export const Label = styled.label`
@@ -20,11 +20,11 @@ export const Button = styled.button`
   width: fit-content;
   height: fit-content;
   padding: 10px;
-  background-color: #2b2b2b;
+  background-color: #151515;
   border: 1px solid #7f7f7f;
   border-radius: 3px;
 
-  color: white;
+  color: ${({ theme }) => theme.colors.fontColor};
   display: ${({ block }: any) => (block ? "block" : "inline")};
 
   margin-bottom: 10px;
@@ -34,7 +34,7 @@ export const Button = styled.button`
   transition: 0.3s background-color;
 
   &:hover {
-    background-color: #0a0a0a;
+    background-color: #242424;
   }
 `;
 

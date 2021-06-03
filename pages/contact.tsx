@@ -1,15 +1,15 @@
 import Layout from "@components/Layout";
-import HomePage from "@components/home/Home";
+import Contact from "@components/home/Contact";
 import theme from "@styles/theme";
 
 const Home = () => {
   return (
     <Layout
       title="Jonathan Li"
-      description="Jonathan's personal website."
+      description="Jonathan Li's personal website -- Let's get in touch!"
       theme={theme.colors.darkerBg}
     >
-      <HomePage />
+      <Contact />
     </Layout>
   );
 };

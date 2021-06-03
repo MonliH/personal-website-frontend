@@ -6,12 +6,13 @@ import styled from "styled-components";
 import PageChanger, { ChangerProps } from "@components/PageChanger";
 import BlogHeader from "@components/blog/BlogHeader";
 import Loading from "@components/Loading";
-import { WrapperCenterColumn } from "@components/Wrapper";
+import { ColAlignJustify } from "@components/Wrapper";
 
 import { BlogEntryPreview } from "@lib/blog_api/blog";
+import BackHome from "@components/BackHome";
 
 const BlogHomeWrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.lightBg};
+  background-color: ${({ theme }) => theme.colors.darkerBg};
   color: ${({ theme }) => theme.colors.fontColor};
   min-height: 100vh;
 `;
@@ -142,7 +143,8 @@ const BlogHome = ({
 
   return (
     <BlogHomeWrapper>
-      <WrapperCenterColumn>
+      <BackHome text="Home" />
+      <ColAlignJustify>
         <BlogMainInner>
           <BlogHeaderWrapper>
             <BlogHeader />
@@ -176,7 +178,7 @@ const BlogHome = ({
             </>
           )}
         </BlogMainInner>
-      </WrapperCenterColumn>
+      </ColAlignJustify>
     </BlogHomeWrapper>
   );
 };
