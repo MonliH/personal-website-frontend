@@ -2,7 +2,7 @@ import { useState, FormEvent } from "react";
 
 import Bg from "@components/Bg";
 import { SubTitle } from "@components/Title";
-import { WrapperCenterColumn } from "@components/Wrapper";
+import { ColAlignJustify } from "@components/Wrapper";
 import { Button, Input, Label } from "@components/Inputs";
 
 import { useAuth } from "@contexts/authContext";
@@ -29,8 +29,8 @@ const SignIn = () => {
   };
 
   return (
-    <Bg altColor>
-      <WrapperCenterColumn style={{ height: "90vh" }}>
+    <Bg>
+      <ColAlignJustify style={{ height: "90vh" }}>
         <form onSubmit={onSubmit}>
           <SubTitle>Log In</SubTitle>
           <Label>Username:</Label>
@@ -59,7 +59,7 @@ const SignIn = () => {
           />
           {wrong ? <Label>Wrong credentials</Label> : <></>}
         </form>
-      </WrapperCenterColumn>
+      </ColAlignJustify>
     </Bg>
   );
 };

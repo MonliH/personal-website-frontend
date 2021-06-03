@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const WrapperCenterColumn = styled.div`
+export const ColAlignJustify = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,17 +12,17 @@ export const Row = styled.div`
   flex-direction: row;
 `;
 
-export const WrapperHorizontalCenterRow = styled(Row)`
+export const RowAlign = styled(Row)`
   align-items: center;
 `;
 
-export const WrapperCenterRow = styled(Row)`
+export const RowAlignJustify = styled(Row)`
   height: 100%;
   align-items: center;
   justify-content: center;
 `;
 
-export const WrapperInner = styled.div`
+export const ColAlign = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

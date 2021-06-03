@@ -17,7 +17,7 @@ const DeleteContact = () => {
     <Layout
       title="Delete Page"
       description="Delete page on admin panel."
-      theme={theme.colors.lightBg}
+      theme={theme.colors.darkerBg}
     >
       <DeleteResource
         resourceName={contactId as string}

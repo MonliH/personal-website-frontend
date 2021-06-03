@@ -6,7 +6,7 @@ export const Input = styled.input`
   height: 45px;
   padding: 10px;
 
-  background-color: #313131;
+  background-color: #151515;
   border: 1px solid #7f7f7f;
   border-radius: 3px;
   color: ${({ theme }) => theme.colors.fontColor};
@@ -20,7 +20,7 @@ export const Button = styled.button`
   width: fit-content;
   height: fit-content;
   padding: 10px;
-  background-color: #313131;
+  background-color: #151515;
   border: 1px solid #7f7f7f;
   border-radius: 3px;
 
@@ -34,7 +34,7 @@ export const Button = styled.button`
   transition: 0.3s background-color;
 
   &:hover {
-    background-color: #474747;
+    background-color: #242424;
   }
 `;
 

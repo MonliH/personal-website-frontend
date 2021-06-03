@@ -11,8 +11,9 @@ html, body, main, #__next {
   padding: 0;
   position: relative;
   height: 100%;
-  background-color: ${({ theme }) => theme.colors.darkBg};
+  background-color: ${({ theme }) => theme.colors.darkerBg};
   color: ${({ theme }) => theme.colors.fontColor};
+  font: 15px ${(props) => props.theme.fonts.sansSerif};
 }
 
 html {
@@ -76,6 +77,7 @@ a:hover {
   padding: 16px;
   margin-bottom: 20px;
   overflow: auto;
+  border: 1px solid #202020;
 }
 
 code {

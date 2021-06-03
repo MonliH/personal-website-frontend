@@ -21,7 +21,7 @@ const ContactContents = styled.p`
 
 const ContactPage = ({ contact }: { contact: Contact }) => {
   return (
-    <Bg altColor>
+    <Bg>
       <DashboardWrapper>
         <AdminPanelLink />
         <RedButton

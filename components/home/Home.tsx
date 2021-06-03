@@ -9,7 +9,7 @@ const HomeWrapper = styled.div`
   position: relative;
   height: 100%;
   background-color: ${({ theme }) => theme.colors.darkerBg};
-  padding-left: 7vw;
+  padding-left: 6vw;
 `;
 
 const SubTitle = styled.h2`
@@ -41,43 +41,34 @@ const HomePage = () => {
   const mouseRef = useRef<HTMLDivElement | null>(null);
 
   return (
-    <>
-      <HomeWrapper
-        id="home-wrapper"
-        onMouseMove={({ clientX: x, clientY: y }) => {
-          if (mouseRef.current) {
-            mouseRef.current.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-            mouseRef.current.style.top = "0";
-            mouseRef.current.style.left = "0";
-            window.requestAnimationFrame(() => {});
-          }
-        }}
-      >
-        <TitleWrapper>
-          <Title>Jonathan</Title>
-          <Title>Li</Title>
-        </TitleWrapper>
-        <SubTitle>
-          i&apos;m a developer interested in{" "}
-          <Typed
-            items={[
-              "building compilers",
-              "deep learning",
-              "functional programming",
-              "web design",
-            ]}
-          />
-        </SubTitle>
-        <Icons />
-      </HomeWrapper>
-      <noscript>
-        <style>{`
-          #home-wrapper {
-            cursor: default;
-          }
-        `}</style>
-      </noscript>
-    </>
+    <HomeWrapper
+      id="home-wrapper"
+      onMouseMove={({ clientX: x, clientY: y }) => {
+        if (mouseRef.current) {
+          mouseRef.current.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+          mouseRef.current.style.top = "0";
+          mouseRef.current.style.left = "0";
+          window.requestAnimationFrame(() => {});
+        }
+      }}
+    >
+      <TitleWrapper>
+        <Title>Jonathan</Title>
+        <Title>Li</Title>
+      </TitleWrapper>
+      <SubTitle>
+        i&apos;m a dev interested in{" "}
+        <Typed
+          items={[
+            "building compilers",
+            "deep learning",
+            "functional programming",
+            "web design",
+          ]}
+        />
+      </SubTitle>
+      <Icons />
+    </HomeWrapper>
   );
 };
 

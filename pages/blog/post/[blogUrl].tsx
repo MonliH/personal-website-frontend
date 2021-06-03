@@ -18,7 +18,7 @@ const Post = ({ blog }: { blog: BlogEntryDisplay }) => {
     <Layout
       title="Jonathan Li's Blog"
       description="Blog"
-      theme={theme.colors.lightBg}
+      theme={theme.colors.darkerBg}
     >
       {router.isFallback ? (
         <Loading />
@@ -46,7 +46,18 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const blog = await getBlogPostDisplay(params.blogUrl as string);
+  let blog: BlogEntryDisplay;
+
+  try {
+    blog = await getBlogPostDisplay(params.blogUrl as string);
+  } catch (e) {
+    return { notFound: true };
+  }
+
+  if (!blog) {
+    return { notFound: true };
+  }
+
   return {
     props: { blog: { ...blog, date: toUnixTimestamp(blog.date) } },
     revalidate: 5,
