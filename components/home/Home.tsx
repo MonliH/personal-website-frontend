@@ -69,10 +69,11 @@ const HomePage = () => {
         i&apos;m a dev interested in{" "}
         <Typed
           items={[
-            /* "building compilers", */
+            "building compilers",
             "deep learning",
             "functional programming",
-            /* "web design", */
+            "web design",
+            "learning new things",
           ]}
         />
       </SubTitle>
