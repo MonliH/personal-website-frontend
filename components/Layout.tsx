@@ -22,7 +22,14 @@ const Layout = ({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content={theme} />
         <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-        <meta property="og:image" content="android-chrome-512x512.png" />
+        <meta
+          property="og:image:url"
+          content="http://jonathanli.tech/android-chrome-512x512.png"
+        />
+        <meta
+          property="og:image:secure_url"
+          content="https://jonathanli.tech/android-chrome-512x512.png"
+        />
         <link
           href="/favicon-16x16.png"
           rel="icon"
