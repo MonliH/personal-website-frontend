@@ -24,11 +24,11 @@ const Layout = ({
         <link rel="apple-touch-icon" href="apple-touch-icon.png" />
         <meta
           property="og:image:url"
-          content="http://jonathanli.tech/android-chrome-512x512.png"
+          content="http://jonat.li/android-chrome-512x512.png"
         />
         <meta
           property="og:image:secure_url"
-          content="https://jonathanli.tech/android-chrome-512x512.png"
+          content="https://jonat.li/android-chrome-512x512.png"
         />
         <link
           href="/favicon-16x16.png"

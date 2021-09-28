@@ -15,5 +15,5 @@ This is the frontend part of my website. You can find the backend and website st
 
 ### Deployment
 
-My personal website is currently hosted at [`jonathanli.tech`](https://jonathanli.tech).
-See [my technical blog](https://jonathanli.tech/blog), too.
+My personal website is currently hosted at [`jonat.li`](https://jonat.li).
+See [my technical blog](https://jonat.li/blog), too.
