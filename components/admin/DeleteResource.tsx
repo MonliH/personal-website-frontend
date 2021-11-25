@@ -21,7 +21,7 @@ const DeleteResource = ({
   redirectUrl: string;
 }) => {
   return (
-    <Bg altColor>
+    <Bg>
       <DeleteWrapper>
         <SubTitle>
           Are you sure you want to delete <LargeCode>{resourceName}</LargeCode>?

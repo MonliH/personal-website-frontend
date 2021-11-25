@@ -7,7 +7,7 @@ const SignInPage = () => {
     <Layout
       title="Sign Into Admin"
       description="Sign into admin panel"
-      theme={theme.colors.lightBg}
+      theme={theme.colors.darkerBg}
     >
       <SignIn />
     </Layout>

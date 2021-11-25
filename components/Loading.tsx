@@ -1,5 +1,7 @@
 import styled, { keyframes } from "styled-components";
 
+import Bg from "@components/Bg";
+
 const rotate = keyframes`
   from {
     transform: rotate(0deg);
@@ -30,9 +32,11 @@ const LoaderWrapper = styled.div`
 
 const Loading = () => {
   return (
-    <LoaderWrapper>
-      <Loader />
-    </LoaderWrapper>
+    <Bg>
+      <LoaderWrapper>
+        <Loader />
+      </LoaderWrapper>
+    </Bg>
   );
 };
 

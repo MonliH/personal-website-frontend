@@ -22,6 +22,14 @@ const Layout = ({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content={theme} />
         <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+        <meta
+          property="og:image:url"
+          content="http://jonat.li/android-chrome-512x512.png"
+        />
+        <meta
+          property="og:image:secure_url"
+          content="https://jonat.li/android-chrome-512x512.png"
+        />
         <link
           href="/favicon-16x16.png"
           rel="icon"
@@ -34,13 +42,15 @@ const Layout = ({
           type="image/png"
           sizes="32x32"
         />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
           href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@400;700&display=swap"
           rel="stylesheet"
         />
+        <noscript>
+          <style>{".home-page-no-cursor {cursor: auto !important;}"}</style>
+        </noscript>
       </Head>
       <main>{children}</main>
     </>

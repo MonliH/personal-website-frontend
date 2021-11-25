@@ -10,9 +10,10 @@ html, body, main, #__next {
   margin: 0;
   padding: 0;
   position: relative;
-  min-height: 100vh;
-  background-color: ${({ theme }) => theme.colors.darkBg};
+  height: 100%;
+  background-color: ${({ theme }) => theme.colors.darkerBg};
   color: ${({ theme }) => theme.colors.fontColor};
+  font: 15px ${(props) => props.theme.fonts.sansSerif};
 }
 
 html {
@@ -27,24 +28,24 @@ body {
 a {
   font-family: ${(props) => props.theme.fonts.sansSerif};
   font-weight: bold;
-  color: #4c84ff;
+  color: #3373FF;
   text-underline-offset: 0.35em;
   cursor: pointer;
   transition: text-decoration-color 0.2s, color 0.2s;
 }
 
 a:hover {
-  color: #6092FF;
-  text-decoration-color: #8BAFFF;
+  color: #558AFF;
+  text-decoration-color: #558AFF;
 }
 
-h1 {
+.blog-content h1 {
   font: 600 26px ${(props) => props.theme.fonts.sansSerif};
   margin-top: 30px;
   color: ${({ theme }) => theme.colors.fontColor};
 }
 
-h1::before {
+.blog-content h1::before {
   content: "+";
   color: #bdbdbd;
   font-size: 18px;
@@ -54,14 +55,14 @@ h1::before {
   display: inline-block;
 }
 
-h2 {
+.blog-content h2 {
   font: 600 22px ${(props) => props.theme.fonts.sansSerif};
   color: ${({ theme }) => theme.colors.fontColor};
   margin-top: 15px;
   display: block;
 }
 
-h2::before {
+.blog-content h2::before {
   content: "-";
   color: #bdbdbd;
   font-size: 14px;
@@ -71,16 +72,17 @@ h2::before {
 .blog-content pre {
   font: 400 14px ${(props) => props.theme.fonts.monospace};
   color: ${({ theme }) => theme.colors.fontColor};
-  background-color: #ededed;
+  background-color: #A7A7A7;
   border-radius: 5px;
   padding: 16px;
   margin-bottom: 20px;
   overflow: auto;
+  border: 1px solid #202020;
 }
 
 code {
   font: 500 15px ${({ theme }) => theme.fonts.monospace};
-  background-color: #393939;
+  background-color: #353535;
   padding: 2px 4px;
   border-radius: 3px;
 }

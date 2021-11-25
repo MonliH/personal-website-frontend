@@ -9,7 +9,7 @@ const NewBlog = () => {
     <Layout
       title="New blog"
       description="Create a new blog"
-      theme={theme.colors.lightBg}
+      theme={theme.colors.darkerBg}
     >
       <AdminBlogPage blog={defaultBlog()} showUrl />
     </Layout>

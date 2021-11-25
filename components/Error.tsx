@@ -12,7 +12,7 @@ const NoMatchStyled = styled.div`
 `;
 
 const NoMatchText = styled.div`
-  color: #393939;
+  color: #8d8d8d;
   font: 400 20px ${(props) => props.theme.fonts.sansSerif};
 `;
 
@@ -23,10 +23,10 @@ interface NoMatchProps {
 
 const NoMatch = ({ code, msg }: NoMatchProps) => {
   return (
-    <Bg altColor>
+    <Bg>
       <NoMatchStyled>
         {code || "404"}
-        {msg ? <NoMatchText>{msg}</NoMatchText> : <></>}
+        <NoMatchText>{msg || "this page could not be found"}</NoMatchText>
       </NoMatchStyled>
     </Bg>
   );

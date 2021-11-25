@@ -2,7 +2,7 @@ import Link from "next/link";
 import styled from "styled-components";
 
 const Header = styled.div`
-  font: 500 45px ${(props) => props.theme.fonts.sansSerif};
+  font: bold 45px ${(props) => props.theme.fonts.sansSerif};
   width: 700px;
   margin-left: 3px;
 
@@ -19,10 +19,7 @@ const StyledAnimatedLink = styled.a`
 const BlogHeader = ({ blog, font }: { blog?: boolean; font?: string }) => {
   return (
     <Header style={{ fontSize: font }}>
-      <Link href="/" passHref>
-        <StyledAnimatedLink>Jonathan Li</StyledAnimatedLink>
-      </Link>
-      &#39;s{" "}
+      Jonathan Li &#39;s{" "}
       {blog ? (
         <Link href="/blog" passHref>
           <StyledAnimatedLink>blog</StyledAnimatedLink>

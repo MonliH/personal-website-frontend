@@ -8,7 +8,7 @@ import { IAceEditorProps } from "react-ace";
 import Loading from "@components/Loading";
 import Bg from "@components/Bg";
 import { Button, RedButton, InputWrapper, Input } from "@components/Inputs";
-import { WrapperHorizontalCenterRow } from "@components/Wrapper";
+import { RowAlign } from "@components/Wrapper";
 import AdminPanelLink from "@components/admin/AdminPanelLink";
 
 import { useAuth } from "@contexts/authContext";
@@ -73,7 +73,7 @@ const AdminBlogPage = ({
 
   if (blog && revisedBlog) {
     return (
-      <Bg altColor>
+      <Bg>
         <AdminPanelWrapper>
           <AdminPanelLink />
           <form onSubmit={onFormSubmit}>
@@ -87,7 +87,7 @@ const AdminBlogPage = ({
               DELETE THIS POST
             </RedButton>
             <ChangeBlogLabel>{message}</ChangeBlogLabel>
-            <WrapperHorizontalCenterRow>
+            <RowAlign>
               <InputWrapper>
                 <ChangeBlogLabel>Title</ChangeBlogLabel>
                 <Input
@@ -131,7 +131,7 @@ const AdminBlogPage = ({
               ) : (
                 <></>
               )}
-            </WrapperHorizontalCenterRow>
+            </RowAlign>
             <ChangeBlogLabel>Markdown</ChangeBlogLabel>
             <AceEditor
               mode="markdown"

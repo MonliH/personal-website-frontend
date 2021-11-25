@@ -31,7 +31,7 @@ const Blog = ({ blogEntries, ...props }: BlogHomeProps) => {
     <Layout
       title="Jonathan Li's Blog"
       description="Jonathan's personal blog."
-      theme={theme.colors.lightBg}
+      theme={theme.colors.darkerBg}
     >
       <BlogHome
         {...props}

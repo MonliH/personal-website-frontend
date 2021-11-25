@@ -1,10 +1,19 @@
-# personal-website-frontend
+# Personal Website Frontend
 
-This is the frontend part of my website. You can find the backend
-[in the backend repo](https://github.com/monlih/personal-website-backend). The backend repo
-also includes a nice diagram showing the architecture of the entire site. The
-frontend has a dedicated server, which performs incremental static generation.
-It rerenders the static page whenever a user loads the page where the backend
-data (i.e. blog entries) has changed. See [the Next.js documentation](https://nextjs.org/docs/basic-features/data-fetching#incremental-static-regeneration)
-for more info. This site is deployed on [vercel](https://vercel.com/), and uses
-[Next.js](https://nextjs.org/) (with React).
+This is the frontend part of my website. You can find the backend and website structure
+[in the backend repo](https://github.com/monlih/personal-website-backend).
+
+### Technologies
+
+<a href="https://www.typescriptlang.org/"><img alt="Typescript" src="./assets/typescriptLogo.png" width="80" height="80"/></a>
+&nbsp;&nbsp;
+<a href="https://nextjs.org/"><img alt="NextJs" src="./assets/nextJs.jpg" height="80"/></a>
+&nbsp;&nbsp;
+<a href="https://reactjs.org/"><img alt="React" src="./assets/reactLogo.png" width="80" height="80"/></a>
+&nbsp;&nbsp;
+<a href="https://styled-components.com/"><img alt="React Styled Components" src="./assets/styledComponents.png" width="80" height="80"/></a>
+
+### Deployment
+
+My personal website is currently hosted at [`jonat.li`](https://jonat.li).
+See [my technical blog](https://jonat.li/blog), too.
