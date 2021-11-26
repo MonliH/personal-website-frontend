@@ -54,18 +54,29 @@ const HeaderLinkA = styled(HeaderLink).attrs({ as: "r" })`
   margin-left: 22px;
 `;
 
-const HeaderLinkGithub = styled.a`
+const HeaderLinkIcon = styled.a`
   font: 15px ${({ theme }) => theme.fonts.sansSerifAlt};
   color: white;
   text-decoration: none;
   border: none;
-  margin-left: 30px;
   cursor: pointer;
   transition: filter 0.2s ease-in-out;
+  position: relative;
+  margin-left: 15px;
+  float: right;
 
   &:hover {
     filter: brightness(70%);
   }
+`;
+
+const HeaderLinkForeground = styled.div`
+  background-color: none;
+  width: 27px;
+  height: 27px;
+  position: absolute;
+  top: -2px;
+  left: 0;
 `;
 
 const HeaderName = styled.button`
@@ -141,11 +152,11 @@ const Right = styled.div`
   margin-top: 15px;
 `;
 
-const NavSidebar = (p: HeaderSidebarProps) => {
-  const style = useSpring({ translateX: p.navOn ? "0vw" : "-100vw" });
+const NavSidebar = ({ navOn, setNavOn, links }: HeaderSidebarProps) => {
+  const style = useSpring({ translateX: navOn ? "0vw" : "-100vw" });
   return (
-    <Absolute onClick={() => p.setNavOn(false)} style={style as any}>
-      {p.links.map((link: JSX.Element) => {
+    <Absolute onClick={() => setNavOn(false)} style={style as any}>
+      {links.map((link: JSX.Element) => {
         return <Right key={link.key}>{link}</Right>;
       })}
     </Absolute>
@@ -196,24 +207,46 @@ const Header = ({
     </Link>
   );
 
-  // Github logo
+  // Linkedin logo
   linksLeft.push(
-    <HeaderLinkGithub
-      key="github-image"
-      href="https://github.com/MonliH"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="header-link"
-      style={navOn ? { float: "left", marginLeft: "22px" } : {}}
-    >
-      <HeaderImage
-        src="/graphics/github-white.png"
-        id="header-image"
-        alt="Github"
-        width={27}
-        height={27}
-      />
-    </HeaderLinkGithub>
+    <div style={{ display: "inline" }}>
+      <HeaderLinkIcon
+        key="linkedin-image"
+        href="https://www.linkedin.com/in/jonatli/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="header-link"
+        style={navOn ? { float: "left", marginLeft: "22px" } : {}}
+      >
+        <HeaderLinkForeground style={{ borderRadius: 5 }} />
+        <HeaderImage
+          src="/graphics/linkedin-white.png"
+          id="linkedin-header-image"
+          alt="Linkedin"
+          width={27}
+          height={27}
+        />
+      </HeaderLinkIcon>
+      <HeaderLinkIcon
+        key="github-image"
+        href="https://github.com/MonliH"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="header-link"
+        style={
+          navOn ? { float: "left", marginLeft: "22px" } : { marginLeft: "30px" }
+        }
+      >
+        <HeaderLinkForeground style={{ borderRadius: 14 }} />
+        <HeaderImage
+          src="/graphics/github-white.png"
+          id="header-image"
+          alt="Github"
+          width={27}
+          height={27}
+        />
+      </HeaderLinkIcon>
+    </div>
   );
 
   return (
