@@ -59,10 +59,10 @@ const ModifiedTitle = styled(Title)`
   }
 `;
 
-const About = (_: {}, ref: ForwardedRef<HTMLDivElement>) => {
+const About = ({ id }: { id: string }, ref: ForwardedRef<HTMLDivElement>) => {
   const videoElement = useRef(null);
   return (
-    <AboutStyled ref={ref}>
+    <AboutStyled ref={ref} id={id}>
       <WrapperCenterRow>
         <WrapperInner>
           <ModifiedTitle>About Me&thinsp;</ModifiedTitle>

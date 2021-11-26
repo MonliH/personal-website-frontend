@@ -18,7 +18,7 @@ const HeaderMain = styled.div`
   -webkit-backdrop-filter: blur(4px);
 `;
 
-const HeaderLinks = styled.div`
+const HeaderLinks = styled.a`
   font: 15px ${({ theme }) => theme.fonts.sansSerifAlt};
   float: right;
   display: flex;
@@ -34,7 +34,7 @@ const HeaderLinks = styled.div`
   }
 `;
 
-const HeaderLink = styled.button`
+const HeaderLink = styled.a`
   font: 15px ${({ theme }) => theme.fonts.sansSerifAlt};
   color: white;
   text-decoration: none;
@@ -50,7 +50,7 @@ const HeaderLink = styled.button`
   }
 `;
 
-const HeaderLinkA = styled(HeaderLink).attrs({ as: "r" })`
+const HeaderLinkA = styled(HeaderLink)`
   margin-left: 22px;
 `;
 
@@ -194,7 +194,7 @@ const Header = ({
           e.preventDefault();
           links.current[keys[i]].scrollIntoView();
         }}
-        key={keys[i]}
+        href={`#${keys[i]}`}
       >
         {keys[i]}
       </HeaderLink>
@@ -209,9 +209,8 @@ const Header = ({
 
   // Linkedin logo
   linksLeft.push(
-    <div style={{ display: "inline" }}>
+    <div style={{ display: "inline" }} key="icons">
       <HeaderLinkIcon
-        key="linkedin-image"
         href="https://www.linkedin.com/in/jonatli/"
         target="_blank"
         rel="noopener noreferrer"
@@ -228,7 +227,6 @@ const Header = ({
         />
       </HeaderLinkIcon>
       <HeaderLinkIcon
-        key="github-image"
         href="https://github.com/MonliH"
         target="_blank"
         rel="noopener noreferrer"

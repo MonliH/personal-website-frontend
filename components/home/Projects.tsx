@@ -324,14 +324,17 @@ const ProjectGrid = styled.div`
 `;
 
 const Projects = forwardRef(
-  ({ width }: { width: number }, ref: ForwardedRef<HTMLDivElement>) => {
+  (
+    { id, width }: { id: string; width: number },
+    ref: ForwardedRef<HTMLDivElement>
+  ) => {
     const [items] = useState(projectList);
     const [gridRef, visible] = useInView({
       triggerOnce: true,
     });
 
     return (
-      <ProjectsStyled ref={ref}>
+      <ProjectsStyled ref={ref} id={id}>
         <ProjectPage>
           <Title>My Projects&thinsp;</Title>
           <div ref={gridRef}>

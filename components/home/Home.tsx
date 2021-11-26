@@ -153,9 +153,14 @@ const Home = () => {
   const linkOrder = ["About Me", "My Projects", "Contact Me"];
 
   const pages: Array<JSX.Element> = [
-    <About ref={addRef(linkOrder[0])} key="about" />,
-    <Projects width={width} ref={addRef(linkOrder[1])} key="projects" />,
-    <Contact ref={addRef(linkOrder[2])} key="contact" />,
+    <About ref={addRef(linkOrder[0])} id={linkOrder[0]} key={linkOrder[0]} />,
+    <Projects
+      width={width}
+      ref={addRef(linkOrder[1])}
+      id={linkOrder[1]}
+      key={linkOrder[1]}
+    />,
+    <Contact ref={addRef(linkOrder[2])} id={linkOrder[2]} key={linkOrder[2]} />,
   ];
 
   return (
