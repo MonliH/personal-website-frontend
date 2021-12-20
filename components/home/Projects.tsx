@@ -88,6 +88,9 @@ const ProjectCardStyled = styled(animated.div)`
   background-color: #222222;
 
   padding: 25px;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+  will-change: transform;
 `;
 
 const AnimatedProjectLink = styled.a`
@@ -123,7 +126,7 @@ const ProjectCard = (p: ProjectCardProps) => {
   }));
 
   const onMouseEnter = () => {
-    setShadow({ boxShadow: 1, scale: 1.01 });
+    setShadow({ boxShadow: 1, scale: 1.03 });
   };
 
   const onMouseLeave = () => {
@@ -140,7 +143,7 @@ const ProjectCard = (p: ProjectCardProps) => {
         boxShadow: anim.boxShadow.to(
           (s) => `0px 0px ${s * 7 + 1}px rgba(0, 0, 0, ${s * 0.2 + 0.1})`
         ) as any,
-        transform: anim.scale.to((s) => `scale(${s})`),
+        transform: anim.scale.to((s) => `scale(${s}) perspective(1px)`),
       }}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
