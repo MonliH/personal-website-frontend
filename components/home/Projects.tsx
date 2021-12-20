@@ -338,11 +338,13 @@ const Projects = forwardRef(
         <ProjectPage>
           <Title>My Projects&thinsp;</Title>
           <div ref={gridRef}>
-            <ProjectGridAnimated
-              items={items}
-              visible={visible}
-              width={width}
-            />
+            {typeof window === "undefined" ? null : (
+              <ProjectGridAnimated
+                items={items}
+                visible={visible}
+                width={width}
+              />
+            )}
             <noscript>
               <ProjectGrid>
                 {items.map((proj: Project) => (

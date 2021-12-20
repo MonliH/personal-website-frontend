@@ -18,16 +18,15 @@ const HeaderMain = styled.div`
   -webkit-backdrop-filter: blur(4px);
 `;
 
-const HeaderLinks = styled.a`
+const HeaderLinks = styled.div`
   font: 15px ${({ theme }) => theme.fonts.sansSerifAlt};
-  float: right;
   display: flex;
   flex: 0 0;
   margin-right: 30px;
   position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  display: block;
+  align-items: center;
+  height: 100%;
+  justify-content: right;
 
   @media (max-width: 644px) {
     display: none;
@@ -50,10 +49,6 @@ const HeaderLink = styled.a`
   }
 `;
 
-const HeaderLinkA = styled(HeaderLink)`
-  margin-left: 22px;
-`;
-
 const HeaderLinkIcon = styled.a`
   font: 15px ${({ theme }) => theme.fonts.sansSerifAlt};
   color: white;
@@ -62,8 +57,7 @@ const HeaderLinkIcon = styled.a`
   cursor: pointer;
   transition: filter 0.2s ease-in-out;
   position: relative;
-  margin-left: 15px;
-  float: right;
+  margin-left: 9px;
 
   &:hover {
     filter: brightness(70%);
@@ -75,8 +69,8 @@ const HeaderLinkForeground = styled.div`
   width: 27px;
   height: 27px;
   position: absolute;
-  top: -2px;
   left: 0;
+  top: 2px;
 `;
 
 const HeaderName = styled.button`
@@ -101,10 +95,10 @@ const HeaderName = styled.button`
 `;
 
 const HeaderImage = styled.img`
-  margin-top: -2px;
-  float: right;
+  position: relative;
   width: 27px;
   height: 27px;
+  top: 2px;
 `;
 
 const HeaderNav = styled.button`
@@ -195,6 +189,7 @@ const Header = ({
           links.current[keys[i]].scrollIntoView();
         }}
         href={`#${keys[i]}`}
+        key={keys[i]}
       >
         {keys[i]}
       </HeaderLink>
@@ -203,19 +198,24 @@ const Header = ({
 
   linksLeft.push(
     <Link href="/blog" key="blog" passHref>
-      <HeaderLinkA>Blog</HeaderLinkA>
+      <HeaderLink>Blog</HeaderLink>
     </Link>
   );
 
   // Linkedin logo
   linksLeft.push(
-    <div style={{ display: "inline" }} key="icons">
+    <div
+      style={
+        navOn ? { float: "left", marginLeft: "4px" } : { marginLeft: "10px" }
+      }
+      key="icons"
+    >
       <HeaderLinkIcon
         href="https://www.linkedin.com/in/jonatli/"
         target="_blank"
         rel="noopener noreferrer"
         className="header-link"
-        style={navOn ? { float: "left", marginLeft: "22px" } : {}}
+        key="linkedin"
       >
         <HeaderLinkForeground style={{ borderRadius: 5 }} />
         <HeaderImage
@@ -231,9 +231,7 @@ const Header = ({
         target="_blank"
         rel="noopener noreferrer"
         className="header-link"
-        style={
-          navOn ? { float: "left", marginLeft: "22px" } : { marginLeft: "30px" }
-        }
+        key="github"
       >
         <HeaderLinkForeground style={{ borderRadius: 14 }} />
         <HeaderImage
