@@ -137,10 +137,6 @@ const NoScriptImg = styled.img`
   left: 0;
 `;
 
-const TransparentDiv = styled.div`
-  color: transparent;
-`;
-
 const Home = () => {
   const [width] = useWindowSize();
   const refs = useRef<Record<string, HTMLDivElement>>({});
@@ -180,15 +176,15 @@ const Home = () => {
             </NameTitleWrapper>
           </TitlePage>
           <TitleImageWrapper>
-            <TransparentDiv>
-              <Image
-                src="/graphics/title.png"
-                alt="My Artwork"
-                layout="fill"
-                priority
-                sizes="70vh"
-              />
-            </TransparentDiv>
+            <Image
+              src="/graphics/title.png"
+              alt="My Artwork"
+              layout="fill"
+              priority
+              placeholder="blur"
+              sizes="70vh"
+              quality={75}
+            />
 
             {/* Here we add noscript so people with javascript disabled can still see the image */}
             <noscript>
