@@ -39,6 +39,9 @@ const tagColor = (tag: Tag) => {
     case Tag.CS: {
       return "#178600";
     }
+    case Tag.GLSL: {
+      return "#5686a5";
+    }
     default: {
       return "#ffffff";
     }

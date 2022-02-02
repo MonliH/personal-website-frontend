@@ -79,16 +79,13 @@ const About = ({ id }: { id: string }, ref: ForwardedRef<HTMLDivElement>) => {
               <source src="/graphics/about_me.mp4" type="video/mp4" />
             </AboutVideo>
             <AboutText>
-              Hey! I&#39;m Jonathan Li.
+              Hey! I&#39;m Jonathan Li. I’m passionate about coding and design.
               <br />
               <br />
-              I’m passionate about coding, design, and making simulations.
+              Some things I enjoy creating include machine learning models,
+              compilers, 3D applications, and web apps.
               <br />
-              <br />
-              Some things I enjoy creating include deep learning models,
-              programming languages, and web apps.
-              <br />
-              <br />I revel in learning new things.
+              <br />I love learning new things.
             </AboutText>
           </AboutMeSection>
         </WrapperInner>

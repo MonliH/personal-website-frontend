@@ -4,6 +4,7 @@ export enum Tag {
   Rust = "Rust",
   Python = "Python",
   CS = "C#",
+  GLSL = "GLSL",
 
   // Libraries/frameworks
   React = "React",
@@ -20,8 +21,16 @@ export interface Project {
 
 export const projectList: Array<Project> = [
   {
-    displayName: "lulz",
+    displayName: "nimble-engine",
     rank: 0,
+    link: "https://github.com/MonliH/nimble-engine",
+    tags: [Tag.Python, Tag.GLSL],
+    description: "a 3D game engine",
+  },
+
+  {
+    displayName: "lulz",
+    rank: 2,
     link: "https://github.com/MonliH/lulz",
     tags: [Tag.Rust],
     description: "a fast and spec-compliant LOLCODE implementation",
@@ -29,7 +38,7 @@ export const projectList: Array<Project> = [
 
   {
     displayName: "personal-website",
-    rank: 1,
+    rank: 3,
     link: "https://github.com/MonliH/personal-website",
     tags: [Tag.Typescript, Tag.React],
     description: "you're looking at it right now",
@@ -37,7 +46,7 @@ export const projectList: Array<Project> = [
 
   {
     displayName: "crabfish",
-    rank: 2,
+    rank: 4,
     link: "https://github.com/MonliH/crabfish",
     tags: [Tag.Rust],
     description: "a chess engine in rust",
@@ -45,7 +54,7 @@ export const projectList: Array<Project> = [
 
   {
     displayName: "issuebase",
-    rank: 3,
+    rank: 5,
     link: "https://github.com/MonliH/issuebase",
     tags: [Tag.Typescript, Tag.Rust, Tag.React],
     description: " list good first issues in popular github repositories ",
@@ -53,7 +62,7 @@ export const projectList: Array<Project> = [
 
   {
     displayName: "zircon",
-    rank: 4,
+    rank: 6,
     link: "https://github.com/MonliH/zircon",
     tags: [Tag.CS],
     description: "an interpreted and purely functional toy language",
@@ -61,23 +70,15 @@ export const projectList: Array<Project> = [
 
   {
     displayName: "four-ai",
-    rank: 5,
+    rank: 7,
     link: "https://github.com/MonliH/four-ai",
     tags: [Tag.Rust, Tag.ML],
     description: "connect four neural networks",
   },
 
   {
-    displayName: "emu-rs",
-    rank: 6,
-    link: "https://github.com/MonliH/emurs",
-    tags: [Tag.Rust],
-    description: "an emulator for the 8080 microprocessor",
-  },
-
-  {
     displayName: "iNNteractive",
-    rank: 7,
+    rank: 8,
     link: "https://github.com/MonliH/iNNteractive",
     tags: [Tag.Python, Tag.ML],
     description: "interactive neural networks behind a GUI",

@@ -24,7 +24,8 @@
       "@hooks/*": ["hooks/*"],
       "@reducers/*": ["reducers/*"],
       "@public/*": ["public/*"]
-    }
+    },
+    "incremental": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]

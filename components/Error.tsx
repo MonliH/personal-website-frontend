@@ -1,6 +1,8 @@
 import styled from "styled-components";
+import { ArrowLeft } from "react-feather";
 
 import Bg from "@components/Bg";
+import Link from "next/link";
 
 const NoMatchStyled = styled.div`
   display: flex;
@@ -27,6 +29,14 @@ const NoMatch = ({ code, msg }: NoMatchProps) => {
       <NoMatchStyled>
         {code || "404"}
         {msg ? <NoMatchText>{msg}</NoMatchText> : <></>}
+        <div style={{ fontSize: "24px" }}>
+          <Link href="/" passHref>
+            <a style={{ display: "flex" }}>
+              <ArrowLeft style={{ marginTop: "5px", marginRight: "3px" }} />
+              <span>Go home</span>
+            </a>
+          </Link>
+        </div>
       </NoMatchStyled>
     </Bg>
   );

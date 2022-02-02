@@ -10,6 +10,9 @@ import About from "@components/home/About";
 import Projects from "@components/home/Projects";
 
 import useWindowSize from "@hooks/useWindowSize";
+import { animated, useSpring } from "react-spring";
+
+import titleImage from "../../public/graphics/title.png";
 
 const SubHeading = styled.div`
   font: bold 30px ${({ theme }) => theme.fonts.sansSerifAlt};
@@ -82,7 +85,7 @@ const TitleImageWrapper = styled.div`
   min-height: 70vh;
   margin-left: -100px;
 
-  transition: filter 0.3s;
+  transition: filter 0.6s ease-in-out;
 
   @media (max-width: 430px) {
     margin-top: 100px;
@@ -94,7 +97,7 @@ const TitleImageWrapper = styled.div`
   }
 
   &:hover {
-    filter: saturate(120%);
+    filter: saturate(130%);
   }
 `;
 
@@ -133,6 +136,7 @@ const NoScriptImg = styled.img`
   width: 100%;
   height: 100%;
   position: absolute;
+  user-select: none;
   top: 0;
   left: 0;
 `;
@@ -159,6 +163,14 @@ const Home = () => {
     <Contact ref={addRef(linkOrder[2])} id={linkOrder[2]} key={linkOrder[2]} />,
   ];
 
+  const [imageProps, setImageProps] = useSpring(() => ({
+    opacity: 0,
+  }));
+
+  const handleLoad = () => {
+    setImageProps({ opacity: 1 });
+  };
+
   return (
     <div ref={masterRef}>
       <Header links={refs} keys={linkOrder} masterRef={masterRef} />
@@ -176,15 +188,17 @@ const Home = () => {
             </NameTitleWrapper>
           </TitlePage>
           <TitleImageWrapper>
-            <Image
-              src="/graphics/title.png"
-              alt="My Artwork"
-              layout="fill"
-              priority
-              placeholder="blur"
-              sizes="70vh"
-              quality={75}
-            />
+            <animated.span style={{ ...imageProps, userSelect: "none" }}>
+              <Image
+                src={titleImage}
+                alt="My Artwork"
+                layout="fill"
+                priority
+                onLoadingComplete={handleLoad}
+                sizes="70vh"
+                quality={80}
+              />
+            </animated.span>
 
             {/* Here we add noscript so people with javascript disabled can still see the image */}
             <noscript>
