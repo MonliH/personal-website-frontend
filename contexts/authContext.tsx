@@ -4,6 +4,7 @@ import React, {
   createContext,
   useEffect,
   useState,
+  ReactNode,
 } from "react";
 
 import Loading from "@components/Loading";
@@ -44,7 +45,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       const authData = window.localStorage.getItem("authData");
 
       // The key must be there, and it must be *valid*
-      if (await validateKey(authData)) {
+      if (authData && (await validateKey(authData))) {
         setAuth({ loading: false, key: authData });
       } else {
         // No key, not loading
@@ -66,7 +67,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
 export const useAuth = () => useContext(AuthContext);
 
-export const ProtectRoute = ({ children }) => {
+export const ProtectRoute = ({ children }: { children: ReactNode }) => {
   const { auth } = useAuth();
   if (auth.loading) {
     return (
