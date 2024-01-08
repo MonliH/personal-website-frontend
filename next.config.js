@@ -26,6 +26,18 @@ const nextConfig = {
         permanent: false,
         basePath: false,
       },
+      {
+        source: "/chess",
+        destination: "https://github.com/MonliH/crabfish",
+        permanent: false,
+        basePath: false,
+      },
+      {
+        source: "/lulz",
+        destination: "https://github.com/MonliH/lulz",
+        permanent: false,
+        basePath: false,
+      },
     ];
   },
 };
