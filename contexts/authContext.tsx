@@ -4,7 +4,6 @@ import React, {
   createContext,
   useEffect,
   useState,
-  ReactNode,
 } from "react";
 
 import Loading from "@components/Loading";
@@ -67,7 +66,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
 export const useAuth = () => useContext(AuthContext);
 
-export const ProtectRoute = ({ children }: { children: ReactNode }) => {
+export const ProtectRoute = ({
+  children,
+}: {
+  children: JSX.Element;
+}): JSX.Element => {
   const { auth } = useAuth();
   if (auth.loading) {
     return (
