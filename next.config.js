@@ -9,13 +9,13 @@ const nextConfig = {
         basePath: false,
       },
       {
-        source: "/acl-paper",
+        source: "/acl",
         destination: "https://aclanthology.org/2023.acl-short.120/",
         permanent: false,
         basePath: false,
       },
       {
-        source: "/devpost",
+        source: "/ht",
         destination: "https://devpost.com/jonatli",
         permanent: false,
         basePath: false,
@@ -27,7 +27,7 @@ const nextConfig = {
         basePath: false,
       },
       {
-        source: "/chess",
+        source: "/chs",
         destination: "https://github.com/MonliH/crabfish",
         permanent: false,
         basePath: false,
