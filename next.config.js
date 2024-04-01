@@ -27,6 +27,12 @@ const nextConfig = {
         basePath: false,
       },
       {
+        source: "/new",
+        destination: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        permanent: false,
+        basePath: false,
+      },
+      {
         source: "/chs",
         destination: "https://github.com/MonliH/crabfish",
         permanent: false,
