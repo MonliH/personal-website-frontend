@@ -1,0 +1,180 @@
+@font-face {
+    font-family: 'PP Fragment Sans';
+    src: url('PPFragment-SansExtraBold.woff2') format('woff2'),
+        url('PPFragment-SansExtraBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PP Fragment Serif';
+    src: url('PPFragment-SerifRegular.woff2') format('woff2'),
+        url('PPFragment-SerifRegular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PP Fragment Serif';
+    src: url('PPFragment-SerifRegularItalic.woff2') format('woff2'),
+        url('PPFragment-SerifRegularItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PP Fragment Glare';
+    src: url('PPFragment-GlareLightItalic.woff2') format('woff2'),
+        url('PPFragment-GlareLightItalic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PP Fragment Text';
+    src: url('PPFragment-TextRegular.woff2') format('woff2'),
+        url('PPFragment-TextRegular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PP Fragment Sans';
+    src: url('PPFragment-SansExtraBoldItalic.woff2') format('woff2'),
+        url('PPFragment-SansExtraBoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PP Fragment Text';
+    src: url('PPFragment-TextRegularItalic.woff2') format('woff2'),
+        url('PPFragment-TextRegularItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PP Fragment Serif';
+    src: url('PPFragment-SerifExtraBoldItalic.woff2') format('woff2'),
+        url('PPFragment-SerifExtraBoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PP Fragment Serif';
+    src: url('PPFragment-SerifLightItalic.woff2') format('woff2'),
+        url('PPFragment-SerifLightItalic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PP Fragment Sans';
+    src: url('PPFragment-SansLightItalic.woff2') format('woff2'),
+        url('PPFragment-SansLightItalic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PP Fragment Sans';
+    src: url('PPFragment-SansLight.woff2') format('woff2'),
+        url('PPFragment-SansLight.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PP Fragment Glare';
+    src: url('PPFragment-GlareLight.woff2') format('woff2'),
+        url('PPFragment-GlareLight.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PP Fragment Glare';
+    src: url('PPFragment-GlareRegularItalic.woff2') format('woff2'),
+        url('PPFragment-GlareRegularItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PP Fragment Sans';
+    src: url('PPFragment-SansRegularitalic.woff2') format('woff2'),
+        url('PPFragment-SansRegularitalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PP Fragment Glare';
+    src: url('PPFragment-GlareExtraBold.woff2') format('woff2'),
+        url('PPFragment-GlareExtraBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PP Fragment Serif';
+    src: url('PPFragment-SerifLight.woff2') format('woff2'),
+        url('PPFragment-SerifLight.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PP Fragment Sans';
+    src: url('PPFragment-SansRegular.woff2') format('woff2'),
+        url('PPFragment-SansRegular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PP Fragment Glare';
+    src: url('PPFragment-GlareExtraBoldItalic.woff2') format('woff2'),
+        url('PPFragment-GlareExtraBoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PP Fragment Serif';
+    src: url('PPFragment-SerifExtraBold.woff2') format('woff2'),
+        url('PPFragment-SerifExtraBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PP Fragment Glare';
+    src: url('PPFragment-GlareRegular.woff2') format('woff2'),
+        url('PPFragment-GlareRegular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
