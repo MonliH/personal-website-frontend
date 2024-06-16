@@ -1,7 +1,7 @@
-import chocchiqueImg from "../../public/website/chocchique.png";
-import lawImg from "../../public/website/law.png";
-import riftiumImg from "../../public/website/riftium.png";
-import climateImg from "../../public/website/climate.png";
+import chocchiqueImg from "../../public/website/chocchique_small.jpg";
+import lawImg from "../../public/website/law_small.jpg";
+import riftiumImg from "../../public/website/riftium_small.jpg";
+import climateImg from "../../public/website/climate_small.jpg";
 
 export const papers = [
   {
@@ -34,7 +34,7 @@ export const websites = [
     {
         displayLink: "climate-institutions.org",
         link: "https://www.climate-institutions.org/",
-        description: "landing and conference page for Institutions & Effective Climate Action, a research project @ Queen’s U",
+        description: "landing and conference page for the Institutions & Effective Climate Action project",
         image: climateImg
     },
     {
@@ -54,32 +54,32 @@ export const websites = [
 export const hackathonProjects = [
     {
         name: "🌙 moonlit",
-        description: "emotionally charged news detection",
-        result: "3rd place @ hack the change",
+        description: "emotional news detection",
+        result: "3rd @ hack the change",
         link: "https://devpost.com/software/moonlit"
     },
     {
         name: "🚫 reBlock",
-        description: "sponsor detection",
-        result: "1st place @ hack3",
+        description: "sponsor detection and skip",
+        result: "1st @ hack3",
         link: "https://devpost.com/software/reblock-xjgkrb"
     },
     {
         name: "🚀 trajectify",
         description: "career trajectory prediction",
-        result: "2nd place @ jamhacks",
+        result: "2nd @ jamhacks",
         link: "https://devpost.com/software/trajectify"
     },
     {
         name: "🎊 reSolve",
         description: "new years resolutions generation ",
-        result: "1st place @ see you later, hackulator",
+        result: "1st @ see you later, hackulator",
         link: "https://devpost.com/software/resolution-pca8y2"
     },
     {
         name: "✈️ triptrove",
         description: "travel plans generation ",
-        result: "1st place @ wafflehacks",
+        result: "1st @ wafflehacks",
         link: "https://devpost.com/software/triptrove"
     },
 ];
