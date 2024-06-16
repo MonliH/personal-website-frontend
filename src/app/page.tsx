@@ -13,7 +13,7 @@ import LenisScroller from "@/libs/LenisScroller";
 
 function Header() {
   return (
-    <header className="fixed top-0 w-full px-8 mt-8 z-10">
+    <header className="absolute lg:fixed top-0 w-full px-8 mt-8 z-10 text-white mix-blend-difference clip">
       <div className="flex flex-row gap-3">
         <div className="w-full"></div>
         <Link href="/projects"></Link>
@@ -127,7 +127,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-        <Sep2AltSvg className="absolute left-0 -mt-12" />
+        <Sep2AltSvg className="absolute left-0 mt-16 lg:-mt-12" />
         <div className="relative mt-52 lg:mt-80 2xl:mt-96">
           <SideSvg className="absolute mt-6 h-full -left-2 w-[8%] hidden lg:block lg:w-auto lg:-left-20" />
           <div className="flex flex-row items-end gap-8 mb-16 lg:mb-28 flex-wrap lg:flex-nowrap">
