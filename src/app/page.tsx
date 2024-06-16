@@ -61,7 +61,7 @@ export default function Home() {
               programmer, entrepreneur, gymgoer, piano player...
             </p>
             <p className="font-normal">
-              I started coding five years ago when I was captivated by the magic
+              I started coding six years ago when I was captivated by the magic
               behind a neural network. Now I’ve graduated from high school,
               currently working at Cohere doing machine learning stuff.
             </p>
