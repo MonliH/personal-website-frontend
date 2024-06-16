@@ -18,7 +18,7 @@ function Header() {
         <div className="w-full"></div>
         <Link href="/projects"></Link>
 
-        <Link href="/blog">Blog</Link>
+        {/* <Link href="/blog">Blog</Link> */}
         <Link
           href="https://scholar.google.ca/citations?user=9AyfdMsAAAAJ&hl=en&authuser=1"
           target="_blank"
@@ -66,7 +66,7 @@ export default function Home() {
               currently working at Cohere doing machine learning stuff.
             </p>
             <p className="font-normal">
-              I’m trying to purse life’s big questions—which is probably why my
+              I’m trying to pursue life’s big questions—which is probably why my
               interests bounce around so often, from AI (to assist our quest) to
               physics (to explain our world) to entrepreneurship (to fund our
               exploration)—though I’m honestly unlikely to succeed, at least on
