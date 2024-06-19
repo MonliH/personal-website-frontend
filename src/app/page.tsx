@@ -228,7 +228,7 @@ export default function Home() {
             </Fragment>
           ))}
         </div>
-        <SpeechSvg className="absolute left-0 lg:-mt-24" />
+        <SpeechSvg className="absolute left-0 lg:-mt-24 pointer-events-none" />
         <div className="mt-[37%] ml-[13%] w-7/12 lg:w-auto lg:mt-96 lg:ml-[12.5rem] 2xl:mt-[32%] 2xl:ml-[calc(31%-100px)]">
           <h2 className="font-bold text-3xl">jonathan li</h2>
           <p>
