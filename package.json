@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@box2d/particles": "^0.10.0",
+    "framer-motion": "^11.2.13",
     "lenis": "^1.1.2",
     "next": "14.2.3",
     "react": "^18",

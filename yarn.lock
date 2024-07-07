@@ -1050,6 +1050,18 @@
     "@babel/helper-validator-identifier" "^7.24.7"
     to-fast-properties "^2.0.0"
 
+"@box2d/core@^0.10.0":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@box2d/core/-/core-0.10.0.tgz#99c8893970b33f68ab22a426ca8d23166b9d7de5"
+  integrity sha512-rVawB+VokPnE2IarLPXE9blbpV26KOEYdadsnXf7ToyXzceXMADPrSIvYIyTzXLteiLE9i+UTMmTcCvYXl+QEA==
+
+"@box2d/particles@^0.10.0":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@box2d/particles/-/particles-0.10.0.tgz#d961960f24aeae5d71be10911dce8bf6ec29bf07"
+  integrity sha512-ILvKh/DU035W3NldBHjd82oqbYO9tT0rsA6rmVuqSXdsnFPgRihuI9Pz6BXL+qhCRjZ/fo4LRNgVQnqGqHYmFw==
+  dependencies:
+    "@box2d/core" "^0.10.0"
+
 "@darkroom.engineering/tempus@^0.0.46":
   version "0.0.46"
   resolved "https://registry.yarnpkg.com/@darkroom.engineering/tempus/-/tempus-0.0.46.tgz#3d958807503e4055fcc4a1aeeff83ca0546c62f0"
@@ -1750,6 +1762,13 @@ foreground-child@^3.1.0:
   dependencies:
     cross-spawn "^7.0.0"
     signal-exit "^4.0.1"
+
+framer-motion@^11.2.13:
+  version "11.2.13"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-11.2.13.tgz#ab23fbc386233b1a1548757d840190054e5e1f1d"
+  integrity sha512-AyIeegfkXlkX1lWEudRYsJlC+0A59cE8oFK9IsN9bUQzxLwcvN3AEaYaznkELiWlHC7a0eD7pxsYQo7BC05S5A==
+  dependencies:
+    tslib "^2.4.0"
 
 fsevents@~2.3.2:
   version "2.3.3"
