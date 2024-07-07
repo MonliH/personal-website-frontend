@@ -66,9 +66,9 @@ export default function Home() {
               currently working at Cohere doing machine learning stuff.
             </p>
             <p className="font-normal">
-              I’m trying to pursue life’s big questions—which is probably why my
-              interests bounce around so often, from AI (to assist our quest) to
-              physics (to explain our world) to entrepreneurship (to fund our
+              I’m interested in pursuing life’s big questions—which is likely why my
+              interests bounce around so often, from AI (to help me) to
+              physics (to explain our world) to entrepreneurship (to fund my
               exploration)—though I’m honestly unlikely to succeed, at least on
               my own.
             </p>
