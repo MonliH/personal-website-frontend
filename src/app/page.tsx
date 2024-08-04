@@ -9,6 +9,7 @@ import jonathanImg from "../../public/jonathan_li_smaller.jpg";
 import { hackathonProjects, papers, personalProjects, websites } from "./info";
 import Link from "next/link";
 import LenisScroller from "@/libs/LenisScroller";
+import ParticlesCanvas from "./particlesCanvas";
 
 function Header() {
   return (
@@ -41,6 +42,7 @@ export default function Home() {
       <Header />
       <main className="px-4 lg:px-28 py-32">
         <LenisScroller />
+        <ParticlesCanvas/>
         <HomeSvg className="absolute top-0 h-[690px] w-11/12 lg:left-16 lg:w-[80%] lg:h-[92%] 2xl:h-[90%] 2xl:w-[85%] pointer-events-none" />
         <p className="ml-3 mt-8 text-3xl lg:text-4xl font-serif lg:ml-0 lg:mt-0">
           Hello I'm

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { ManagerContext } from "./manager";
 
 export const metadata: Metadata = {
   title: "Jonathan Li",

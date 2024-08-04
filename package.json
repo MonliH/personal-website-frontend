@@ -11,10 +11,12 @@
   "dependencies": {
     "@box2d/particles": "^0.10.0",
     "framer-motion": "^11.2.13",
+    "gl-matrix": "^3.4.3",
     "lenis": "^1.1.2",
     "next": "14.2.3",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "typed-glsl": "^0.11.2"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
