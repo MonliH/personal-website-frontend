@@ -22,6 +22,12 @@ export const papers = [
     authors: ["Rohan Bhambhoria", "Samuel Dahan", "Jonathan Li", "Xiaodan Zhu"],
     link: "https://arxiv.org/abs/2404.12349"
   },
+  {
+    title: "Experimenting with Legal AI Solutions: The Case of Question-Answering for Access to Justice",
+    venue: "Workshop on Generative AI and Law '24 (GenLaw @ ICML 2024)",
+    authors: ["Jonathan Li", "Rohan Bhambhoria", "Samuel Dahan", "Xiaodan Zhu"],
+    link: "https://blog.genlaw.org/pdfs/genlaw_icml2024/74.pdf"
+  },
 ];
 
 export const websites = [
