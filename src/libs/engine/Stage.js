@@ -44,7 +44,7 @@ export default class Stage {
 
   // settings:
   settings = {
-    liquidColor: [60, 110, 240, 255],
+    liquidColor: [160, 110, 240, 255],
     numberOfPenguins: 6,
     spawnAreaRadius: 4,
     debugPhysics: false,
@@ -94,14 +94,6 @@ export default class Stage {
       this.settings.spawnAreaRadius,
       this.settings.liquidColor
     );
-
-    // set the 4th penguin as camera target to follow
-    for (let body of this.simulation.world.bodies) {
-      const { childName } = body;
-      if (childName === "penguin-4") {
-        this.targetToFollow = body;
-      }
-    }
 
     this.renderer = new Renderer();
 
@@ -157,7 +149,7 @@ export default class Stage {
     blendPass.renderToScreen = true;
 
     for (let i = 0; i < this.settings.numberOfPenguins; i += 1) {
-      const name = `penguin-${i + 1}`;
+      const name = `head-${i + 1}`;
       const penguin = new Penguin();
       this.penguins[name] = penguin;
       this.sceneForeground.add(penguin);

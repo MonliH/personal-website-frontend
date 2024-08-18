@@ -12,7 +12,7 @@ import Fluid from "./fluid";
 
 function Header() {
   return (
-    <header className="absolute lg:fixed top-0 w-full px-8 mt-8 z-10 text-white mix-blend-difference clip">
+    <header className="absolute lg:fixed top-0 w-full px-8 mt-8 z-10 text-white mix-blend-difference clip select-none">
       <div className="flex flex-row gap-3">
         <div className="w-full"></div>
         <Link href="/projects"></Link>
@@ -42,7 +42,7 @@ export default function Home() {
         <Fluid />
       <main className="px-4 lg:px-28 py-32">
         <LenisScroller />
-        <p className="ml-3 mt-8 text-3xl lg:text-4xl font-serif lg:ml-0 lg:mt-0">
+        <p className="ml-3 mt-8 text-3xl lg:text-4xl font-serif lg:ml-0 lg:mt-0 select-none">
           Hello I'm
         </p>
         <h1 className="ml-3 mt-0 leading-tight w-9/12 font-bold mb-[600px] text-6xl lg:w-auto lg:ml-0 lg:mt-0 lg:text-[115pt] 2xl:text-[150pt]">

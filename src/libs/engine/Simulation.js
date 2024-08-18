@@ -1,6 +1,6 @@
 import { page, sep1 } from './assets/walls.json'
   
-import { penguin } from './assets/penguin.json'
+import { head } from './assets/head.json'
 
 export default class Simulation {
   particleSystem;
@@ -23,7 +23,7 @@ export default class Simulation {
     psd.radius = 0.09;
     this.particleSystem = this.world.CreateParticleSystem(psd);
 
-    this.makeLiquidParticles(spawnAreaRadius, [0, 0], liquidColor)
+    this.makeLiquidParticles(spawnAreaRadius, [15, 40], liquidColor)
     this.makePengiuns(numberOfPenguins)
 
     this.ground = null;
@@ -102,8 +102,8 @@ export default class Simulation {
   }        
 
   makePengiuns (numberOfPenguins) {
-    const penguinVertices = penguin.fixtures[0].vertices
-    const scale = 0.014
+    const penguinVertices = head.fixtures[0].vertices
+    const scale = 0.008
     let bd = new b2BodyDef()
     bd.type = b2_dynamicBody
     bd.sleep = false
@@ -119,8 +119,8 @@ export default class Simulation {
         }
         body.CreateFixtureFromShape(shape, 0.5)
       }
-      body.childName = 'penguin-' + (i + 1)
-      body.SetTransform(new b2Vec2(-15+i*4, 30), 0)
+      body.childName = 'head-' + (i + 1)
+      body.SetTransform(new b2Vec2(-20+i*5, 32+i*3), Math.PI+(i/3))
       body.SetLinearVelocity(new b2Vec2(0,0))
       body.SetAngularVelocity(0)  
     }

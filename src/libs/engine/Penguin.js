@@ -5,7 +5,7 @@ export default class Penguin extends Sprite {
   
   constructor () {
     const map = new TextureLoader().load(
-      'assets/penguin.png',
+      'assets/head.png',
       texture => {
         // flip the texture vertically to match our geometry
         texture.wrapT = RepeatWrapping
@@ -18,18 +18,18 @@ export default class Penguin extends Sprite {
   draw (body) {
     const position = body.GetWorldCenter()
     const angle = body.GetAngle()
-    if (position.y < -25) {
-      body.SetTransform(new b2Vec2(0, 30), 0)
+    if (position.y < -50) {
+      body.SetTransform(new b2Vec2(15, 30), 0)
       body.SetLinearVelocity(new b2Vec2(0,0))
       body.SetAngularVelocity(0)
     }
     this.position.x = position.x
     this.position.y = position.y
     const imageSize = {
-      width: 243,
-      height: 111
+      width: 469,
+      height: 604
     }
-    const scale = 0.015
+    const scale = 0.008
     this.scale.set(
       imageSize.width * scale, 
       imageSize.height * scale,
