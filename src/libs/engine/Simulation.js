@@ -1,4 +1,4 @@
-import { walls } from './assets/walls.json'
+import { page, sep1 } from './assets/walls.json'
   
 import { penguin } from './assets/penguin.json'
 
@@ -27,18 +27,31 @@ export default class Simulation {
     this.makePengiuns(numberOfPenguins)
 
     this.ground = null;
+    this.catcher = null;
   }
 
   makeWalls(viewportCoords) {
     if (this.ground !== null) {
-    this.world.DestroyBody(this.ground);
+      this.world.DestroyBody(this.ground);
     }
+
+    this.ground = this.makeWallInner(viewportCoords, page.fixtures[0].vertices);
+  }
+
+  makeCatchers(viewportCoords) {
+    if (this.catcher !== null) {
+      this.world.DestroyBody(this.catcher);
+    }
+
+    this.catcher = this.makeWallInner(viewportCoords, sep1.fixtures[0].vertices);
+  }
+
+  makeWallInner(viewportCoords, verts) {
     const [topLeft, bottomRight] = viewportCoords;
 
-    const wallsVerts = walls.fixtures[0].vertices
-    let topLeftPointWalls = new b2Vec2(wallsVerts[0][0].x, wallsVerts[0][0].y);
-    let bottomRightPointWalls = new b2Vec2(wallsVerts[0][0].x, wallsVerts[0][0].y);
-    for (let triangle of wallsVerts) {
+    let topLeftPointWalls = new b2Vec2(verts[0][0].x, verts[0][0].y);
+    let bottomRightPointWalls = new b2Vec2(verts[0][0].x, verts[0][0].y);
+    for (let triangle of verts) {
       for (let vertice of triangle) {
         if (vertice.x < topLeftPointWalls.x) {
           topLeftPointWalls.x = vertice.x;
@@ -62,7 +75,7 @@ export default class Simulation {
     const scaleX = (bottomRight.x - topLeft.x) / (bottomRightPointWalls.x - topLeftPointWalls.x);
     const transformX = topLeft.x - topLeftPointWalls.x * scaleX;
     const transformY = topLeft.y - topLeftPointWalls.y * scaleY;
-    for (let triangle of wallsVerts) {
+    for (let triangle of verts) {
       const shape = new b2PolygonShape;
       for (let vertice of triangle) {
         shape.vertices.push(new b2Vec2(
@@ -73,7 +86,7 @@ export default class Simulation {
       ground.CreateFixtureFromShape(shape, 0.5)
     }
 
-    this.ground = ground;
+    return ground;
   }
 
   makeLiquidParticles (spawnAreaRadius = 2, position = [0, 0], liquidColor = [160, 110, 240, 255], velocity = [0,0]) {

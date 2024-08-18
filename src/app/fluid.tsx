@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import Stage from "@/libs/engine/Stage.js";
 import HomeSvg from "../../public/paths/home.svg";
+import { useLenis } from "lenis/react";
 
 export default function Fluid() {
   const canvasContainer = useRef<HTMLDivElement>(null!);

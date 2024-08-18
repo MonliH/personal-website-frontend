@@ -81,7 +81,7 @@ export default function Home() {
             ></Image>
           </div>
         </div>
-        <Sep1Svg className="absolute left-0 mt-8 lg:-mt-8 pointer-events-none" />
+        <Sep1Svg className="absolute left-0 mt-8 lg:-mt-8 pointer-events-none" id="svg2" />
         <div className="grid mt-40 gap-y-3 lg:grid-rows-[max-content_1fr] lg:grid-cols-[max-content_1fr] lg:gap-x-24 lg:gap-y-16">
           <div>
             <h2 className="text-3xl font-bold mb-2">ai stuff</h2>

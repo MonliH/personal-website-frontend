@@ -2,6 +2,7 @@
 
 import Lenis from "lenis";
 import { useEffect } from "react";
+import Stage from "./engine/Stage";
 
 export default function LenisScroller() {
   const lenisOptions = {
@@ -18,7 +19,11 @@ export default function LenisScroller() {
   useEffect(() => {
     const lenis = new Lenis(lenisOptions);
 
-    lenis.on("scroll", (e: any) => {});
+    lenis.on("scroll", (e: any) => {
+      if (Stage.instance) {
+        (Stage.instance as Stage).scrolled(e.scroll);
+      }
+    });
 
     function raf(time: number) {
       lenis.raf(time);

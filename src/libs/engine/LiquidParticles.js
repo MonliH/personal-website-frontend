@@ -152,7 +152,7 @@ export default class LiquidParticles extends Mesh {
       // const colorsArray = this.geometry.attributes.color.array
       for (var i2 = 0, i3 = 0, i4 = 0, l = particles.length; i2 < l; i2 += 2, i3 += 3, i4 += 4) {
         const y = particles[i2 + 1]
-        if (y < -25) {
+        if (y < -50) {
           particles[i2 + 0] = 15 + Math.random() * 3
           particles[i2 + 1] = 30 + Math.random() * 5
           velocities[i2 + 0] = 0

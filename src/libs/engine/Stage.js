@@ -9,6 +9,7 @@ import {
   SpriteMaterial,
   TextureLoader,
   RepeatWrapping,
+  Camera,
 } from "three";
 import DynamicBodyQueryCallback from "./liquidfun/DynamicBodyQueryCallback";
 import { lerp } from "./../utils/lerp";
@@ -46,7 +47,7 @@ export default class Stage {
     liquidColor: [60, 110, 240, 255],
     numberOfPenguins: 6,
     spawnAreaRadius: 4,
-    debugPhysics: true,
+    debugPhysics: false,
     // debugPhysics: true,
     velocityIterations: 1,
     positionIterations: 1,
@@ -178,6 +179,23 @@ export default class Stage {
     this.render();
   };
 
+  unitToPixelRatio() {
+    const top = this.getViewportCoords(0, 0).y;
+    const bottom = this.getViewportCoords(0, window.innerHeight).y;
+    const unitsPerPixel = (bottom - top) / window.innerHeight;
+    return unitsPerPixel
+  }
+
+
+  scrolled(scroll) {
+    // project scroll to viewport units
+    // const unitsPerPixel = this.visibleHeightAtZDepth(0.5) / window.innerHeight;
+    const units = scroll * this.unitToPixelRatio();
+
+    this.camera.position.y = 11 + units;
+    this.camera.updateProjectionMatrix();
+  }
+
   render() {
     if (this.paused) {
       return;
@@ -196,7 +214,6 @@ export default class Stage {
       );
       this.liquidParticles.resetBuffers(this.simulation.world);
     }
-
 
     const elapsedTime = this.clock.elapsedTime;
     const delta = this.clock.getDelta();
@@ -225,10 +242,15 @@ export default class Stage {
     this.composerForeground.render();
 
     if (!this.madeWalls) {
+      this.scrolled(window.scrollY);
+
       this.madeWalls = true;
       const boundingBox = document.querySelector("#svg").getBoundingClientRect();
-      this.simulation.makeWalls([this.getViewportCoords(boundingBox.left, boundingBox.top), this.getViewportCoords(boundingBox.right, boundingBox.bottom)]);
+      this.simulation.makeWalls([this.getViewportCoordsFromTop(boundingBox.left, boundingBox.top + window.scrollY), this.getViewportCoordsFromTop(boundingBox.right, boundingBox.bottom + window.scrollY)]);
+      const boundingBoxInner = document.querySelector("#svg2").getBoundingClientRect();
+      this.simulation.makeCatchers([this.getViewportCoordsFromTop(boundingBoxInner.left, boundingBoxInner.top + window.scrollY), this.getViewportCoordsFromTop(boundingBoxInner.right, boundingBoxInner.bottom + window.scrollY)]);
     }
+
   }
 
   handleWindowResize = () => {
@@ -313,17 +335,39 @@ export default class Stage {
     return new b2Vec2(pos.x, pos.y);
   }
 
-  getViewportCoords(clientX, clientY) {
+  getViewportCoordsInner(clientX, clientY, camera) {
     const mouse = new Vector3();
     mouse.x = (clientX / this.stageWidth) * 2 - 1;
     mouse.y = -(clientY / this.stageHeight) * 2 + 1;
     mouse.z = 0.5;
-    mouse.unproject(this.camera);
-    const dir = mouse.sub(this.camera.position).normalize();
-    const distance = -this.camera.position.z / dir.z;
-    const pos = this.camera.position.clone().add(dir.multiplyScalar(distance));
+    console.log("a", mouse.x, mouse.y, mouse.z);
+    mouse.unproject(camera);
+    console.log(mouse.x, mouse.y, mouse.z);
+    const dir = mouse.sub(camera.position).normalize();
+    const distance = -camera.position.z / dir.z;
+    const pos = camera.position.clone().add(dir.multiplyScalar(distance));
 
     return new b2Vec2(pos.x, pos.y);
+  }
+
+  getViewportCoords(clientX, clientY) {
+    return this.getViewportCoordsInner(clientX, clientY, this.camera);
+  }
+
+  getViewportCoordsFromTop(clientX, clientY) {
+    const camera = new PerspectiveCamera(
+      /* fov */ 70,
+      /* aspect */ window.innerWidth / window.innerHeight,
+      /* near */ 0.001,
+      /* far */ 50
+    );
+    camera.position.x = 3;
+    camera.position.y = 11;
+    camera.position.z = 28;
+    camera.updateWorldMatrix();
+    camera.updateProjectionMatrix();
+
+    return this.getViewportCoordsInner(clientX, clientY, camera);
   }
 
   destroy() {
