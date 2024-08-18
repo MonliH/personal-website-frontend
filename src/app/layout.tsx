@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ManagerContext } from "./manager";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Jonathan Li",
@@ -27,6 +27,7 @@ export default function RootLayout({
           sizes="32x32"
         />
         <link rel="icon" type="image/x-icon" href="/favicon.ico"></link>
+        <Script src="/vendors/liquidfun.js" strategy="beforeInteractive"/>
       </head>
       <body>{children}</body>
     </html>

@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@box2d/core": "^0.10.0",
     "@box2d/particles": "^0.10.0",
     "framer-motion": "^11.2.13",
     "gl-matrix": "^3.4.3",
@@ -16,6 +17,7 @@
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
+    "three": "^0.113.2",
     "typed-glsl": "^0.11.2"
   },
   "devDependencies": {
@@ -23,6 +25,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/three": "^0.167.1",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
