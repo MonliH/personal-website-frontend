@@ -4,7 +4,7 @@ import Sep1Svg from "../../public/paths/sep1.svg";
 import Sep2AltSvg from "../../public/paths/sep2_alt.svg";
 import SideSvg from "../../public/paths/side.svg";
 import SpeechSvg from "../../public/paths/speech.svg";
-import jonathanImg from "../../public/jonathan_li_smaller.jpg";
+import jonathanImg from "../../public/jonathan_li_newer.jpg";
 import { hackathonProjects, papers, personalProjects, websites } from "./info";
 import Link from "next/link";
 import LenisScroller from "@/libs/LenisScroller";
