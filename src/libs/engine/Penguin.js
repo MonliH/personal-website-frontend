@@ -12,6 +12,7 @@ export default class Penguin extends Sprite {
         texture.repeat.y = - 1
       })
     const material = new SpriteMaterial({ map })
+    window.faceIndex = 0;
     super(material)
   }
 
@@ -19,7 +20,8 @@ export default class Penguin extends Sprite {
     const position = body.GetWorldCenter()
     const angle = body.GetAngle()
     if (position.y < -50) {
-      body.SetTransform(new b2Vec2(15, 30), 0)
+      body.SetTransform(new b2Vec2(15, window.faceIndex * 7 + 40), Math.PI)
+      window.faceIndex = (window.faceIndex + 1) % 5;
       body.SetLinearVelocity(new b2Vec2(0,0))
       body.SetAngularVelocity(0)
     }
