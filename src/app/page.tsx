@@ -2,7 +2,6 @@ import { Fragment } from "react";
 import Image from "next/image";
 import HomeSvg from "../../public/paths/home.svg";
 import Sep1Svg from "../../public/paths/sep1.svg";
-import Sep2Svg from "../../public/paths/sep2.svg";
 import Sep2AltSvg from "../../public/paths/sep2_alt.svg";
 import SideSvg from "../../public/paths/side.svg";
 import SpeechSvg from "../../public/paths/speech.svg";
@@ -10,31 +9,7 @@ import jonathanImg from "../../public/jonathan_li_newer.jpg";
 import { hackathonProjects, papers, personalProjects, websites } from "./info";
 import Link from "next/link";
 import LenisScroller from "@/libs/LenisScroller";
-
-function Header() {
-  return (
-    <header className="absolute lg:fixed top-0 w-full px-8 mt-8 z-10 text-white mix-blend-difference clip">
-      <div className="flex flex-row gap-3">
-        <div className="w-full"></div>
-        <Link href="/projects"></Link>
-
-        <Link href="/blog">Blog</Link>
-        <Link
-          href="https://scholar.google.ca/citations?user=9AyfdMsAAAAJ&hl=en&authuser=1"
-          target="_blank"
-        >
-          Scholar
-        </Link>
-        <Link href="https://github.com/MonliH" target="_blank">
-          GitHub
-        </Link>
-        <Link href="https://www.linkedin.com/in/jonatli/" target="_blank">
-          LinkedIn
-        </Link>
-      </div>
-    </header>
-  );
-}
+import Header from "@/app/components/header";
 
 export default function Home() {
   return (
@@ -85,7 +60,7 @@ export default function Home() {
         <Sep1Svg className="absolute left-0 mt-8 lg:-mt-8" />
         <div className="grid mt-40 gap-y-3 lg:grid-rows-[max-content_1fr] lg:grid-cols-[max-content_1fr] lg:gap-x-24 lg:gap-y-16">
           <div>
-            <h2 className="text-3xl font-bold mb-2">ai stuff</h2>
+            <h2 className="text-3xl font-bold mb-2">ai research</h2>
             <p>
               I've published a few papers as first author<br></br>@ Queen’s U,
               with{" "}
@@ -144,7 +119,8 @@ export default function Home() {
               , a web design firm, with{" "}
               <Link href="https://davidy.li" target="_blank">
                 my brother
-              </Link>.
+              </Link>
+              .
             </p>
           </div>
           <div className="flex flex-row flex-wrap gap-x-16 gap-y-12 pb-24 lg:pb-64 lg:ml-32 lg:gap-y-28">
@@ -196,7 +172,9 @@ export default function Home() {
                   {project.description}
                 </Link>
                 <div>
-                  <p className="pr-2 inline-block text-md lg:pr-4 lg:text-lg">|</p>
+                  <p className="pr-2 inline-block text-md lg:pr-4 lg:text-lg">
+                    |
+                  </p>
                   <p className="inline-block text-md lg:text-lg">
                     {project.result}
                   </p>
