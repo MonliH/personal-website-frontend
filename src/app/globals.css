@@ -3,12 +3,14 @@
 @tailwind utilities;
 
 @layer base {
-  body, html, #__next {
+  body,
+  html,
+  #__next {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    background-color: #FCFCFC;
+    background-color: #fcfcfc;
   }
 
   p {
@@ -18,51 +20,49 @@
 
 @layer base {
   @font-face {
-    font-family: 'PP Fragment Serif';
-    src: url('/fragment/PPFragment-SerifRegular.woff2') format('woff2'),
-        url('/fragment/PPFragment-SerifRegular.woff') format('woff');
+    font-family: "PP Fragment Serif";
+    src: url("/fragment/PPFragment-SerifRegular.woff2") format("woff2"),
+      url("/fragment/PPFragment-SerifRegular.woff") format("woff");
     font-weight: normal;
     font-style: normal;
   }
 
   @font-face {
-    font-family: 'PP Fragment Serif';
-    src: url('/fragment/PPFragment-SerifRegularItalic.woff2') format('woff2'),
-        url('/fragment/PPFragment-SerifRegularItalic.woff') format('woff');
+    font-family: "PP Fragment Serif";
+    src: url("/fragment/PPFragment-SerifRegularItalic.woff2") format("woff2"),
+      url("/fragment/PPFragment-SerifRegularItalic.woff") format("woff");
     font-weight: normal;
     font-style: italic;
   }
 
-
   @font-face {
-    font-family: 'PP Fragment Serif';
-    src: url('/fragment/PPFragment-SerifExtraBoldItalic.woff2') format('woff2'),
-        url('/fragment/PPFragment-SerifExtraBoldItalic.woff') format('woff');
+    font-family: "PP Fragment Serif";
+    src: url("/fragment/PPFragment-SerifExtraBoldItalic.woff2") format("woff2"),
+      url("/fragment/PPFragment-SerifExtraBoldItalic.woff") format("woff");
     font-weight: bold;
     font-style: italic;
   }
 
   @font-face {
-    font-family: 'PP Fragment Serif';
-    src: url('/fragment/PPFragment-SerifLightItalic.woff2') format('woff2'),
-        url('/fragment/PPFragment-SerifLightItalic.woff') format('woff');
+    font-family: "PP Fragment Serif";
+    src: url("/fragment/PPFragment-SerifLightItalic.woff2") format("woff2"),
+      url("/fragment/PPFragment-SerifLightItalic.woff") format("woff");
     font-weight: 300;
     font-style: italic;
   }
 
-
   @font-face {
-    font-family: 'PP Fragment Serif';
-    src: url('/fragment/PPFragment-SerifLight.woff2') format('woff2'),
-        url('/fragment/PPFragment-SerifLight.woff') format('woff');
+    font-family: "PP Fragment Serif";
+    src: url("/fragment/PPFragment-SerifLight.woff2") format("woff2"),
+      url("/fragment/PPFragment-SerifLight.woff") format("woff");
     font-weight: 300;
     font-style: normal;
   }
 
   @font-face {
-    font-family: 'PP Fragment Serif';
-    src: url('/fragment/PPFragment-SerifExtraBold.woff2') format('woff2'),
-        url('/fragment/PPFragment-SerifExtraBold.woff') format('woff');
+    font-family: "PP Fragment Serif";
+    src: url("/fragment/PPFragment-SerifExtraBold.woff2") format("woff2"),
+      url("/fragment/PPFragment-SerifExtraBold.woff") format("woff");
     font-weight: bold;
     font-style: normal;
   }
