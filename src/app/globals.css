@@ -67,3 +67,7 @@
     font-style: normal;
   }
 }
+
+.katex {
+  font-size: 1em !important;
+}

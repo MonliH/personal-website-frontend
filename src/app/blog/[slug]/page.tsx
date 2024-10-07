@@ -3,6 +3,7 @@ import { CustomMDX } from "@/app/components/mdx";
 import { formatDate, getBlogPosts } from "@/app/blog/utils";
 import { baseUrl } from "@/app/sitemap";
 import BlogWrapper from "@/app/blog/blogWrapper";
+import 'katex/dist/katex.css'
 
 export async function generateStaticParams() {
   let posts = getBlogPosts();

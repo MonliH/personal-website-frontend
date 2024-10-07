@@ -1,0 +1,44 @@
+---
+title: 'The energy required for evolution: a computational perspective'
+publishedAt: '2024-10-06'
+summary: 'This is a testing blog post!'
+---
+
+The human brain is quite a marvel, capable of complex decision-making, spatial reasoning, and common sense, all in a biological package that only consumes about 20 watts of power. In comparison, the energy consumption for a minimal practical LLM setup is around 25 times higher[^1]. The human brain is incredible, but how much energy did it take for nature to *produce* such an efficient structure?
+
+[^1]: I base this calculation off Llama 3.1 70B, which can run on about two GTX 1080 Ti GPUs, which paired with a beefy CPU could consume up to 500 watts.
+
+First, let’s consider the simplest upper bound possible. I’ll assume that the Earth already exists. While the existence of the Earth was critical in forming intelligence, that misses the point of my exploration—you’ll see what I mean later. The amount of power from the sun hitting the Earth is around $$1\times10^{17} \text{W}$$, or $$100\text{PW}$$. Over an estimated 3.6 billion years since our latest common ancestor, we have:
+
+$$
+\begin{align}
+1\times10^{17} \frac{\text{J}}{\text{s}} \cdot 1\times10^{17}\text{s} = 10^{34}\text{J} = 10000\text{QJ}
+\end{align}
+$$
+
+Ten thousand quettajuoles (yes, I had to look that SI prefix up) is an absurd amount of energy; much more than any human efforts trying to replicate intellegence. To put this into perspective, let’s invent a new unit of energy: a GPU cluster year. One GPU cluster year (GCY) is equivalent to the amount of energy Meta’s GPU cluster uses to train their large language models (at the time of writing), which has the power of approximately 600,000 H100s. At peak, each H100 consumes about 700W of power, which for a year results in:
+
+$$
+\begin{align}
+&600000\frac{\text{H100}}{\text{GPU Cluster}} \cdot 700\frac{\text{J}}{\text{s}\cdot\text{H100}} \cdot 3.154\times10^7\frac{\text{s}}{\text{Year}} \\ \nonumber
+&\approx 10^{16}\frac{\text{J}}{GCY} \nonumber
+\end{align}
+$$
+
+Giving about $$1\times10^{18}\text{ GCY}$$, or about 70 million times the length of the universe. In other words, if you ran Meta’s GPU cluster for as long as the age of the universe (a long time!), it would still use 70 million times less energy than what went into driving evolutionary processes.
+
+Perhaps there’s nothing remarkable about the evolution of the human brain, besides the massive scale of energy expenditure. But that’s just the upper bound! Let’s examine the lower bound for energy expenditure, assuming the following fact:
+
+> To model the evolutionary process, information about whether an organism survives and reproduces is required for all organisms that come into existence.
+
+It follows that, we must find the energy required to sustain all organisms that have ever existed. Since single-celled organisms make up the majority of biomass on the Earth, we can consider the maximum number of E-coli which could inhabit the Earth and assume the energy consumption from other organisms to be negligible. From prior work, we can estimate the energy consumed by every organism to be:
+
+$$
+\begin{align}
+&1.7\times10^{30}\frac{\text{Cell}}{\text{Year}}\cdot 3.5\times10^{9}\frac{\text{Year}}{\text{Evolutionary Period}} \\ \nonumber
+&\cdot1\times10^6\frac{\text{Second of metabolism}}{\text{Cell}}\cdot0.5\times10^{-12}\frac{\text{J}}{\text{Second of metabolism}} \\ \nonumber
+&\approx 3\times10^{33}\frac{\text{J}}{\text{Evolutionary period}} \approx 3000\text{QJ}{\text{Evolutionary period}}
+\end{align}
+$$
+
+This is just one order of magnitude away from our very simple estimate of the total power dissipated onto Earth from the sun ($$1\times10^{34}$$ vs. $$3\times10^{33}$$)!

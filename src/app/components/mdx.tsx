@@ -5,6 +5,10 @@ import { highlight } from "sugar-high";
 import React from "react";
 import { ReactNode } from "react";
 
+import rehypeKatex from "rehype-katex";
+import remarkMath from "remark-math";
+import remarkGfm from "remark-gfm";
+
 function Table({
   data,
 }: {
@@ -97,7 +101,7 @@ let components = {
   h5: createHeading(5),
   h6: createHeading(6),
   p: ({ children }: { children: ReactNode }) => (
-    <p className="mb-2">{children}</p>
+    <p className="mb-4">{children}</p>
   ),
   blockquote: ({ children }: { children: ReactNode }) => (
     <blockquote className="border-l-4 pl-4 my-4">{children}</blockquote>
@@ -113,6 +117,17 @@ export function CustomMDX(props: MDXRemoteProps) {
     <MDXRemote // @ts-ignore
       {...props}
       components={{ ...components, ...(props.components || {}) } as any}
+      options={{
+        mdxOptions: {
+          rehypePlugins: [
+            [
+              rehypeKatex,
+              {},
+            ],
+          ],
+          remarkPlugins: [remarkMath, remarkGfm],
+        },
+      }}
     />
   );
 }
