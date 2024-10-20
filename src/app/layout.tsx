@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react"
 import { baseUrl } from "@/app/sitemap";
 import "./globals.css";
 
@@ -53,6 +54,7 @@ export default function RootLayout({
           sizes="32x32"
         />
         <link rel="icon" type="image/x-icon" href="/favicon.ico"></link>
+        <Analytics />
       </head>
       <body>{children}</body>
     </html>
