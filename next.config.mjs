@@ -1,5 +1,35 @@
 import createMDX from '@next/mdx'
 
+const links = {
+  "blender": "https://www.youtube.com/watch?v=2m0d_H97KII",
+  "cobalt": "https://github.com/MonliH/CobaltLang",
+  "reversi": "https://github.com/MonliH/Reversi-AI",
+  "blender2": "https://www.youtube.com/watch?v=DV3PN-R0IM0",
+  "coperr": "https://github.com/MonliH/coperr-lang",
+  "neutron": "https://github.com/the-neutron-foundation/neutron-language",
+  "discord": "https://github.com/MonliH/discord-repost-bot",
+  "nn": "https://github.com/MonliH/iNNteractive",
+  "oss1": "https://github.com/badges/shields/pull/5547",
+  "oss2": "https://github.com/iced-rs/iced/pull/545",
+  "oss3": "https://github.com/weirongxu/coc-explorer/pull/299",
+  "alzheimers": "https://github.com/MonliH/adai",
+  "web1": "https://monlih.github.io/personal-website-old/",
+  "crabfish": "https://github.com/MonliH/crabfish",
+  "nimble": "https://github.com/MonliH/nimble-engine",
+  "new-years": "https://github.com/MonliH/reSolve",
+  "chocolate": "https://www.chocchique.ca/",
+  "nllp": "https://aclanthology.org/2022.nllp-1.10/",
+  "reblock": "https://github.com/MonliH/reBlock",
+  "acl": "https://aclanthology.org/2023.acl-short.120/",
+  "genlaw": "https://blog.genlaw.org/pdfs/genlaw_icml2024/74.pdf",
+  "lncs": "https://arxiv.org/pdf/2404.12349",
+  "vr": "https://www.youtube.com/watch?v=L6QzVRYunt4",
+  "trajectify": "https://github.com/MonliH/trajectify",
+  "depression": "https://partner.projectboard.world/ysc/project/depressed-or-not-using-large-language-models-to-predict-depression-from-social-media-posts-meolde",
+  "climate": "https://www.climate-institutions.org/",
+  "ai-detector": "https://partner.projectboard.world/ysc/project/can-we-trust-ai-text-detectors-exposing-limitations-and-proposing-fixes"
+}
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     transpilePackages: ['next-mdx-remote'],
@@ -33,6 +63,15 @@ const nextConfig = {
     },
   
     // ...other config
+    async redirects() {
+      return Object.entries(links).map((items) => {
+        return {
+          source: `/${items[0]}`,
+          destination: items[1],
+          permanent: true,
+        }
+      });
+    },
   }
 
 const withMDX = createMDX({
