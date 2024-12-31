@@ -20,6 +20,7 @@ const links = {
   "chocolate": "https://www.chocchique.ca/",
   "nllp": "https://aclanthology.org/2022.nllp-1.10/",
   "reblock": "https://github.com/MonliH/reBlock",
+  "igl": "https://github.com/sensors-ingenuity",
   "acl": "https://aclanthology.org/2023.acl-short.120/",
   "genlaw": "https://blog.genlaw.org/pdfs/genlaw_icml2024/74.pdf",
   "lncs": "https://arxiv.org/pdf/2404.12349",
