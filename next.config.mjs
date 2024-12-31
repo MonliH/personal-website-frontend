@@ -27,7 +27,8 @@ const links = {
   "trajectify": "https://github.com/MonliH/trajectify",
   "depression": "https://partner.projectboard.world/ysc/project/depressed-or-not-using-large-language-models-to-predict-depression-from-social-media-posts-meolde",
   "climate": "https://www.climate-institutions.org/",
-  "ai-detector": "https://partner.projectboard.world/ysc/project/can-we-trust-ai-text-detectors-exposing-limitations-and-proposing-fixes"
+  "ai-detector": "https://partner.projectboard.world/ysc/project/can-we-trust-ai-text-detectors-exposing-limitations-and-proposing-fixes",
+  "scholar": "https://scholar.google.ca/citations?user=9AyfdMsAAAAJ"
 }
 
 /** @type {import('next').NextConfig} */
