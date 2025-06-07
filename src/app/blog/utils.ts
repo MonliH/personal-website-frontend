@@ -97,5 +97,5 @@ export function formatDate(date: string, includeRelative = false): string {
     return fullDate;
   }
 
-  return `${fullDate} (${formattedDate})`;
+  return `${fullDate}`;
 }

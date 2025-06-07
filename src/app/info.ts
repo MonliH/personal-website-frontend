@@ -11,6 +11,12 @@ export const papers = [
     link: "https://aclanthology.org/2023.acl-short.120/",
   },
   {
+    title: "Command A: An Enterprise-Ready Large Language Model",
+    venue: "arXiv preprint (2025",
+    authors: ["Cohere Team"],
+    link: "https://arxiv.org/abs/2504.00698",
+  },
+  {
     title: "Parameter-Efficient Legal Domain Adaptation",
     venue:
       "Natural Legal Language Processing Workshop 2022 (NLLP @ EMNLP 2022)",

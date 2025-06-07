@@ -38,13 +38,12 @@ export default function Home() {
             <p className="font-normal">
               I started coding six years ago when I was captivated by the magic
               behind a neural network. Now I’ve graduated from high school,
-              currently working at Cohere doing machine learning stuff.
+              worked at Cohere, and am starting a YC company.
             </p>
             <p className="font-normal">
               I’m interested in pursuing life’s big questions—which is likely why my
-              interests bounce around so often, from AI (to help me) to
-              physics (to explain our world) to entrepreneurship (to fund my
-              exploration)—though I’m honestly unlikely to succeed, at least on
+              interests bounce around so often, from AI to
+              physics to entrepreneurship—though I’m honestly unlikely to succeed, at least on
               my own.
             </p>
           </div>
