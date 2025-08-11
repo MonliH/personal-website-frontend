@@ -5,7 +5,7 @@ import Sep1Svg from "../../public/paths/sep1.svg";
 import Sep2AltSvg from "../../public/paths/sep2_alt.svg";
 import SideSvg from "../../public/paths/side.svg";
 import SpeechSvg from "../../public/paths/speech.svg";
-import jonathanImg from "../../public/jonathan_portrait.jpg";
+import jonathanImg from "../../public/jonathan_li_2025.jpeg";
 import { hackathonProjects, papers, personalProjects, websites } from "./info";
 import Link from "next/link";
 import LenisScroller from "@/libs/LenisScroller";
@@ -24,9 +24,9 @@ export default function Home() {
         <h1 className="ml-3 mt-0 leading-tight w-9/12 font-bold mb-[600px] text-6xl lg:w-auto lg:ml-0 lg:mt-0 lg:text-[115pt] 2xl:text-[150pt]">
           Jonathan Li
         </h1>
-        <p className="left-[45%] w-1/2 absolute top-[700px] text-lg lg:w-[31rem] lg:text-2xl lg:left-[calc(7.5rem+49vw)] lg:top-[calc(90%-125px)] 2xl:left-[calc(12rem+49vw)] 2xl:top-[calc(80%-50px)]">
-          I’ve been messing around making what I think is cool stuff—ai stuff,
-          website designs, hackathon projects—for the past six years.
+        <p className="left-[45%] w-1/2 absolute top-[700px] text-lg lg:w-[32rem] lg:text-2xl lg:left-[calc(7.5rem+49vw)] lg:top-[calc(90%-125px)] 2xl:left-[calc(12rem+49vw)] 2xl:top-[calc(80%-50px)]">
+          I’ve been messing around making what I <br></br>think is cool stuff—machine learning,
+          design, hackathon projects—for the past seven years.
         </p>
         <div className="flex flex-row w-full gap-y-8 gap-x-16 items-end flex-wrap-reverse lg:flex-nowrap">
           <div className="flex flex-col gap-3 w-[min(20rem,95%)] text-sm 2xl:w-96 2xl:text-base flex-shrink-0">
@@ -36,9 +36,9 @@ export default function Home() {
               programmer, entrepreneur, gymgoer, piano player...
             </p>
             <p className="font-normal">
-              I started coding six years ago when I was captivated by the magic
+              I started coding seven years ago when I was captivated by the magic
               behind a neural network. Now I’ve graduated from high school,
-              worked at Cohere, and am starting a YC company.
+              worked at Cohere full-time, and am starting a YC company.
             </p>
             <p className="font-normal">
               I’m interested in pursuing life’s big questions—which is likely why my
@@ -61,7 +61,7 @@ export default function Home() {
           <div>
             <h2 className="text-3xl font-bold mb-2">ai research</h2>
             <p>
-              I've published a few papers as first author<br></br>@ Queen’s U,
+              I've <Link href="https://scholar.google.ca/citations?user=9AyfdMsAAAAJ&hl=en&authuser=1" className="underline" target="_blank">published</Link> a few papers as first author<br></br>@ Queen’s U,
               with{" "}
               <Link
                 href="https://www.xiaodanzhu.com/"
@@ -150,6 +150,9 @@ export default function Home() {
         <h2 className="font-bold text-3xl ml-2">
           selected personal/​&#8203;hackathon projects
         </h2>
+        <p className="ml-2 mt-3">
+          ...from a while back (2019-2023).
+        </p>
         <div
           className={`w-full grid grid-cols-[max-content_auto] grid-rows-${hackathonProjects.length} gap-y-2 mt-8 ml-2 lg:ml-4`}
         >
