@@ -5,6 +5,7 @@ type Metadata = {
   title: string;
   publishedAt: string;
   summary: string;
+  hidden: boolean;
 };
 
 function parseFrontmatter(fileContent: string): {
@@ -44,16 +45,18 @@ function getMDXData(
   dir: string
 ): { metadata: Metadata; slug: string; content: string }[] {
   let mdxFiles = getMDXFiles(dir);
-  return mdxFiles.map((file) => {
-    let { metadata, content } = readMDXFile(path.join(dir, file));
-    let slug = path.basename(file, path.extname(file));
+  return mdxFiles
+    .map((file) => {
+      let { metadata, content } = readMDXFile(path.join(dir, file));
+      let slug = path.basename(file, path.extname(file));
 
-    return {
-      metadata,
-      slug,
-      content,
-    };
-  });
+      return {
+        metadata,
+        slug,
+        content,
+      };
+    })
+    .filter((post) => !post.metadata.hidden);
 }
 
 export function getBlogPosts(): {
