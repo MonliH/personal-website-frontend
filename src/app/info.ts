@@ -12,7 +12,7 @@ export const papers = [
   },
   {
     title: "Command A: An Enterprise-Ready Large Language Model",
-    venue: "arXiv preprint (2025",
+    venue: "arXiv preprint (2025)",
     authors: ["Cohere Team"],
     link: "https://arxiv.org/abs/2504.00698",
   },
