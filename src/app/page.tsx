@@ -25,23 +25,23 @@ export default function Home() {
           Jonathan Li
         </h1>
         <p className="left-[45%] w-1/2 absolute top-[700px] text-lg lg:w-[32rem] lg:text-2xl lg:left-[calc(7.5rem+49vw)] lg:top-[calc(90%-125px)] 2xl:left-[calc(12rem+49vw)] 2xl:top-[calc(80%-50px)]">
-          I’ve been messing around making what I <br></br>think is cool stuff—machine learning,
-          design, hackathon projects—for the past seven years.
+          I’ve been messing around making what I<br></br>think is cool stuff—machine learning, design
+          compilers—for the past eight (8) years.
         </p>
         <div className="flex flex-row w-full gap-y-8 gap-x-16 items-end flex-wrap-reverse lg:flex-nowrap">
           <div className="flex flex-col gap-3 w-[min(20rem,95%)] text-sm 2xl:w-96 2xl:text-base flex-shrink-0">
             <h2 className="font-bold m-0 text-3xl">who am i?</h2>
             <p className="font-normal">
-              I’m Jonathan, canadian ai researcher, web designer, computer
+              I’m Jonathan, canadian researcher, designer, computer
               programmer, entrepreneur, gymgoer, piano player...
             </p>
             <p className="font-normal">
-              I started coding seven years ago when I was captivated by the magic
-              behind a neural network. Now I’ve graduated from high school,
-              worked at Cohere full-time, and am starting a YC company.
+              I started coding eight years ago when I was captivated by the magic
+              behind a neural network. I used to work at Cohere on synthetic data 
+              and reasoning. Now I'm building a <Link href="https://www.inductionlabs.com/" className="underline" target="_blank">company</Link> (with my brother again).
             </p>
             <p className="font-normal">
-              I’m interested in pursuing life’s big questions—which is likely why my
+              I’ve always been interested in the existential questions—which is likely why my
               interests bounce around so often, from AI to
               physics to entrepreneurship—though I’m honestly unlikely to succeed, at least on
               my own.
@@ -59,9 +59,9 @@ export default function Home() {
         <Sep1Svg className="absolute left-0 mt-8 lg:-mt-8" />
         <div className="grid mt-40 gap-y-3 lg:grid-rows-[max-content_1fr] lg:grid-cols-[max-content_1fr] lg:gap-x-24 lg:gap-y-16">
           <div>
-            <h2 className="text-3xl font-bold mb-2">ai research</h2>
+            <h2 className="text-3xl font-bold mb-2">obligatory publication list</h2>
             <p>
-              I've <Link href="https://scholar.google.ca/citations?user=9AyfdMsAAAAJ&hl=en&authuser=1" className="underline" target="_blank">published</Link> a few papers as first author<br></br>@ Queen’s U,
+              prior to Cohere, I <Link href="https://scholar.google.ca/citations?user=9AyfdMsAAAAJ&hl=en&authuser=1" className="underline" target="_blank">published</Link> a few papers <br></br>@ Queen’s U,
               with{" "}
               <Link
                 href="https://www.xiaodanzhu.com/"
@@ -105,7 +105,7 @@ export default function Home() {
         <div className="relative mt-52 lg:mt-80 2xl:mt-96">
           <SideSvg className="absolute mt-6 h-full -left-2 w-[8%] hidden lg:block lg:w-auto lg:-left-20" />
           <div className="flex flex-row items-end gap-8 mb-16 lg:mb-28 flex-wrap lg:flex-nowrap">
-            <h2 className="font-bold text-3xl">website designs</h2>
+            <h2 className="font-bold text-3xl">some website designs</h2>
             <p>
               A few years ago I started{" "}
               <Link

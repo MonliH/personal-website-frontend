@@ -39,18 +39,18 @@ export const papers = [
 
 export const websites = [
   {
-    displayLink: "chocchique.ca",
-    link: "https://www.chocchique.ca/",
-    description:
-      "marketing and e-commerce page for ChocChique, a local bean-to-bar chocolate startup",
-    image: chocchiqueImg,
-  },
-  {
     displayLink: "climate-institutions.org",
     link: "https://www.climate-institutions.org/",
     description:
       "landing and conference page for the Institutions & Effective Climate Action project",
     image: climateImg,
+  },
+  {
+    displayLink: "chocchique.ca",
+    link: "https://www.chocchique.ca/",
+    description:
+      "marketing and e-commerce page for ChocChique, a local bean-to-bar chocolate startup",
+    image: chocchiqueImg,
   },
   {
     displayLink: "riftium.ca",
