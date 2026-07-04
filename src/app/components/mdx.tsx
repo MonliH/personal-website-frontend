@@ -97,7 +97,7 @@ let components = {
   h5: createHeading(5),
   h6: createHeading(6),
   p: ({ children }: { children: ReactNode }) => (
-    <p className="mb-2">{children}</p>
+    <p className="mb-4">{children}</p>
   ),
   blockquote: ({ children }: { children: ReactNode }) => (
     <blockquote className="border-l-4 pl-4 my-4">{children}</blockquote>
