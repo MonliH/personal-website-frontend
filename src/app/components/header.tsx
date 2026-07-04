@@ -7,7 +7,7 @@ export default function Header({ blog }: { blog?: boolean }) {
     <header
       className={`w-full ${
         blog ? "px-0 relative" : "top-0 px-8 absolute lg:fixed"
-      } mt-8 z-10 text-white mix-blend-difference clip`}
+      } mt-8 z-10 ${blog ? "text-black" : "text-white mix-blend-difference"} clip`}
     >
       <div className="flex flex-row gap-3.5">
         {!blog && <div className="w-full"></div>}
