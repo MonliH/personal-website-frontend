@@ -1,7 +1,7 @@
 import { BlogPosts } from "@/app/components/posts";
 import Header from "@/app/components/header";
 import Link from "next/link";
-import BlogWrapper from "@/app/blog/blogWrapper";
+import BlogWrapper from "@/app/writing/blogWrapper";
 
 export const metadata = {
   title: "Blog",

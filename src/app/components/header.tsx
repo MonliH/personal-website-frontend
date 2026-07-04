@@ -18,8 +18,8 @@ export default function Header({ blog }: { blog?: boolean }) {
             <p className="select-none">&#8226;</p>
           </>
         )}
-        <Link href="/blog" className={blog ? "font-bold" : ""}>
-          Blog
+        <Link href="/writing" className={blog ? "font-bold" : ""}>
+          Writing
         </Link>
         <Link
           href="https://scholar.google.ca/citations?user=9AyfdMsAAAAJ&hl=en&authuser=1"

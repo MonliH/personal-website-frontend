@@ -1,4 +1,4 @@
-import { getBlogPosts } from "@/app/blog/utils";
+import { getBlogPosts } from "@/app/writing/utils";
 
 export const baseUrl = "https://www.jonat.li";
 
