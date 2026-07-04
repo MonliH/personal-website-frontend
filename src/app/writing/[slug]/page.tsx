@@ -33,7 +33,7 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
       description,
       type: "article",
       publishedTime,
-      url: `${baseUrl}/blog/${post.slug}`,
+      url: `${baseUrl}/writing/${post.slug}`,
       images: [
         {
           url: ogImage,
@@ -70,7 +70,7 @@ export default function Blog({ params }: { params: { slug: string } }) {
             dateModified: post.metadata.publishedAt,
             description: post.metadata.summary,
             image: `/og?title=${encodeURIComponent(post.metadata.title)}`,
-            url: `${baseUrl}/blog/${post.slug}`,
+            url: `${baseUrl}/writing/${post.slug}`,
             author: {
               "@type": "Person",
               name: "Jonathan Li",
@@ -87,7 +87,7 @@ export default function Blog({ params }: { params: { slug: string } }) {
             {formatDate(post.metadata.publishedAt, true)}
           </p>
         </div>
-        <article className="prose">
+        <article className="prose prose-p:my-6">
           <CustomMDX source={post.content} />
         </article>
       </BlogWrapper>
