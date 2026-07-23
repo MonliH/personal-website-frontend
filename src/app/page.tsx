@@ -32,19 +32,28 @@ export default function Home() {
           <div className="flex flex-col gap-3 w-[min(20rem,95%)] text-sm 2xl:w-96 2xl:text-base flex-shrink-0">
             <h2 className="font-bold m-0 text-3xl">who am i?</h2>
             <p className="font-normal">
-              I’m Jonathan, canadian researcher, designer, computer
-              programmer, entrepreneur, gymgoer, piano player...
+              That's a hard question.
             </p>
             <p className="font-normal">
-              I started coding eight years ago when I was captivated by the magic
-              behind a neural network. I used to work at Cohere on synthetic data 
-              and reasoning. Now I'm building a <Link href="https://www.inductionlabs.com/" className="underline" target="_blank">company</Link> (with my brother again).
+              As you may have noticed, I have a fairly unconventional background for someone who calls themselves an ai researcher.
+            </p>
+            <p className="font-normal">
+              I started coding eight years ago when I was captivated by the magic behind a neural network. 
+              I used to work at Cohere on synthetic data, reasoning, and RL infrastructure. Prior to that I published NLP research in an academic capacity at Queen's University.
+              Now I'm building a <Link href="https://www.inductionlabs.com/" className="underline" target="_blank">company</Link> (with my brother again).
             </p>
             <p className="font-normal">
               I’ve always been interested in the existential questions—which is likely why my
               interests bounce around so often, from AI to
-              physics to entrepreneurship—though I’m honestly unlikely to succeed, at least on
+              physics to building companies—though I’m honestly unlikely to succeed, at least on
               my own.
+            </p>
+            <p className="font-normal">
+              I’ve recently started thinking a lot about my nonconventional path.
+              This introspection has given me a lot of conviction on how we should build the next generation of ai.
+            </p>
+            <p className="font-normal">
+              If you want to learn more about how I think, take a look at some of <Link href="/writing" className="underline" target="_blank">my writing</Link>.
             </p>
           </div>
           <div className="flex-1 flex-shrink-0 basis-[min(24rem,90%)] lg:basis-96">
@@ -213,10 +222,10 @@ export default function Home() {
           <h2 className="font-bold text-3xl">jonathan li</h2>
           <p>
             Reach out to me via{" "}
-            <Link href="mailto:li.jonathan42@gmail.com" className="underline">
+            <Link href="mailto:jonathan@inductionlabs.com" className="underline">
               email
             </Link>{" "}
-            (li.jonathan42@gmail.com) or{" "}
+            (jonathan@inductionlabs.com) or{" "}
             <Link
               href="https://www.linkedin.com/in/jonatli/"
               target="_blank"
