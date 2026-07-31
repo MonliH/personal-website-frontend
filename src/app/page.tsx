@@ -65,7 +65,7 @@ export default function Home() {
             ></Image>
           </div>
         </div>
-        <Sep1Svg className="absolute left-0 mt-8 lg:-mt-8" />
+        <Sep1Svg className="absolute left-0 mt-8 lg:-mt-8 pointer-events-none" />
         <div className="grid mt-40 gap-y-3 lg:grid-rows-[max-content_1fr] lg:grid-cols-[max-content_1fr] lg:gap-x-24 lg:gap-y-16">
           <div>
             <h2 className="text-3xl font-bold mb-2">obligatory publication list</h2>
@@ -110,9 +110,9 @@ export default function Home() {
             ))}
           </div>
         </div>
-        <Sep2AltSvg className="absolute left-0 mt-16 lg:-mt-12" />
+        <Sep2AltSvg className="absolute left-0 mt-16 lg:-mt-12 pointer-events-none" />
         <div className="relative mt-52 lg:mt-80 2xl:mt-96">
-          <SideSvg className="absolute mt-6 h-full -left-2 w-[8%] hidden lg:block lg:w-auto lg:-left-20" />
+          <SideSvg className="absolute mt-6 h-full -left-2 w-[8%] hidden lg:block lg:w-auto lg:-left-20 pointer-events-none" />
           <div className="flex flex-row items-end gap-8 mb-16 lg:mb-28 flex-wrap lg:flex-nowrap">
             <h2 className="font-bold text-3xl">some website designs</h2>
             <p>
