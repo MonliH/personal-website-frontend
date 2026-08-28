@@ -46,7 +46,7 @@ export default function Home() {
             <p className="font-normal">
               Not long after, I learned to code and became captivated by the magic behind a neural network. The product of my exploration was published NLP research 
               (back when it was still called that) including a first-author paper at ACL 2023. When I was 17, I joined Cohere as their youngest researcher,
-              where I worked on reasoning, long-context, and reinforcement learning infrastructure. Now, I'm building a <Link href="https://www.inductionlabs.com/" className="underline" target="_blank">company</Link> with my brother.
+              where I worked on reasoning, long-context, and reinforcement learning infrastructure. Now, I'm building a <Link href="https://www.inductionlabs.com/" className="underline" target="_blank">company</Link> with <Link href="https://davidy.li" className="underline" target="_blank">my brother</Link>.
             </p>
             <p className="font-normal">
               I’ve recently started thinking a lot about my path, which has given me a lot of conviction about how we should build the next generation of ai.
