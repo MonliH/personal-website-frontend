@@ -36,14 +36,12 @@ export default function Home() {
             </p>
             <p className="font-normal">
               That year I spent evenings exploring our family laptop. I stumbled upon my brother's pirated version of the Adobe suite, 
-              and spent the next year learning how to edit and composite VFX videos in Adobe After Effects with online tutorials, despite
-              my siblings' annoyance during my regular hogging of the computer when I was rendering my compositions.
-              {/* My parents and siblings - knowing absolutely nothing 
-              about video editing - developed some annoyance during my regular hogging of the computer when I was rendering my compositions. */}
+              and spent the next year learning how to edit and composite VFX videos in Adobe After Effects with online tutorials. I distincitly remember hogging the laptop 
+              for hours at a time waiting on renders, to my siblings' great annoyance.
             </p>
             <p className="font-normal">
               At the end of that year I made my first dollar on Fiverr by helping people edit videos. I still remember how thrilling it felt to make something other people 
-              were willing to pay for, as someone who had just gone and taught himself how to do that thing.
+              were willing to pay for, as someone who had just taught himself how to do that thing.
             </p>
             <p className="font-normal">
               Not long after I learned to code, after being captivated by the magic behind a neural network. The product of my exploration was published NLP research 
