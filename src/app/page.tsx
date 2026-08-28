@@ -29,32 +29,33 @@ export default function Home() {
           compilers—for the past eight (8) years.
         </p>
         <div className="flex flex-row w-full gap-y-8 gap-x-16 items-end flex-wrap-reverse lg:flex-nowrap">
-          <div className="flex flex-col gap-3 w-[min(20rem,95%)] text-sm 2xl:w-96 2xl:text-base flex-shrink-0">
+          <div className="flex flex-col gap-3 w-[min(30rem,95%)] text-sm 2xl:w-96 2xl:text-base flex-shrink-0">
             <h2 className="font-bold m-0 text-3xl">who am i?</h2>
             <p className="font-normal">
-              That's a hard question.
+              I mostly grew up in Ontario. But a vivid year that's shaped my interests more than any other was the year I lived abroad in Hangzhou, at a public school when I was 8.
             </p>
             <p className="font-normal">
-              As you may have noticed, I have a fairly unconventional background for someone who calls themselves an ai researcher.
+              That year I spent evenings exploring our family laptop. I stumbled upon my brother's pirated version of the Adobe suite, 
+              and spent the next year learning how to edit and composite VFX videos in Adobe After Effects with online tutorials, despite
+              my siblings' annoyance during my regular hogging of the computer when I was rendering my compositions.
+              {/* My parents and siblings - knowing absolutely nothing 
+              about video editing - developed some annoyance during my regular hogging of the computer when I was rendering my compositions. */}
             </p>
             <p className="font-normal">
-              I started coding eight years ago when I was captivated by the magic behind a neural network. 
-              I used to work at Cohere on synthetic data, reasoning, and RL infrastructure. Prior to that I published NLP research in an academic capacity at Queen's University.
-              Now I'm building a <Link href="https://www.inductionlabs.com/" className="underline" target="_blank">company</Link> (with my brother again).
+              At the end of that year I made my first dollar on Fiverr by helping people edit videos. I still remember how thrilling it felt to make something other people 
+              were willing to pay for, as someone who had just gone and taught himself how to do that thing.
             </p>
             <p className="font-normal">
-              I’ve always been interested in the existential questions—which is likely why my
-              interests bounce around so often, from AI to
-              physics to building companies—though I’m honestly unlikely to succeed, at least on
-              my own.
+              Not long after I learned to code, after being captivated by the magic behind a neural network. The product of my exploration was published NLP research 
+              (back when it was still called that) including a first-author paper at ACL 2023. When I was 17, I joined Cohere as their youngest researcher,
+              where I worked on reasoning, long-context, and reinforcement learning infrastructure. Now, I'm building a <Link href="https://www.inductionlabs.com/" className="underline" target="_blank">company</Link> with my brother.
             </p>
             <p className="font-normal">
-              I’ve recently started thinking a lot about my nonconventional path.
-              This introspection has given me a lot of conviction on how we should build the next generation of ai.
+              I’ve recently started thinking a lot about my path, which has given me a lot of conviction about how we should build the next generation of ai.
             </p>
-            <p className="font-normal">
+            {/* <p className="font-normal">
               If you want to learn more about how I think, take a look at some of <Link href="/writing" className="underline" target="_blank">my writing</Link>.
-            </p>
+            </p> */}
           </div>
           <div className="flex-1 flex-shrink-0 basis-[min(24rem,90%)] lg:basis-96">
             <Image
@@ -68,7 +69,7 @@ export default function Home() {
         <Sep1Svg className="absolute left-0 mt-8 lg:-mt-8 pointer-events-none" />
         <div className="grid mt-40 gap-y-3 lg:grid-rows-[max-content_1fr] lg:grid-cols-[max-content_1fr] lg:gap-x-24 lg:gap-y-16">
           <div>
-            <h2 className="text-3xl font-bold mb-2">obligatory publication list</h2>
+            <h2 className="text-3xl font-bold mb-2">publications</h2>
             <p>
               prior to Cohere, I <Link href="https://scholar.google.ca/citations?user=9AyfdMsAAAAJ&hl=en&authuser=1" className="underline" target="_blank">published</Link> a few papers <br></br>@ Queen’s U,
               with{" "}
@@ -116,16 +117,8 @@ export default function Home() {
           <div className="flex flex-row items-end gap-8 mb-16 lg:mb-28 flex-wrap lg:flex-nowrap">
             <h2 className="font-bold text-3xl">some website designs</h2>
             <p>
-              A few years ago I started{" "}
-              <Link
-                href="https://www.riftium.ca"
-                target="_blank"
-                className="underline"
-              >
-                Riftium
-              </Link>
-              , a web design firm, with{" "}
-              <Link href="https://davidy.li" target="_blank">
+              A few years ago I started a web design firm with{" "}
+              <Link href="https://davidy.li" target="_blank" style={{ textDecoration: "underline" }}>
                 my brother
               </Link>
               .
@@ -225,15 +218,7 @@ export default function Home() {
             <Link href="mailto:jonathan@inductionlabs.com" className="underline">
               email
             </Link>{" "}
-            (jonathan@inductionlabs.com) or{" "}
-            <Link
-              href="https://www.linkedin.com/in/jonatli/"
-              target="_blank"
-              className="underline"
-            >
-              Linkedin
-            </Link>
-            .
+            (jonathan@inductionlabs.com).
           </p>
         </div>
       </main>
